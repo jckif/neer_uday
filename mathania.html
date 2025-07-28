@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JCKIF - Mathania Gallery</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="gallery.css">
+</head>
+<body>
+    <!-- Top blue bar -->
+    <div class="top-bar">
+        <div class="top-bar-links">
+            <a href="gallery.html" class="top-link magnetic">Photo Gallery</a>
+            <a href="contact.html" class="top-link magnetic">Contact Us</a>
+        </div>
+    </div>
+    <!-- Main header with logo and nav -->
+    <header class="main-header">
+        <div class="header-content-wrapper">
+            <div class="header-logo-group">
+                <img src="images/logo.png" alt="Logo" class="logo-header">
+                <img src="images/dia.png" alt="DIA Logo" class="dia-header">
+                <img src="images/mylogo.png" alt="My Logo" class="mylogo-header">
+            </div>
+            <div class="header-title">
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="index.html" class="magnetic">Home</a></li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle magnetic">About Us</a>
+                        <div class="dropdown-menu">
+                            <a href="overview.html" class="magnetic">Overview</a>
+                            <a href="company.html" class="magnetic">Company</a>
+                            <a href="team.html" class="magnetic">Team</a>
+                        </div>
+                    </li>
+                    <!-- Add more links as needed -->
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Location Gallery Section -->
+    <section class="location-gallery">
+        <a href="gallery.html" class="back-to-gallery">← Back to Gallery</a>
+        <h1 class="section-title">Mathania Gallery</h1>
+        <div class="location-gallery-grid" id="gallery-grid">
+            <!-- Images and videos will be loaded dynamically -->
+        </div>
+    </section>
+
+    <!-- Lightbox -->
+    <div class="lightbox" id="lightbox">
+        <div class="lightbox-content">
+            <img src="" alt="" id="lightbox-image">
+            <video src="" controls id="lightbox-video" style="display: none;"></video>
+            <div class="lightbox-caption" id="lightbox-caption"></div>
+        </div>
+        <div class="lightbox-nav">
+            <button id="prev-button">Previous</button>
+            <button id="next-button">Next</button>
+        </div>
+        <div class="lightbox-close" id="lightbox-close">×</div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        &copy; 2025 JCKIF. All rights reserved.
+    </footer>
+
+    <script src="script.js"></script>
+    <script src="gallery.js"></script>
+</body>
+</html> 
+
+

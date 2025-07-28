@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JCKIF - Home</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+</head>
+<body>
+    <!-- Top blue bar -->
+    <div class="top-bar">
+        <div class="top-bar-links">
+            <a href="gallery.html" class="top-link magnetic">Photo Gallery</a>
+            <a href="contact.html" class="top-link magnetic">Contact Us</a>
+        </div>
+    </div>
+    <!-- Main header with logo and nav -->
+    <header class="main-header">
+        <div class="header-content-wrapper">
+            <div class="header-logo-group">
+                <img src="images/logo.png" alt="Logo" class="logo-header">
+                <img src="images/dia.png" alt="DIA Logo" class="dia-header">
+                <img src="images/mylogo.png" alt="My Logo" class="mylogo-header">
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="index.html" class="active magnetic">Home</a></li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle magnetic">About Us</a>
+                        <div class="dropdown-menu">
+                            <a href="overview.html" class="magnetic">Overview</a>
+                            <a href="company.html" class="magnetic">Company</a>
+                            <a href="team.html" class="magnetic">Team</a>
+                        </div>
+                    </li>
+                    <!-- Add more links as needed -->
+                </ul>
+            </nav>
+        </div>
+    </header>
+    <!-- Moving marquee below header -->
+    <div class="moving-marquee-wrapper">
+        <div class="moving-marquee">
+            <span>JRF Recruitment at CETSD, IIT Jodhpur || JRF Recruitment at BSBE, IIT Jodhpur || Applications are invited for posts of Program Manager (Finance), Assistant Program Manager (Finance), Program Manager (Administration), Assistant Program Manager (Administration), Assistant Program Manager (Media), Assistant Program Manager (Office Coordinator) WELCOME TO JODHPUR CITY KNOWLEDGE AND INNOVATION FOUNDATION (JCKIF) JODHPUR CITY KNOWLEDGE AND INNOVATION FOUNDATION An initiative of the Office of the Principal Scientific Adviser to the Government of India on the recommendation of the Prime Minister's Science, Technology and Innovation Advisory Council</span>
+            <span>JRF Recruitment at CETSD, IIT Jodhpur || JRF Recruitment at BSBE, IIT Jodhpur || Applications are invited for posts of Program Manager (Finance), Assistant Program Manager (Finance), Program Manager (Administration), Assistant Program Manager (Administration), Assistant Program Manager (Media), Assistant Program Manager (Office Coordinator) WELCOME TO JODHPUR CITY KNOWLEDGE AND INNOVATION FOUNDATION (JCKIF) JODHPUR CITY KNOWLEDGE AND INNOVATION FOUNDATION An initiative of the Office of the Principal Scientific Adviser to the Government of India on the recommendation of the Prime Minister's Science, Technology and Innovation Advisory Council</span>
+        </div>
+    </div>
+    <main>
+        <h2 class="rwh-heading">Rainwater Harvesting & Water Conservation Vertical</h2>
+        <h1 class="fade-in">Under Mission "NEER UDAY" Student Explorer Internship program</h1>
+        <!-- New section with welcome text and dia.JPG -->
+        <div class="welcome-section fade-in">
+            <div class="welcome-text">
+                <img src="images/polit.png" alt="Political Map" class="polit-image">
+               <p>
+                The Rainwater Harvesting & Water Conservation Vertical is a flagship initiative under the Mission "NEER UDAY" Student Explorer Internship Program. It is led by the Jodhpur City Knowledge and Innovation Foundation (JCKIF) in collaboration with IIT Jodhpur and the Office of the Principal Scientific Adviser to the Government of India.
+                </p><p>This vertical enables student teams to actively engage with rural communities, identify local water-related challenges, and develop sustainable rainwater harvesting and conservation strategies. Through these village visits, students gain hands-on experience while contributing to real-world solutions.
+               </p> <p>
+                By combining field exploration, mapping, and data collection, the program creates a strong link between scientific research and grassroots action. Each report featured here captures valuable insights from the ground. Together, we aim to harness traditional knowledge and modern innovation to build a water-secure future.
+               </p></div>
+        </div>
+        <!-- Google Map Section -->
+        <div class="map-section fade-in">
+            <h2 class="map-heading">Student Explorations – Geographic Insights</h2>
+            <button id="fullscreen-map-btn" title="Fullscreen Map" style="position:absolute;top:4em;right:4em;display:flex;align-items:center;gap:0.5em;">
+                <span style="font-size:1.1em;vertical-align:middle;line-height:1;">&#128506;</span>
+                <span style="margin-left:0.2em;vertical-align:middle;">Full Screen Map View</span>
+            </button>
+            <div class="map-container">
+                <div id="map"></div>
+            </div>
+        </div>
+
+         <!-- Image Section -->
+        <h2 class="map-heading">Glimpses of NEER UDAY in Action:</h2>    
+        <div class="image-carousel fade-in">
+            <div class="carousel-container">
+                <div class="carousel-track">
+                    <img src="images/img1.jpg" alt="Image 1" class="carousel-image">
+                    <img src="images/img2.jpg" alt="Image 2" class="carousel-image">
+                    <img src="images/img3.jpg" alt="Image 3" class="carousel-image">
+                    <img src="images/img4.jpg" alt="Image 4" class="carousel-image">
+                    <img src="images/img5.jpg" alt="Image 5" class="carousel-image">
+                </div>
+                <button class="carousel-button left" id="scrollLeft">
+                    <span class="arrow">←</span>
+                </button>
+                <button class="carousel-button right" id="scrollRight">
+                    <span class="arrow">→</span>
+                </button>
+            </div>
+        </div>
+        <!-- News/Events Section -->
+        <div class="news-section fade-in">
+            <h2 class="news-heading">Latest News & Events</h2>
+            <div class="news-container">
+                <div class="news-item">
+                    <h3>IIT Jodhpur Hosts National Conference on AI</h3>
+                    <p>IIT Jodhpur recently hosted a national conference on Artificial Intelligence, bringing together experts from across the country.</p>
+                    <a href="#" class="read-more">Read More</a>
+                </div>
+                <div class="news-item">
+                    <h3>New Research Grant Awarded to IIT Jodhpur</h3>
+                    <p>The institute has been awarded a significant research grant to advance sustainable energy solutions.</p>
+                    <a href="#" class="read-more">Read More</a>
+                </div>
+                <div class="news-item">
+                    <h3>IIT Jodhpur Launches New Innovation Hub</h3>
+                    <p>A state-of-the-art innovation hub has been inaugurated to foster entrepreneurship and research.</p>
+                    <a href="#" class="read-more">Read More</a>
+                </div>
+            </div>
+        </div>
+    </main>
+    <footer>
+        &copy; 2025 JCKIF. All rights reserved.
+    </footer>
+    <script src="script.js"></script>
+    <script src="map-data.js"></script>
+    <script src="interactive-map.js"></script>
+</body>
+</html>
