@@ -2395,30 +2395,319 @@ body.fullscreen-map-active .map-section .map-heading {
 }
 /* ... existing code ... */
 
-/* ... existing code ... */
-.kelwa-main-tabs {
+/* 🌐 Global Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  line-height: 1.6;
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+/* 🔵 Top Bar */
+.top-bar {
+  background-color: #007BFF;
+  padding: 0.5rem 1rem;
+}
+.top-bar-links {
+  display: flex;
+  justify-content: flex-end;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+.top-link {
+  color: white;
+  text-decoration: none;
+  font-size: 0.9rem;
+}
+
+/* 🧭 Header */
+.main-header {
+  background-color: white;
+  padding: 1rem;
+  border-bottom: 1px solid #ccc;
+}
+.header-content-wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+}
+.header-logo-group {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 1rem;
+}
+nav ul {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  list-style: none;
+}
+nav ul li a {
+  text-decoration: none;
+  color: #333;
+}
+nav ul li a.active {
+  font-weight: bold;
+}
+
+/* 🔽 Dropdown Menu */
+.dropdown {
+  position: relative;
+}
+.dropdown-menu {
+  display: none;
+  position: absolute;
+  background: white;
+  border: 1px solid #ccc;
+  flex-direction: column;
+  z-index: 100;
+  top: 100%;
+  left: 0;
+  min-width: 150px;
+}
+.dropdown:hover .dropdown-menu {
+  display: flex;
+}
+
+/* 🔁 Marquee */
+.moving-marquee-wrapper {
+  overflow: hidden;
+  white-space: nowrap;
+  background-color: #f1f1f1;
+  padding: 0.5rem 0;
+}
+.moving-marquee span {
+  display: inline-block;
+  padding-right: 2rem;
+  animation: marquee 20s linear infinite;
+}
+@keyframes marquee {
+  0% { transform: translateX(100%); }
+  100% { transform: translateX(-100%); }
+}
+
+/* 🧾 Main Content */
+main {
+  padding: 1rem;
+}
+.rwh-heading,
+.map-heading,
+.news-heading {
+  font-size: 1.5rem;
+  margin: 1rem 0;
+}
+.fade-in {
+  animation: fadeIn 1s ease-in;
+}
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+/* 👋 Welcome Section */
+.welcome-section {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  margin-top: 1.5rem;
+}
+.welcome-text {
+  flex: 1 1 100%;
+  font-size: 1rem;
+}
+.polit-image {
+  width: 100%;
+  max-width: 600px;
+  display: block;
+  margin: 0 auto 1rem;
+}
+
+/* 🗺️ Map Section */
+.map-section {
+  margin-top: 2rem;
+  position: relative;
+}
+#fullscreen-map-btn {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  background: #007BFF;
+  color: white;
+  border: none;
+  padding: 0.5em 1em;
+  font-size: 0.9rem;
+  cursor: pointer;
+  border-radius: 4px;
+  z-index: 10;
+}
+.map-container {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 16 / 9;
+  border: 1px solid #ccc;
+  margin-top: 3rem;
+}
+#map {
+  width: 100% !important;
+  height: 100% !important;
+}
+
+/* ✅ Leaflet Popup Responsiveness */
+.leaflet-popup-content {
+  max-width: 90vw !important;
+  width: auto !important;
+  overflow-wrap: break-word;
+  font-size: 1rem;
+  line-height: 1.4;
+}
+
+.leaflet-popup-content-wrapper {
+  padding: 0.8rem !important;
+}
+
+.leaflet-popup-tip-container {
+  display: block;
+}
+
+@media (max-width: 600px) {
+  .leaflet-popup-content {
+    font-size: 0.9rem;
+    padding: 0.5rem;
+  }
+
+  .leaflet-popup-content-wrapper {
+    padding: 0.5rem !important;
+  }
+}
+
+/* 🖼️ Carousel */
+.image-carousel {
+  margin: 2rem 0;
+  position: relative;
+  overflow-x: auto;
+}
+.carousel-container {
+  display: flex;
+  align-items: center;
+  overflow-x: auto;
+  scroll-behavior: smooth;
+}
+.carousel-track {
+  display: flex;
+  gap: 1rem;
+}
+.carousel-image {
+  flex-shrink: 0;
+  width: 100%;
+  max-width: 300px;
+  height: auto;
+  border-radius: 8px;
+}
+.carousel-button {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(255, 255, 255, 0.8);
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+  z-index: 10;
+}
+.carousel-button.left {
+  left: 10px;
+}
+.carousel-button.right {
+  right: 10px;
+}
+
+/* 📰 News Section */
+.news-section {
+  margin-top: 2rem;
+}
+.news-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+.news-item {
+  flex: 1 1 calc(33.333% - 1rem);
+  background-color: #f9f9f9;
+  padding: 1rem;
+  border-radius: 4px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+}
+.news-item h3 {
+  font-size: 1.1rem;
+  margin-bottom: 0.5rem;
+}
+.read-more {
+  color: #007BFF;
+  text-decoration: none;
+  font-size: 0.9rem;
+}
+
+/* 🔻 Footer */
+footer {
+  background-color: #007BFF;
+  color: white;
+  text-align: center;
+  padding: 1rem;
+  margin-top: 2rem;
+}
+
+/* 📱 Responsive Media Queries */
+@media (max-width: 1024px) {
+  .header-content-wrapper {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  nav ul {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .news-item {
+    flex: 1 1 calc(50% - 1rem);
+  }
+}
+
+@media (max-width: 600px) {
+  .top-bar-links {
+    justify-content: center;
+  }
+  .welcome-section {
+    flex-direction: column;
+  }
+  .map-container {
+    aspect-ratio: 4 / 3;
+  }
+  .news-item {
+    flex: 1 1 100%;
+  }
+  #fullscreen-map-btn {
+    position: static;
+    margin: 1rem 0;
+    width: 100%;
     display: flex;
-    gap: 12px;
-    margin-bottom: 18px;
-    justify-content: flex-start;
+    justify-content: center;
+  }
+  .carousel-image {
+    max-width: 90vw;
+  }
+  .carousel-button {
+    display: none;
+  }
 }
-.kelwa-main-tab {
-    background: #f2f2f2;
-    color: #333;
-    border: none;
-    border-radius: 8px 8px 0 0;
-    padding: 10px 28px;
-    font-size: 1.08rem;
-    font-weight: 600;
-    cursor: pointer;
-    transition: background 0.2s, color 0.2s;
-    outline: none;
-    box-shadow: 0 2px 6px rgba(42,93,159,0.04);
-    letter-spacing: 0.5px;
-}
-.kelwa-main-tab.active {
-    background: #2a5d9f;
-    color: #fff;
-    box-shadow: 0 4px 12px rgba(42,93,159,0.10);
-}
-/* ... existing code ... */
