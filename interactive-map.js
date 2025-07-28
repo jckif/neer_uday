@@ -1154,8 +1154,8 @@ else if (village.id === 'dadrewa') {
             history: `
                 <b style='color:#2a5d9f;'>📜 History of the Waterbody</b><br/>
                 <ul>
-                    <li>Daab is a traditional water source located in Dadrewa village, Rajasthan, in the Nagaur district, part of the arid Marwar region. The term “Daab” refers to a natural or man-made depression used to collect rainwater. "Gorkh Ganga" suggests a spiritual or sacred significance, possibly linked to Gorkhnath, a revered saint in Nath tradition, and Ganga, the holy river, symbolizing purity.</li>
-                    <li>Historically, this daab was constructed or maintained by local yogis or saints and the rural community to serve as a water conservation structure in the desert landscape. It provided water during extreme drought conditions and played a central role in the village’s survival.</li>
+                    <li>Daab is a traditional water source located in Dadrewa village, Rajasthan, in the Nagaur district, part of the arid Marwar region. The term "Daab" refers to a natural or man-made depression used to collect rainwater. "Gorkh Ganga" suggests a spiritual or sacred significance, possibly linked to Gorkhnath, a revered saint in Nath tradition, and Ganga, the holy river, symbolizing purity.</li>
+                    <li>Historically, this daab was constructed or maintained by local yogis or saints and the rural community to serve as a water conservation structure in the desert landscape. It provided water during extreme drought conditions and played a central role in the village's survival.</li>
                 </ul>
             `,
             uses: `
@@ -1299,7 +1299,7 @@ else if (village.id === 'rajnagar') {
                     <tr><th>Latitude</th><td>25.0800</td></tr>
                     <tr><th>Longitude</th><td>73.9000</td></tr>
                 </table>
-                Ood Bawadi is a historic stepwell in Rajnagar, near Rajsamand, Rajasthan. Built during the Mewar era, it exemplifies the region’s traditional water conservation and architectural heritage, serving both practical and cultural roles in the community.<br/><br/>
+                Ood Bawadi is a historic stepwell in Rajnagar, near Rajsamand, Rajasthan. Built during the Mewar era, it exemplifies the region's traditional water conservation and architectural heritage, serving both practical and cultural roles in the community.<br/><br/>
             `,
             history: `
                 <b style='color:#2a5d9f;'>📜 History of the Waterbody</b><br/>
@@ -1328,7 +1328,7 @@ else if (village.id === 'rajnagar') {
                 <b style='color:#2a5d9f;'>🧭 Tourism Potential</b>
                 <ul>
                     <li><b>Architectural Value:</b> Ood Bawadi features intricately carved steps, stone pillars, and a symmetrical design, which appeals to heritage enthusiasts.</li>
-                    <li><b>Cultural Tourism:</b> Ideal for those exploring the Rajsamand lake, Kumbhalgarh Fort, and nearby Udaipur—this stepwell adds depth to the region’s heritage circuit.</li>
+                    <li><b>Cultural Tourism:</b> Ideal for those exploring the Rajsamand lake, Kumbhalgarh Fort, and nearby Udaipur—this stepwell adds depth to the region's heritage circuit.</li>
                     <li><b>Eco-Tourism:</b> Its historical water conservation methods could attract researchers and environmental tourists.</li>
                 </ul>
             `,
@@ -1392,18 +1392,18 @@ else if (village.id === 'amet') {
     setTimeout(() => {
         // Insert images into the image row
         const images = [
-            {src: 'images/rajnagar/1.jpg', caption: 'Ood Bawadi Stepwell, Rajnagar'},
-            {src: 'images/rajnagar/2.jpg', caption: 'Intricate stonework of Ood Bawadi'},
-            {src: 'images/rajnagar/3.jpg', caption: 'Community event at Ood Bawadi', viewAll: true}
+            {src: 'images/amet/1.jpg', caption: 'Rajon Ki Bawadi, Amet'},
+            {src: 'images/amet/2.jpg', caption: 'Stone masonry and steps of Rajon Ki Bawadi'},
+            {src: 'images/amet/3.jpg', caption: 'Heritage architecture of the stepwell', viewAll: true}
         ];
         const imageRow = villageInfo.querySelector('.ratangarh-image-row');
         images.forEach((img, i) => {
             const box = document.createElement('div');
             box.className = 'ratangarh-img-box';
-            box.innerHTML = `<img src='${img.src}' alt='Rajnagar Image ${i+1}'><div class='ratangarh-img-caption'>${img.caption}</div>`;
+            box.innerHTML = `<img src='${img.src}' alt='Amet Image ${i+1}'><div class='ratangarh-img-caption'>${img.caption}</div>`;
             if (img.viewAll) {
                 const btn = document.createElement('a');
-                btn.href = 'rajnagar.html';
+                btn.href = 'amet.html';
                 btn.className = 'view-all-photos-btn';
                 btn.textContent = 'View All Photos';
                 box.appendChild(btn);
@@ -1444,59 +1444,523 @@ else if (village.id === 'amet') {
             overview: `
                 <b style='color:#2a5d9f;'>Overview</b><br/>
                 <table class='ratangarh-info-table' style='width:100%;margin:18px 0 18px 0;border-collapse:collapse;'>
-                    <tr><th>Location</th><td>Ood Bawadi, Rajnagar</td></tr>
+                    <tr><th>Location</th><td>Rajon Ki Bawadi, Amet</td></tr>
                     <tr><th>District</th><td>Rajsamand</td></tr>
-                    <tr><th>Latitude</th><td>25.0800</td></tr>
-                    <tr><th>Longitude</th><td>73.9000</td></tr>
+                    <tr><th>Latitude</th><td>25.0500</td></tr>
+                    <tr><th>Longitude</th><td>73.8500</td></tr>
                 </table>
-                Ood Bawadi is a historic stepwell in Rajnagar, near Rajsamand, Rajasthan. Built during the Mewar era, it exemplifies the region’s traditional water conservation and architectural heritage, serving both practical and cultural roles in the community.<br/><br/>
+                Rajon Ki Bawadi is a historic stepwell in Amet, Rajsamand district, Rajasthan. Built during the Rajput rule, it represents traditional Mewar-style architecture and water management systems, serving as both a practical water source and a cultural heritage site.<br/><br/>
             `,
             history: `
                 <b style='color:#2a5d9f;'>📜 History of the Waterbody</b><br/>
                 <ul>
-                    <li>Ood Bawadi is a historic stepwell (bawadi) located in Rajnagar, near Rajsamand in Rajasthan. It was built during the Mewar era, likely in the 18th or 19th century, as part of a broader network of water structures developed by local rulers to combat water scarcity in the region.</li>
-                    <li>The term "Ood" possibly refers to a specific locality, land donor, or community. Stepwells like this played a crucial role in the socio-hydrological systems of arid Rajasthan, acting as sustainable water harvesting and storage structures.</li>
+                    <li>Rajon Ki Bawadi is a historic stepwell located in Amet, Rajsamand district, Rajasthan. The name "Rajon" refers to the Raj Mistris (royal masons) or elite classes who either constructed or primarily used the stepwell.</li>
+                    <li>It is believed to have been built several centuries ago during the Rajput rule, possibly in the 17th–18th century, as a part of the traditional water management systems that helped the region survive long dry spells.</li>
+                    <li>This bawadi was not just a water source but also a symbol of architectural skill, indicating the wealth and aesthetic sense of the era. It represents a typical Mewar-style stepwell, with deep stone masonry and symmetrical steps leading down to the water.</li>
                 </ul>
             `,
             uses: `
                 <b style='color:#2a5d9f;'>💧 Current Uses</b>
                 <ul>
-                    <li><b>Water Conservation:</b> Still serves to recharge groundwater during the monsoon.</li>
-                    <li><b>Cultural Gatherings:</b> Occasionally used for local community events or school visits.</li>
-                    <li><b>Drinking/Utility Use:</b> Earlier it was a key source of drinking water, but now is used more symbolically or for livestock or non-potable needs.</li>
+                    <li><b>Seasonal Water Storage:</b> It continues to hold water during monsoons, aiding groundwater recharge.</li>
+                    <li><b>Livelihood Use:</b> Local people may still use it for washing clothes, livestock, or non-potable water needs.</li>
+                    <li><b>Cultural Symbol:</b> Serves as a heritage point for the community and local gatherings.</li>
                 </ul>
             `,
             religion: `
                 <b style='color:#2a5d9f;'>🕉 Religious Significance</b><br/>
                 <ul>
-                    <li>Many bawadis in Rajasthan are considered sacred spaces, with small shrines or temples nearby.</li>
-                    <li>Ood Bawadi is likely associated with seasonal religious rituals, such as offerings during the rainy season or during traditional water festivals.</li>
-                    <li>Locals may still visit it during religious processions or for spiritual purification.</li>
+                    <li>Rajon Ki Bawadi, like many traditional stepwells, has a spiritual role in the community.</li>
+                    <li>Likely used for ritual bathing during religious festivals.</li>
+                    <li>Nearby shrines or idols may exist on the steps or walls.</li>
+                    <li>Considered auspicious during Gangaur, Navratri, or other regional fairs.</li>
                 </ul>
             `,
             tourism: `
                 <b style='color:#2a5d9f;'>🧭 Tourism Potential</b>
                 <ul>
-                    <li><b>Architectural Value:</b> Ood Bawadi features intricately carved steps, stone pillars, and a symmetrical design, which appeals to heritage enthusiasts.</li>
-                    <li><b>Cultural Tourism:</b> Ideal for those exploring the Rajsamand lake, Kumbhalgarh Fort, and nearby Udaipur—this stepwell adds depth to the region’s heritage circuit.</li>
-                    <li><b>Eco-Tourism:</b> Its historical water conservation methods could attract researchers and environmental tourists.</li>
+                    <li><b>Heritage Attraction:</b> Its stone carvings, layered step design, and architectural proportions make it a potential heritage tourism spot.</li>
+                    <li><b>Educational Value:</b> Ideal for students of architecture, water management, or cultural studies.</li>
+                    <li><b>Photography Spot:</b> Offers stunning visuals due to geometric design and historic ambiance.</li>
+                    <li><b>Eco-Tourism Add-on:</b> Can be included in regional heritage circuits with Rajsamand Lake, Kumbhalgarh, and Amet temples.</li>
                 </ul>
             `,
             science: `
                 <b style='color:#2a5d9f;'>🔬 Scientific Novelty (Design, Construction, etc.)</b>
                 <ul>
-                    <li><b>Stepwell Design:</b> Ood Bawadi uses a deep multi-tiered structure to tap into groundwater and store rainwater. It enables access to water at different depths throughout the year.</li>
-                    <li><b>Thermal Regulation:</b> Like many stepwells, it offers cooler temperatures inside, making it a practical and climate-resilient structure.</li>
-                    <li><b>Rainwater Harvesting:</b> Designed to trap surface runoff and filter it into deeper aquifers.</li>
-                    <li><b>Sustainable Engineering:</b> Built without modern materials, relying on local stone, gravity flow, and manual labor.</li>
+                    <li><b>Stepwell Design:</b> Deep vertical structure with multiple tiers of steps that allow access to water at various levels.</li>
+                    <li><b>Thermal Comfort:</b> Interior stays cooler than surroundings, offering a resting place during peak summers.</li>
+                    <li><b>Rainwater Harvesting:</b> Channels surface runoff into the stepwell, storing and replenishing subsurface aquifers.</li>
+                    <li><b>Stone Architecture:</b> Built using local sandstone, it showcases the skill of Rajput-era masons.</li>
                 </ul>
             `,
             condition: `
                 <b style='color:#2a5d9f;'>📊 Current Condition (Water Quantity & Quality)</b>
                 <ul>
-                    <li><b>Water Quantity:</b> Partially functional—fills during monsoons but may remain dry during summers. The exact level depends on rainfall and maintenance of the catchment area.</li>
-                    <li><b>Water Quality:</b> Often poor due to sedimentation, waste, or lack of regular cleaning. Restoration efforts (if any) could improve this.</li>
-                    <li><b>Preservation Needs:</b> Like many heritage water structures, Ood Bawadi requires cleaning, desilting, and awareness campaigns to ensure its continued use and conservation.</li>
+                    <li><b>Water Quantity:</b> Holds water primarily during monsoon season. May remain partially filled during other months depending on rainfall.</li>
+                    <li><b>Water Quality:</b> Not suitable for drinking now due to silt, debris, or stagnation, but usable for secondary purposes.</li>
+                    <li><b>Restoration Needs:</b> It may require cleaning, structural repair, and signage to preserve its heritage value and attract visitors.</li>
+                </ul>
+            `
+        };
+        function setTab(tab) {
+            tabContent.innerHTML = tabData[tab];
+            villageInfo.querySelectorAll('.ratangarh-tab').forEach(btn => btn.classList.remove('active'));
+            villageInfo.querySelector(`.ratangarh-tab[data-tab="${tab}"]`).classList.add('active');
+        }
+        setTab('overview');
+        villageInfo.querySelectorAll('.ratangarh-tab').forEach(btn => {
+            btn.onclick = () => setTab(btn.getAttribute('data-tab'));
+        });
+    }, 0);
+}
+// ... existing code ...    
+else if (village.id === 'sardar_samand') {
+    villageInfo.innerHTML = `
+        <div class="village-header">
+            <h3>${village.name}</h3>
+            <span class="village-district">${this.currentDistrict ? this.currentDistrict.name : ''} District</span>
+        </div>
+        <div class="ratangarh-image-row-wrapper" style="position:relative;width:100%;height:340px;">
+            <button class="ratangarh-arrow ratangarh-arrow-left" style="position:absolute;left:8px;top:50%;transform:translateY(-50%);z-index:2;display:none;background:rgba(42,93,159,0.7);border:none;border-radius:50%;width:38px;height:38px;color:#fff;font-size:1.5em;cursor:pointer;align-items:center;justify-content:center;outline:none;transition:background 0.2s;">&#8592;</button>
+            <div class="ratangarh-image-row" style="height:100%;"></div>
+            <button class="ratangarh-arrow ratangarh-arrow-right" style="position:absolute;right:8px;top:50%;transform:translateY(-50%);z-index:2;display:none;background:rgba(42,93,159,0.7);border:none;border-radius:50%;width:38px;height:38px;color:#fff;font-size:1.5em;cursor:pointer;align-items:center;justify-content:center;outline:none;transition:background 0.2s;">&#8594;</button>
+        </div>
+        <div class="ratangarh-tabs">
+            <button class="ratangarh-tab active" data-tab="overview">Overview</button>
+            <button class="ratangarh-tab" data-tab="history">📜 History of Waterbody</button>
+            <button class="ratangarh-tab" data-tab="uses">💧 Current Uses</button>
+            <button class="ratangarh-tab" data-tab="religion">🕉 Religious Significance</button>
+            <button class="ratangarh-tab" data-tab="tourism">🧭 Tourism Potential</button>
+            <button class="ratangarh-tab" data-tab="science">🔬 Scientific Novelty</button>
+            <button class="ratangarh-tab" data-tab="condition">📊 Current Condition</button>
+        </div>
+        <div class="ratangarh-tab-content" id="ratangarh-tab-content"></div>
+        <div class="village-actions">
+            <a href="${village.report}" class="view-report-btn">View Full Report</a>
+            <button class="close-popup-btn" onclick="this.closest('.village-info').remove(); document.querySelector('.district-info').style.display='block';">Close</button>
+        </div>
+    `;
+    setTimeout(() => {
+        // Insert images into the image row
+        const images = [
+            {src: 'images/sardar_samand/1.jpg', caption: 'Sardar Samand Lake - panoramic view'},
+            {src: 'images/sardar_samand/2.jpg', caption: 'Dimdi Well - traditional water source'},
+            {src: 'images/sardar_samand/3.jpg', caption: 'Historic Nadi with Chakki', viewAll: true}
+        ];
+        const imageRow = villageInfo.querySelector('.ratangarh-image-row');
+        images.forEach((img, i) => {
+            const box = document.createElement('div');
+            box.className = 'ratangarh-img-box';
+            box.innerHTML = `<img src='${img.src}' alt='Sardar Samand Image ${i+1}'><div class='ratangarh-img-caption'>${img.caption}</div>`;
+            if (img.viewAll) {
+                const btn = document.createElement('a');
+                btn.href = 'sardar_samand.html';
+                btn.className = 'view-all-photos-btn';
+                btn.textContent = 'View All Photos';
+                box.appendChild(btn);
+            }
+            imageRow.appendChild(box);
+        });
+        // Arrow logic
+        let currentIndex = 0;
+        const leftArrow = villageInfo.querySelector('.ratangarh-arrow-left');
+        const rightArrow = villageInfo.querySelector('.ratangarh-arrow-right');
+        function updateArrows() {
+            leftArrow.style.display = currentIndex > 0 ? 'flex' : 'none';
+            rightArrow.style.display = currentIndex < images.length-1 ? 'flex' : 'none';
+        }
+        function scrollToIndex(idx) {
+            const box = imageRow.children[idx];
+            if (box) box.scrollIntoView({behavior:'smooth',inline:'start'});
+            currentIndex = idx;
+            updateArrows();
+        }
+        leftArrow.onclick = () => scrollToIndex(currentIndex-1);
+        rightArrow.onclick = () => scrollToIndex(currentIndex+1);
+        imageRow.addEventListener('scroll', () => {
+            let minDist = Infinity, idx = 0;
+            for (let i=0; i<imageRow.children.length; ++i) {
+                const rect = imageRow.children[i].getBoundingClientRect();
+                const dist = Math.abs(rect.left - imageRow.getBoundingClientRect().left);
+                if (dist < minDist) { minDist = dist; idx = i; }
+            }
+            currentIndex = idx;
+            updateArrows();
+        });
+        // Initial state
+        scrollToIndex(0);
+        // Tabs logic
+        const tabContent = villageInfo.querySelector('#ratangarh-tab-content');
+        const tabData = {
+            overview: `
+                <b style='color:#2a5d9f;'>Overview</b><br/>
+                <table class='ratangarh-info-table' style='width:100%;margin:18px 0 18px 0;border-collapse:collapse;'>
+                    <tr><th>Location</th><td>Sardar Samand, Pali District</td></tr>
+                    <tr><th>Latitude</th><td>25.8000</td></tr>
+                    <tr><th>Longitude</th><td>73.2000</td></tr>
+                </table>
+                Sardar Samand is a historic artificial lake and water system in Rajasthan, built in the early 20th century. It includes the main lake, traditional wells, and unique waterbodies like the Nadi with Chakki, reflecting the region's ingenuity in water management and rural life.<br/><br/>
+            `,
+            history: `
+                <b style='color:#2a5d9f;'>📜 History of Waterbody</b><br/>
+                <ul>
+                    <li><b>Sardar Samand Lake:</b> Built in 1902 by Maharaja Umaid Singh, this artificial lake was developed to serve as a major water reservoir for nearby villages.</li>
+                    <li><b>Dimdi (Well):</b> Constructed by Jabbar Singh, this traditional well historically supplied water for agriculture through underground sources and a connected lake.</li>
+                    <li><b>Pili Nadi:</b> A once-essential community river used for drinking and household purposes.</li>
+                    <li><b>100+ Year Old Nadi with Chakki:</b> Built by Kishore Singh, this unique traditional waterbody integrated a bull-powered grinding wheel (chakki) that not only drew water but also ground wheat—demonstrating self-sustained rural life and local ingenuity.</li>
+                </ul>
+            `,
+            uses: `
+                <b style='color:#2a5d9f;'>💧 Current Uses</b>
+                <ul>
+                    <li><b>Sardar Samand Lake:</b> Still provides water to nearby villages and supports wildlife, although it's now under stress from overuse.</li>
+                    <li><b>Dimdi:</b> Continues to be used for irrigation, but its quality has severely deteriorated.</li>
+                    <li><b>Pili Nadi:</b> No longer used for daily needs due to the shift to piped water systems but remains a water source for cattle.</li>
+                    <li><b>Nadi with Chakki:</b> No longer in functional use, though it stands as a monument to past practices.</li>
+                </ul>
+            `,
+            religion: `
+                <b style='color:#2a5d9f;'>🕉 Religious Significance</b><br/>
+                While direct religious rituals are not explicitly mentioned, the continued cultural reverence and community memory attached to the Nadi, Dimdi, and Pili Nadi reflect a spiritual connection to these water sources, often seen in traditional rural Rajasthan where water bodies are considered sacred lifelines.
+            `,
+            tourism: `
+                <b style='color:#2a5d9f;'>🧭 Tourism Potential</b>
+                <ul>
+                    <li>Sardar Samand Lake offers significant tourism potential due to its scenic beauty, historic origins, and local wildlife presence.</li>
+                    <li>The century-old Nadi with Chakki has heritage value, making it ideal for rural tourism or eco-tourism models showcasing traditional water management and food systems.</li>
+                </ul>
+            `,
+            science: `
+                <b style='color:#2a5d9f;'>🔬 Scientific Novelty</b>
+                <ul>
+                    <li><b>Dimdi:</b> Represents a hybrid water source drawing from both underground aquifers and lake water—valuable for hydrological study.</li>
+                    <li><b>Nadi with Chakki:</b> A mechanical innovation where a single energy source powered both water lifting and grain grinding—highlighting traditional knowledge in sustainable tech.</li>
+                    <li>Water samples collected by Team RetroFlow for quality testing represent modern scientific engagement with legacy systems.</li>
+                </ul>
+            `,
+            condition: `
+                <b style='color:#2a5d9f;'>📊 Current Condition</b>
+                <ul>
+                    <li><b>Sardar Samand Lake:</b> Suffering from pollution and overuse.</li>
+                    <li><b>Dimdi:</b> Water quality declined significantly due to pollution.</li>
+                    <li><b>Pili Nadi:</b> Largely unused, but still relevant for cattle and ecosystem.</li>
+                    <li><b>Nadi with Chakki:</b> Forgotten and non-functional, but structurally present.</li>
+                </ul>
+                <b>Community Awareness & Initiatives:</b><br/>
+                Aditya Gautam and Team RetroFlow (JCKIC) are actively working with local panchayats on:
+                <ul>
+                    <li>Water sample analysis</li>
+                    <li>Preservation of traditional systems</li>
+                    <li>Proposing rainwater harvesting systems</li>
+                    <li>Raising awareness about water salinity and sustainable practices</li>
+                </ul>
+            `
+        };
+        function setTab(tab) {
+            tabContent.innerHTML = tabData[tab];
+            villageInfo.querySelectorAll('.ratangarh-tab').forEach(btn => btn.classList.remove('active'));
+            villageInfo.querySelector(`.ratangarh-tab[data-tab="${tab}"]`).classList.add('active');
+        }
+        setTab('overview');
+        villageInfo.querySelectorAll('.ratangarh-tab').forEach(btn => {
+            btn.onclick = () => setTab(btn.getAttribute('data-tab'));
+        });
+    }, 0);
+}
+// ... existing code ...    
+
+
+// ... existing code ...    
+else if (village.id === 'khejarala') {
+    villageInfo.innerHTML = `
+        <div class="village-header">
+            <h3>${village.name}</h3>
+            <span class="village-district">${this.currentDistrict ? this.currentDistrict.name : ''} District</span>
+        </div>
+        <div class="ratangarh-image-row-wrapper" style="position:relative;width:100%;height:340px;">
+            <button class="ratangarh-arrow ratangarh-arrow-left" style="position:absolute;left:8px;top:50%;transform:translateY(-50%);z-index:2;display:none;background:rgba(42,93,159,0.7);border:none;border-radius:50%;width:38px;height:38px;color:#fff;font-size:1.5em;cursor:pointer;align-items:center;justify-content:center;outline:none;transition:background 0.2s;">&#8592;</button>
+            <div class="ratangarh-image-row" style="height:100%;"></div>
+            <button class="ratangarh-arrow ratangarh-arrow-right" style="position:absolute;right:8px;top:50%;transform:translateY(-50%);z-index:2;display:none;background:rgba(42,93,159,0.7);border:none;border-radius:50%;width:38px;height:38px;color:#fff;font-size:1.5em;cursor:pointer;align-items:center;justify-content:center;outline:none;transition:background 0.2s;">&#8594;</button>
+        </div>
+        <div class="ratangarh-tabs">
+            <button class="ratangarh-tab active" data-tab="overview">Overview</button>
+            <button class="ratangarh-tab" data-tab="history">📜 History of Waterbody</button>
+            <button class="ratangarh-tab" data-tab="uses">💧 Current Uses</button>
+            <button class="ratangarh-tab" data-tab="religion">🕉 Religious Significance</button>
+            <button class="ratangarh-tab" data-tab="tourism">🧭 Tourism Potential</button>
+            <button class="ratangarh-tab" data-tab="science">🔬 Scientific Novelty</button>
+            <button class="ratangarh-tab" data-tab="condition">📊 Current Condition</button>
+        </div>
+        <div class="ratangarh-tab-content" id="ratangarh-tab-content"></div>
+        <div class="village-actions">
+            <a href="${village.report}" class="view-report-btn">View Full Report</a>
+            <button class="close-popup-btn" onclick="this.closest('.village-info').remove(); document.querySelector('.district-info').style.display='block';">Close</button>
+        </div>
+    `;
+    setTimeout(() => {
+        // Insert images into the image row
+        const images = [
+            {src: 'images/khejarala/1.jpg', caption: 'Sujaan Sagar Talab - community waterbody'},
+            {src: 'images/khejarala/2.jpg', caption: 'Jinn Ka Bera - legendary well'},
+            {src: 'images/khejarala/3.jpg', caption: 'Traditional Tanka and Nadi', viewAll: true}
+        ];
+        const imageRow = villageInfo.querySelector('.ratangarh-image-row');
+        images.forEach((img, i) => {
+            const box = document.createElement('div');
+            box.className = 'ratangarh-img-box';
+            box.innerHTML = `<img src='${img.src}' alt='Khejarala Image ${i+1}'><div class='ratangarh-img-caption'>${img.caption}</div>`;
+            if (img.viewAll) {
+                const btn = document.createElement('a');
+                btn.href = 'khejarala.html';
+                btn.className = 'view-all-photos-btn';
+                btn.textContent = 'View All Photos';
+                box.appendChild(btn);
+            }
+            imageRow.appendChild(box);
+        });
+        // Arrow logic
+        let currentIndex = 0;
+        const leftArrow = villageInfo.querySelector('.ratangarh-arrow-left');
+        const rightArrow = villageInfo.querySelector('.ratangarh-arrow-right');
+        function updateArrows() {
+            leftArrow.style.display = currentIndex > 0 ? 'flex' : 'none';
+            rightArrow.style.display = currentIndex < images.length-1 ? 'flex' : 'none';
+        }
+        function scrollToIndex(idx) {
+            const box = imageRow.children[idx];
+            if (box) box.scrollIntoView({behavior:'smooth',inline:'start'});
+            currentIndex = idx;
+            updateArrows();
+        }
+        leftArrow.onclick = () => scrollToIndex(currentIndex-1);
+        rightArrow.onclick = () => scrollToIndex(currentIndex+1);
+        imageRow.addEventListener('scroll', () => {
+            let minDist = Infinity, idx = 0;
+            for (let i=0; i<imageRow.children.length; ++i) {
+                const rect = imageRow.children[i].getBoundingClientRect();
+                const dist = Math.abs(rect.left - imageRow.getBoundingClientRect().left);
+                if (dist < minDist) { minDist = dist; idx = i; }
+            }
+            currentIndex = idx;
+            updateArrows();
+        });
+        // Initial state
+        scrollToIndex(0);
+        // Tabs logic
+        const tabContent = villageInfo.querySelector('#ratangarh-tab-content');
+        const tabData = {
+            overview: `
+                <b style='color:#2a5d9f;'>Overview</b><br/>
+                <table class='ratangarh-info-table' style='width:100%;margin:18px 0 18px 0;border-collapse:collapse;'>
+                    <tr><th>Location</th><td>Khejarala, Pali District</td></tr>
+                    <tr><th>Latitude</th><td>25.7000</td></tr>
+                    <tr><th>Longitude</th><td>73.9500</td></tr>
+                </table>
+                Khejarala is renowned for its traditional water heritage, including Sujaan Sagar Talab, Jinn Ka Bera, tankas, and nadis. These structures reflect the village's sustainable water management and deep-rooted cultural traditions in arid Rajasthan.<br/><br/>
+            `,
+            history: `
+                <b style='color:#2a5d9f;'>📜 History of Waterbody</b><br/>
+                <ul>
+                    <li><b>Sujaan Sagar Talab:</b> An ancient talab, deeply rooted in community tradition, has long served as a key source for drinking, irrigation, and livestock needs. It's a testament to Rajasthan's legacy of sustainable water conservation in arid landscapes.</li>
+                    <li><b>Jinn Ka Bera (Well):</b> A 100–200-year-old well, steeped in local mythology, believed to have been built overnight by a jinn. This traditional beri (well) represents both historical value and cultural imagination.</li>
+                    <li><b>Tanka (Cylindrical & School-based):</b> Traditional rainwater harvesting structures, circular or square, made of lime, cement, or stone. These have been used for generations across Rajasthan and now reintroduced in government schools for daily use.</li>
+                    <li><b>Nadi (Rainwater Depression):</b> Shallow, earthen community depressions 20–25 feet deep, long used during the monsoon to support village ecosystems. Historically located on village outskirts.</li>
+                </ul>
+            `,
+            uses: `
+                <b style='color:#2a5d9f;'>💧 Current Uses</b>
+                <ul>
+                    <li><b>Tanka (Govt. School):</b> Still in daily use for drinking and hygiene needs in a primary government school. A great example of continued relevance of traditional water harvesting.</li>
+                    <li><b>Sujaan Sagar Talab:</b> Actively used by locals and outsiders for drinking, irrigation, and livestock, especially during the rainy season when it fills completely.</li>
+                    <li><b>Government Handpump:</b> Still widely used for drinking water, but with concerns due to high fluoride and salinity.</li>
+                    <li><b>Canal:</b> Used for irrigation, helping to sustain crop cycles during dry seasons, while also recharging groundwater.</li>
+                    <li><b>Nadi:</b> Primarily active during the rainy season, used for drinking, livestock, and irrigation when filled.</li>
+                    <li><b>Jinn Ka Bera (Well):</b> Serves multiple purposes—drinking, irrigation, livestock—even today.</li>
+                </ul>
+            `,
+            religion: `
+                <b style='color:#2a5d9f;'>🕉 Religious Significance</b><br/>
+                <ul>
+                    <li><b>Jinn Ka Bera:</b> Holds mythological significance, believed to be built by a jinn overnight, which enhances its spiritual aura among locals.</li>
+                    <li><b>Sujaan Sagar Talab & Nadis:</b> While not explicitly used for rituals, these are culturally sacred as community lifelines, often accompanied by local faith in their power to provide.</li>
+                </ul>
+            `,
+            tourism: `
+                <b style='color:#2a5d9f;'>🧭 Tourism Potential</b>
+                <ul>
+                    <li><b>Jinn Ka Bera:</b> The folklore around its creation gives it high potential for heritage tourism. It could attract cultural explorers interested in local legends and rural architecture.</li>
+                    <li><b>Sujaan Sagar Talab:</b> Due to its scenic full-water state during monsoon, this site can be developed for eco-tourism and heritage trails.</li>
+                    <li><b>Traditional Tankas & Nadis:</b> Could be featured in rural tourism circuits demonstrating ancient water sustainability practices of Rajasthan.</li>
+                </ul>
+            `,
+            science: `
+                <b style='color:#2a5d9f;'>🔬 Scientific Novelty</b>
+                <ul>
+                    <li><b>Tanka Structure:</b> A low-tech, high-efficiency solution for arid regions—circular/square, lime/cement-plastered, preventing seepage and ensuring safe water storage.</li>
+                    <li><b>Fluoride Contamination (Handpump):</b> The presence of fluoride and salinity at 250–300 feet is a key issue. It serves as a case study in rural water safety and public health challenges.</li>
+                    <li><b>Canal System:</b> Highlights modern interventions that support groundwater recharge, improve crop reliability, and complement traditional systems.</li>
+                    <li><b>Nadis:</b> Naturally recharge groundwater and support local ecology, acting as an eco-hydrological buffer during monsoon.</li>
+                </ul>
+            `,
+            condition: `
+                <b style='color:#2a5d9f;'>📊 Current Condition</b>
+                <ul>
+                    <li><b>Sujaan Sagar Talab:</b> Well-maintained and fully utilized during rains, but its long-term sustainability depends on regular desilting and protection from encroachment.</li>
+                    <li><b>Tanka (School-based):</b> Functional and beneficial, showing how traditional designs can meet modern needs.</li>
+                    <li><b>Jinn Ka Bera:</b> Structurally intact but under-documented; local myths may overshadow preservation efforts.</li>
+                    <li><b>Government Handpump:</b> Functional but problematic due to unsafe fluoride levels, causing tooth decay and bone weakening—urgent attention needed.</li>
+                    <li><b>Nadi:</b> Still in seasonal use but may require regular cleaning, deepening, and community management.</li>
+                </ul>
+                <b>Revival Initiatives:</b><br/>
+                Led by Shree Rajendra Bhakar with NGOs and personal efforts.<br/>
+                Supported by Team RetroFlow, which is engaging local leaders like Shree Muldan Chaaran for field visits, awareness, and sustainable water system advocacy.
+            `
+        };
+        function setTab(tab) {
+            tabContent.innerHTML = tabData[tab];
+            villageInfo.querySelectorAll('.ratangarh-tab').forEach(btn => btn.classList.remove('active'));
+            villageInfo.querySelector(`.ratangarh-tab[data-tab="${tab}"]`).classList.add('active');
+        }
+        setTab('overview');
+        villageInfo.querySelectorAll('.ratangarh-tab').forEach(btn => {
+            btn.onclick = () => setTab(btn.getAttribute('data-tab'));
+        });
+    }, 0);
+}
+// ... existing code ...    
+
+else if (village.id === 'sangariya') {
+    villageInfo.innerHTML = `
+        <div class="village-header">
+            <h3>${village.name}</h3>
+            <span class="village-district">${this.currentDistrict ? this.currentDistrict.name : ''} District</span>
+        </div>
+        <div class="ratangarh-image-row-wrapper" style="position:relative;width:100%;height:340px;">
+            <button class="ratangarh-arrow ratangarh-arrow-left" style="position:absolute;left:8px;top:50%;transform:translateY(-50%);z-index:2;display:none;background:rgba(42,93,159,0.7);border:none;border-radius:50%;width:38px;height:38px;color:#fff;font-size:1.5em;cursor:pointer;align-items:center;justify-content:center;outline:none;transition:background 0.2s;">&#8592;</button>
+            <div class="ratangarh-image-row" style="height:100%;"></div>
+            <button class="ratangarh-arrow ratangarh-arrow-right" style="position:absolute;right:8px;top:50%;transform:translateY(-50%);z-index:2;display:none;background:rgba(42,93,159,0.7);border:none;border-radius:50%;width:38px;height:38px;color:#fff;font-size:1.5em;cursor:pointer;align-items:center;justify-content:center;outline:none;transition:background 0.2s;">&#8594;</button>
+        </div>
+        <div class="ratangarh-tabs">
+            <button class="ratangarh-tab active" data-tab="overview">Overview</button>
+            <button class="ratangarh-tab" data-tab="history">📜 History of Waterbody</button>
+            <button class="ratangarh-tab" data-tab="uses">💧 Current Uses</button>
+            <button class="ratangarh-tab" data-tab="religion">🕉 Religious Significance</button>
+            <button class="ratangarh-tab" data-tab="tourism">🧭 Tourism Potential</button>
+            <button class="ratangarh-tab" data-tab="science">🔬 Scientific Novelty</button>
+            <button class="ratangarh-tab" data-tab="condition">📊 Current Condition</button>
+        </div>
+        <div class="ratangarh-tab-content" id="ratangarh-tab-content"></div>
+        <div class="village-actions">
+            <a href="${village.report}" class="view-report-btn">View Full Report</a>
+            <button class="close-popup-btn" onclick="this.closest('.village-info').remove(); document.querySelector('.district-info').style.display='block';">Close</button>
+        </div>
+    `;
+    setTimeout(() => {
+        // Insert images into the image row
+        const images = [
+            {src: 'images/sangariya/1.jpg', caption: 'Traditional Nadi of Sangariya'},
+            {src: 'images/sangariya/2.jpg', caption: 'Village water heritage site'},
+            {src: 'images/sangariya/3.jpg', caption: 'Community water management', viewAll: true}
+        ];
+        const imageRow = villageInfo.querySelector('.ratangarh-image-row');
+        images.forEach((img, i) => {
+            const box = document.createElement('div');
+            box.className = 'ratangarh-img-box';
+            box.innerHTML = `<img src='${img.src}' alt='Sangariya Image ${i+1}'><div class='ratangarh-img-caption'>${img.caption}</div>`;
+            if (img.viewAll) {
+                const btn = document.createElement('a');
+                btn.href = 'sangariya.html';
+                btn.className = 'view-all-photos-btn';
+                btn.textContent = 'View All Photos';
+                box.appendChild(btn);
+            }
+            imageRow.appendChild(box);
+        });
+        // Arrow logic
+        let currentIndex = 0;
+        const leftArrow = villageInfo.querySelector('.ratangarh-arrow-left');
+        const rightArrow = villageInfo.querySelector('.ratangarh-arrow-right');
+        function updateArrows() {
+            leftArrow.style.display = currentIndex > 0 ? 'flex' : 'none';
+            rightArrow.style.display = currentIndex < images.length-1 ? 'flex' : 'none';
+        }
+        function scrollToIndex(idx) {
+            const box = imageRow.children[idx];
+            if (box) box.scrollIntoView({behavior:'smooth',inline:'start'});
+            currentIndex = idx;
+            updateArrows();
+        }
+        leftArrow.onclick = () => scrollToIndex(currentIndex-1);
+        rightArrow.onclick = () => scrollToIndex(currentIndex+1);
+        imageRow.addEventListener('scroll', () => {
+            let minDist = Infinity, idx = 0;
+            for (let i=0; i<imageRow.children.length; ++i) {
+                const rect = imageRow.children[i].getBoundingClientRect();
+                const dist = Math.abs(rect.left - imageRow.getBoundingClientRect().left);
+                if (dist < minDist) { minDist = dist; idx = i; }
+            }
+            currentIndex = idx;
+            updateArrows();
+        });
+        // Initial state
+        scrollToIndex(0);
+        // Tabs logic
+        const tabContent = villageInfo.querySelector('#ratangarh-tab-content');
+        const tabData = {
+            overview: `
+                <b style='color:#2a5d9f;'>Overview</b><br/>
+                <table class='ratangarh-info-table' style='width:100%;margin:18px 0 18px 0;border-collapse:collapse;'>
+                    <tr><th>Location</th><td>Sangariya, Jodhpur District</td></tr>
+                    <tr><th>Latitude</th><td>26.3000</td></tr>
+                    <tr><th>Longitude</th><td>73.0000</td></tr>
+                </table>
+                Sangariya is home to a traditional unnamed Nadi that once served as the village's primary water source. This waterbody represents the historical rainwater harvesting systems of rural Rajasthan and the transition to modern water infrastructure.<br/><br/>
+            `,
+            history: `
+                <b style='color:#2a5d9f;'>📜 History of Waterbody</b><br/>
+                <ul>
+                    <li>The Unnamed Nadi of Sangariya was once a central water source for the village, fulfilling all daily human needs such as drinking, cooking, bathing, and washing.</li>
+                    <li>It represents the traditional rainwater harvesting system commonly used across rural Rajasthan before piped water and modern supply systems became widespread.</li>
+                    <li>The Nadi is part of the historical rural water heritage, symbolizing the self-sufficiency of past village communities.</li>
+                </ul>
+            `,
+            uses: `
+                <b style='color:#2a5d9f;'>💧 Current Uses</b>
+                <ul>
+                    <li>Today, the Nadi is mainly used by animals, especially during dry seasons.</li>
+                    <li>Due to urbanization and modern water supply systems, residents now receive clean, piped water, making reliance on the Nadi obsolete for human use.</li>
+                </ul>
+            `,
+            religion: `
+                <b style='color:#2a5d9f;'>🕉 Religious Significance</b><br/>
+                <ul>
+                    <li>No specific religious activities are reported around this Nadi.</li>
+                    <li>However, like many traditional water bodies in Rajasthan, the cultural reverence for water suggests that it may have once been considered sacred or socially significant in community rituals or festivals.</li>
+                </ul>
+            `,
+            tourism: `
+                <b style='color:#2a5d9f;'>🧭 Tourism Potential</b>
+                <ul>
+                    <li>As of now, the tourism potential is minimal due to the Nadi's unnamed and neglected status.</li>
+                    <li>However, with proper documentation, signage, and ecological restoration, it could serve as a learning site for traditional water management practices.</li>
+                    <li>A joint initiative by RetroFlow and local leaders (including the Sarpanch) could position it as part of a rural eco-tourism trail in the future.</li>
+                </ul>
+            `,
+            science: `
+                <b style='color:#2a5d9f;'>🔬 Scientific Novelty</b>
+                <ul>
+                    <li>The transition from traditional Nadi use to piped water systems provides a live example of rural water infrastructure evolution.</li>
+                    <li>This shift raises important questions on sustainability, groundwater depletion, and community dependence on centralized systems.</li>
+                    <li>It offers opportunities to study salinity issues in underground sources and the ecological role of abandoned water bodies in supporting livestock and biodiversity.</li>
+                </ul>
+            `,
+            condition: `
+                <b style='color:#2a5d9f;'>📊 Current Condition</b>
+                <ul>
+                    <li>The Nadi is still physically present, but its role is greatly reduced—it now serves primarily animals.</li>
+                    <li>Its water is not suitable for human consumption, likely due to salinity or lack of maintenance.</li>
+                    <li>The Sarpanch and Team RetroFlow (JCKIC) have initiated a dialogue for revival, blending local knowledge with innovative water conservation ideas—marking the first step toward rejuvenation.</li>
                 </ul>
             `
         };
