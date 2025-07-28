@@ -2368,33 +2368,6 @@ body.fullscreen-map-active .map-section .map-heading {
 }
 
 /* ... existing code ... */
-.mathania-main-tabs {
-    display: flex;
-    gap: 12px;
-    margin-bottom: 18px;
-    justify-content: flex-start;
-}
-.mathania-main-tab {
-    background: #f2f2f2;
-    color: #333;
-    border: none;
-    border-radius: 8px 8px 0 0;
-    padding: 10px 28px;
-    font-size: 1.08rem;
-    font-weight: 600;
-    cursor: pointer;
-    transition: background 0.2s, color 0.2s;
-    outline: none;
-    box-shadow: 0 2px 6px rgba(42,93,159,0.04);
-    letter-spacing: 0.5px;
-}
-.mathania-main-tab.active {
-    background: #2a5d9f;
-    color: #fff;
-    box-shadow: 0 4px 12px rgba(42,93,159,0.10);
-}
-/* ... existing code ... */
-
 /* 🌐 Global Reset */
 * {
   margin: 0;
@@ -2446,10 +2419,22 @@ img {
 }
 .header-logo-group {
   display: flex;
-  flex-wrap: wrap;
   align-items: center;
   gap: 1rem;
+  flex-wrap: nowrap;
 }
+.header-logo-group img {
+  height: 40px;
+}
+.header-logo-group .org-name {
+  font-size: 1.3rem;
+  font-weight: bold;
+  color: #333;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
 nav ul {
   display: flex;
   flex-wrap: wrap;
@@ -2464,7 +2449,7 @@ nav ul li a.active {
   font-weight: bold;
 }
 
-/* 🔽 Dropdown Menu */
+/* 🔽 Dropdown */
 .dropdown {
   position: relative;
 }
@@ -2498,24 +2483,6 @@ nav ul li a.active {
 @keyframes marquee {
   0% { transform: translateX(100%); }
   100% { transform: translateX(-100%); }
-}
-
-/* 🧾 Main Content */
-main {
-  padding: 1rem;
-}
-.rwh-heading,
-.map-heading,
-.news-heading {
-  font-size: 1.5rem;
-  margin: 1rem 0;
-}
-.fade-in {
-  animation: fadeIn 1s ease-in;
-}
-@keyframes fadeIn {
-  from { opacity: 0; }
-  to { opacity: 1; }
 }
 
 /* 👋 Welcome Section */
@@ -2566,7 +2533,7 @@ main {
   height: 100% !important;
 }
 
-/* ✅ Leaflet Popup Responsiveness */
+/* ✅ Leaflet Popup */
 .leaflet-popup-content {
   max-width: 90vw !important;
   width: auto !important;
@@ -2574,24 +2541,11 @@ main {
   font-size: 1rem;
   line-height: 1.4;
 }
-
 .leaflet-popup-content-wrapper {
   padding: 0.8rem !important;
 }
-
 .leaflet-popup-tip-container {
   display: block;
-}
-
-@media (max-width: 600px) {
-  .leaflet-popup-content {
-    font-size: 0.9rem;
-    padding: 0.5rem;
-  }
-
-  .leaflet-popup-content-wrapper {
-    padding: 0.5rem !important;
-  }
 }
 
 /* 🖼️ Carousel */
@@ -2634,7 +2588,7 @@ main {
   right: 10px;
 }
 
-/* 📰 News Section */
+/* 📰 News */
 .news-section {
   margin-top: 2rem;
 }
@@ -2658,6 +2612,49 @@ main {
   color: #007BFF;
   text-decoration: none;
   font-size: 0.9rem;
+}
+
+/* 🧾 Headings */
+.rwh-heading,
+.map-heading,
+.news-heading {
+  font-size: 1.5rem;
+  margin: 1rem 0;
+}
+.fade-in {
+  animation: fadeIn 1s ease-in;
+}
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+/* 🟢 Mathania Tabs */
+.mathania-main-tabs {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 18px;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+}
+.mathania-main-tab {
+  background: #f2f2f2;
+  color: #333;
+  border: none;
+  border-radius: 8px 8px 0 0;
+  padding: 10px 28px;
+  font-size: 1.08rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s;
+  outline: none;
+  box-shadow: 0 2px 6px rgba(42,93,159,0.04);
+  letter-spacing: 0.5px;
+}
+.mathania-main-tab.active {
+  background: #2a5d9f;
+  color: #fff;
+  box-shadow: 0 4px 12px rgba(42,93,159,0.10);
 }
 
 /* 🔻 Footer */
@@ -2709,5 +2706,22 @@ footer {
   }
   .carousel-button {
     display: none;
+  }
+  .header-logo-group {
+    flex-direction: row;
+    justify-content: center;
+  }
+  .header-logo-group img {
+    height: 30px;
+  }
+  .header-logo-group .org-name {
+    font-size: 1.1rem;
+  }
+  .leaflet-popup-content {
+    font-size: 0.9rem;
+    padding: 0.5rem;
+  }
+  .leaflet-popup-content-wrapper {
+    padding: 0.5rem !important;
   }
 }
