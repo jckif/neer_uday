@@ -218,60 +218,39 @@ window.addEventListener('resize', () => {
 // Image Carousel Functionality
 document.addEventListener('DOMContentLoaded', function() {
     const track = document.querySelector('.carousel-track');
-    // Select all direct children of the track as slides
     const slides = Array.from(track.children);
     const scrollRight = document.getElementById('scrollRight');
     const scrollLeft = document.getElementById('scrollLeft');
 
+    if (!track || slides.length === 0) return;
+
     let currentIndex = 0;
     const totalSlides = slides.length;
 
-    // Clone the first slide and append it to the end for infinite scroll
-    const firstSlide = slides[0].cloneNode(true);
-    track.appendChild(firstSlide);
+    // Set initial position
+    track.style.transform = `translateX(0%)`;
 
-    // Clone the last slide and prepend it to the beginning for infinite scroll
-    const lastSlide = slides[totalSlides - 1].cloneNode(true);
-    track.prepend(lastSlide);
-
-    // Adjust initial position to account for the prepended clone
-    track.style.transition = 'none';
-    track.style.transform = `translateX(${-100}%)`;
-    track.offsetHeight; // Force reflow
+    function updateCarousel() {
+        track.style.transition = 'transform 0.5s ease-in-out';
+        const offset = -currentIndex * 100;
+        track.style.transform = `translateX(${offset}%)`;
+    }
 
     scrollRight.addEventListener('click', () => {
-        currentIndex++;
-
-        track.style.transition = 'transform 0.5s ease-in-out';
-        const offset = -(currentIndex + 1) * 100; // Adjust offset for prepended clone
-        track.style.transform = `translateX(${offset}%)`;
-
-        // After transition, if we are at the cloned first slide, reset to the real first slide
-        if (currentIndex === totalSlides) {
-            setTimeout(() => {
-                track.style.transition = 'none';
-                track.style.transform = `translateX(${-100}%)`;
-                currentIndex = 0; // Reset index to real first slide
-            }, 500); // Match transition duration
-        }
+        currentIndex = (currentIndex + 1) % totalSlides;
+        updateCarousel();
     });
 
     scrollLeft.addEventListener('click', () => {
-        currentIndex--;
-
-        track.style.transition = 'transform 0.5s ease-in-out';
-        const offset = -(currentIndex + 1) * 100; // Adjust offset for prepended clone
-        track.style.transform = `translateX(${offset}%)`;
-
-        // After transition, if we are at the cloned last slide, reset to the real last slide
-        if (currentIndex < 0) {
-             setTimeout(() => {
-                track.style.transition = 'none';
-                track.style.transform = `translateX(${-totalSlides * 100}%)`;
-                currentIndex = totalSlides - 1; // Reset index to real last slide
-            }, 500); // Match transition duration
-        }
+        currentIndex = (currentIndex - 1 + totalSlides) % totalSlides;
+        updateCarousel();
     });
+
+    // Auto-advance carousel every 5 seconds
+    setInterval(() => {
+        currentIndex = (currentIndex + 1) % totalSlides;
+        updateCarousel();
+    }, 5000);
 });
 
 // Fullscreen map logic

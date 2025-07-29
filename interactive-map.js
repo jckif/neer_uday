@@ -1830,7 +1830,7 @@ else if (village.id === 'khejarala') {
 }
 // ... existing code ...    
 
-else if (village.id === 'sangariya') {
+else if (village.id === 'siyai') {
     villageInfo.innerHTML = `
         <div class="village-header">
             <h3>${village.name}</h3>
@@ -1859,18 +1859,18 @@ else if (village.id === 'sangariya') {
     setTimeout(() => {
         // Insert images into the image row
         const images = [
-            {src: 'images/sangariya/1.jpg', caption: 'Traditional Nadi of Sangariya'},
-            {src: 'images/sangariya/2.jpg', caption: 'Village water heritage site'},
-            {src: 'images/sangariya/3.jpg', caption: 'Community water management', viewAll: true}
+            {src: 'images/siyai/1.jpg', caption: 'Traditional Tanka in Siyai'},
+            {src: 'images/siyai/2.jpg', caption: 'Rainwater harvesting system'},
+            {src: 'images/siyai/3.jpg', caption: 'Desert water conservation', viewAll: true}
         ];
         const imageRow = villageInfo.querySelector('.ratangarh-image-row');
         images.forEach((img, i) => {
             const box = document.createElement('div');
             box.className = 'ratangarh-img-box';
-            box.innerHTML = `<img src='${img.src}' alt='Sangariya Image ${i+1}'><div class='ratangarh-img-caption'>${img.caption}</div>`;
+            box.innerHTML = `<img src='${img.src}' alt='Siyai Image ${i+1}'><div class='ratangarh-img-caption'>${img.caption}</div>`;
             if (img.viewAll) {
                 const btn = document.createElement('a');
-                btn.href = 'sangariya.html';
+                btn.href = 'siyai.html';
                 btn.className = 'view-all-photos-btn';
                 btn.textContent = 'View All Photos';
                 box.appendChild(btn);
@@ -1911,56 +1911,55 @@ else if (village.id === 'sangariya') {
             overview: `
                 <b style='color:#2a5d9f;'>Overview</b><br/>
                 <table class='ratangarh-info-table' style='width:100%;margin:18px 0 18px 0;border-collapse:collapse;'>
-                    <tr><th>Location</th><td>Sangariya, Jodhpur District</td></tr>
-                    <tr><th>Latitude</th><td>26.3000</td></tr>
-                    <tr><th>Longitude</th><td>73.0000</td></tr>
+                    <tr><th>Location</th><td>Siyai, Barmer District</td></tr>
+                    <tr><th>Latitude</th><td>25.7500</td></tr>
+                    <tr><th>Longitude</th><td>71.4000</td></tr>
                 </table>
-                Sangariya is home to a traditional unnamed Nadi that once served as the village's primary water source. This waterbody represents the historical rainwater harvesting systems of rural Rajasthan and the transition to modern water infrastructure.<br/><br/>
+                Siyai is known for its traditional Tanka system, a centuries-old rainwater harvesting method that continues to provide vital water resources in this arid desert region of Rajasthan.<br/><br/>
             `,
             history: `
                 <b style='color:#2a5d9f;'>📜 History of Waterbody</b><br/>
                 <ul>
-                    <li>The Unnamed Nadi of Sangariya was once a central water source for the village, fulfilling all daily human needs such as drinking, cooking, bathing, and washing.</li>
-                    <li>It represents the traditional rainwater harvesting system commonly used across rural Rajasthan before piped water and modern supply systems became widespread.</li>
-                    <li>The Nadi is part of the historical rural water heritage, symbolizing the self-sufficiency of past village communities.</li>
+                    <li>The Tanka is a traditional rainwater harvesting structure used for centuries across Rajasthan, especially in desert regions like Siyai.</li>
+                    <li>Typically built underground and covered, it collects rainwater from rooftops or open courtyards.</li>
+                    <li>It reflects the age-old wisdom of water conservation in one of India's most water-scarce regions.</li>
                 </ul>
             `,
             uses: `
                 <b style='color:#2a5d9f;'>💧 Current Uses</b>
                 <ul>
-                    <li>Today, the Nadi is mainly used by animals, especially during dry seasons.</li>
-                    <li>Due to urbanization and modern water supply systems, residents now receive clean, piped water, making reliance on the Nadi obsolete for human use.</li>
+                    <li>In Siyai, Tankas are still actively used for drinking water and household purposes (cooking, cleaning, washing).</li>
+                    <li>These are especially vital during dry months, providing safe and clean water in the absence of surface sources.</li>
                 </ul>
             `,
             religion: `
                 <b style='color:#2a5d9f;'>🕉 Religious Significance</b><br/>
                 <ul>
-                    <li>No specific religious activities are reported around this Nadi.</li>
-                    <li>However, like many traditional water bodies in Rajasthan, the cultural reverence for water suggests that it may have once been considered sacred or socially significant in community rituals or festivals.</li>
+                    <li>While not associated with formal religious rituals, Tankas are culturally respected as lifelines of desert households.</li>
+                    <li>Their upkeep is often seen as a moral and social responsibility, and in some communities, clean water from the Tanka may be used in domestic religious ceremonies or offerings.</li>
                 </ul>
             `,
             tourism: `
                 <b style='color:#2a5d9f;'>🧭 Tourism Potential</b>
                 <ul>
-                    <li>As of now, the tourism potential is minimal due to the Nadi's unnamed and neglected status.</li>
-                    <li>However, with proper documentation, signage, and ecological restoration, it could serve as a learning site for traditional water management practices.</li>
-                    <li>A joint initiative by RetroFlow and local leaders (including the Sarpanch) could position it as part of a rural eco-tourism trail in the future.</li>
+                    <li>Though Tankas are primarily domestic structures, they offer educational value for eco-tourists, researchers, and students of sustainable living.</li>
+                    <li>A rural tourism trail showcasing traditional desert water management (like Tanka, Nadi, Talab) could make Siyai a part of a broader eco-cultural experience in Barmer and Jodhpur regions.</li>
                 </ul>
             `,
             science: `
                 <b style='color:#2a5d9f;'>🔬 Scientific Novelty</b>
                 <ul>
-                    <li>The transition from traditional Nadi use to piped water systems provides a live example of rural water infrastructure evolution.</li>
-                    <li>This shift raises important questions on sustainability, groundwater depletion, and community dependence on centralized systems.</li>
-                    <li>It offers opportunities to study salinity issues in underground sources and the ecological role of abandoned water bodies in supporting livestock and biodiversity.</li>
+                    <li>The Tanka system is a low-cost, decentralized water solution, ideal for arid ecosystems.</li>
+                    <li>Scientifically significant for minimizing evaporation, maximizing runoff capture, and improving water self-reliance.</li>
+                    <li>Their continued use offers valuable insights for modern sustainable urban planning and water resilience models.</li>
                 </ul>
             `,
             condition: `
                 <b style='color:#2a5d9f;'>📊 Current Condition</b>
                 <ul>
-                    <li>The Nadi is still physically present, but its role is greatly reduced—it now serves primarily animals.</li>
-                    <li>Its water is not suitable for human consumption, likely due to salinity or lack of maintenance.</li>
-                    <li>The Sarpanch and Team RetroFlow (JCKIC) have initiated a dialogue for revival, blending local knowledge with innovative water conservation ideas—marking the first step toward rejuvenation.</li>
+                    <li>Tankas in Siyai are functional and widely used, especially in homes without access to regular piped water.</li>
+                    <li>They are generally well-maintained, as they are crucial to daily life in this arid region.</li>
+                    <li>With growing awareness, these structures continue to serve as an example of effective traditional water management in modern times.</li>
                 </ul>
             `
         };
@@ -1976,6 +1975,160 @@ else if (village.id === 'sangariya') {
     }, 0);
 }
 // ... existing code ...    
+else if (village.id === 'ramsar') {
+    villageInfo.innerHTML = `
+        <div class="village-header">
+            <h3>${village.name}</h3>
+            <span class="village-district">${this.currentDistrict ? this.currentDistrict.name : ''} District</span>
+        </div>
+        <div class="ratangarh-image-row-wrapper" style="position:relative;width:100%;height:340px;">
+            <button class="ratangarh-arrow ratangarh-arrow-left" style="position:absolute;left:8px;top:50%;transform:translateY(-50%);z-index:2;display:none;background:rgba(42,93,159,0.7);border:none;border-radius:50%;width:38px;height:38px;color:#fff;font-size:1.5em;cursor:pointer;align-items:center;justify-content:center;outline:none;transition:background 0.2s;">&#8592;</button>
+            <div class="ratangarh-image-row" style="height:100%;"></div>
+            <button class="ratangarh-arrow ratangarh-arrow-right" style="position:absolute;right:8px;top:50%;transform:translateY(-50%);z-index:2;display:none;background:rgba(42,93,159,0.7);border:none;border-radius:50%;width:38px;height:38px;color:#fff;font-size:1.5em;cursor:pointer;align-items:center;justify-content:center;outline:none;transition:background 0.2s;">&#8594;</button>
+        </div>
+        <div class="ratangarh-tabs">
+            <button class="ratangarh-tab active" data-tab="overview">Overview</button>
+            <button class="ratangarh-tab" data-tab="history">📜 History of Waterbody</button>
+            <button class="ratangarh-tab" data-tab="uses">💧 Current Uses</button>
+            <button class="ratangarh-tab" data-tab="religion">🕉 Religious Significance</button>
+            <button class="ratangarh-tab" data-tab="tourism">🧭 Tourism Potential</button>
+            <button class="ratangarh-tab" data-tab="science">🔬 Scientific Novelty</button>
+            <button class="ratangarh-tab" data-tab="condition">📊 Current Condition</button>
+        </div>
+        <div class="ratangarh-tab-content" id="ratangarh-tab-content"></div>
+        <div class="village-actions">
+            <a href="${village.report}" class="view-report-btn">View Full Report</a>
+            <button class="close-popup-btn" onclick="this.closest('.village-info').remove(); document.querySelector('.district-info').style.display='block';">Close</button>
+        </div>
+    `;
+    setTimeout(() => {
+        // Insert images into the image row
+        const images = [
+            {src: 'images/ramsar/1.jpg', caption: 'Uttam Singh Model Pond'},
+            {src: 'images/ramsar/2.jpg', caption: 'Traditional Talab and Wells'},
+            {src: 'images/ramsar/3.jpg', caption: 'Community water heritage', viewAll: true}
+        ];
+        const imageRow = villageInfo.querySelector('.ratangarh-image-row');
+        images.forEach((img, i) => {
+            const box = document.createElement('div');
+            box.className = 'ratangarh-img-box';
+            box.innerHTML = `<img src='${img.src}' alt='Ramsar Image ${i+1}'><div class='ratangarh-img-caption'>${img.caption}</div>`;
+            if (img.viewAll) {
+                const btn = document.createElement('a');
+                btn.href = 'ramsar.html';
+                btn.className = 'view-all-photos-btn';
+                btn.textContent = 'View All Photos';
+                box.appendChild(btn);
+            }
+            imageRow.appendChild(box);
+        });
+        // Arrow logic
+        let currentIndex = 0;
+        const leftArrow = villageInfo.querySelector('.ratangarh-arrow-left');
+        const rightArrow = villageInfo.querySelector('.ratangarh-arrow-right');
+        function updateArrows() {
+            leftArrow.style.display = currentIndex > 0 ? 'flex' : 'none';
+            rightArrow.style.display = currentIndex < images.length-1 ? 'flex' : 'none';
+        }
+        function scrollToIndex(idx) {
+            const box = imageRow.children[idx];
+            if (box) box.scrollIntoView({behavior:'smooth',inline:'start'});
+            currentIndex = idx;
+            updateArrows();
+        }
+        leftArrow.onclick = () => scrollToIndex(currentIndex-1);
+        rightArrow.onclick = () => scrollToIndex(currentIndex+1);
+        imageRow.addEventListener('scroll', () => {
+            let minDist = Infinity, idx = 0;
+            for (let i=0; i<imageRow.children.length; ++i) {
+                const rect = imageRow.children[i].getBoundingClientRect();
+                const dist = Math.abs(rect.left - imageRow.getBoundingClientRect().left);
+                if (dist < minDist) { minDist = dist; idx = i; }
+            }
+            currentIndex = idx;
+            updateArrows();
+        });
+        // Initial state
+        scrollToIndex(0);
+        // Tabs logic
+        const tabContent = villageInfo.querySelector('#ratangarh-tab-content');
+        const tabData = {
+            overview: `
+                <b style='color:#2a5d9f;'>Overview</b><br/>
+                <table class='ratangarh-info-table' style='width:100%;margin:18px 0 18px 0;border-collapse:collapse;'>
+                    <tr><th>Location</th><td>Ramsar, Barmer District</td></tr>
+                    <tr><th>Latitude</th><td>25.8500</td></tr>
+                    <tr><th>Longitude</th><td>71.5000</td></tr>
+                </table>
+                Ramsar is home to diverse traditional water systems including the renovated Uttam Singh Model Pond, traditional Talabs, Wells, and Tankas. These structures represent a successful model of community-led water conservation in Rajasthan's arid landscape.<br/><br/>
+            `,
+            history: `
+                <b style='color:#2a5d9f;'>📜 History of Waterbody</b><br/>
+                <ul>
+                    <li><b>Uttam Singh Model Pond (Talab):</b> Renovated during 2020–21 with the support of Marico Limited, Zila Parishad Barmer, Panchayat Samiti Ramsar, Gram Panchayat Ramsar, and Dhara Sansthan Barmer. Originally built as a traditional rainwater pond, the renovation aimed to revive its heritage role in water storage and management.</li>
+                    <li><b>Talab:</b> A centuries-old system in Rajasthan for rainwater harvesting, traditionally constructed to serve community needs. Often accompanied by ghats, Talabs are architectural and cultural icons in desert landscapes.</li>
+                    <li><b>Wells (Kuan/Beri):</b> Ancient groundwater access systems, ranging from 20 to 100 meters in depth, lined with stone or mortar, historically used for drinking, irrigation, and livestock.</li>
+                    <li><b>Tanka:</b> Traditional domestic rainwater harvesting tanks, used for centuries across Rajasthan, especially in homes and schools, highlighting self-reliant water practices.</li>
+                </ul>
+            `,
+            uses: `
+                <b style='color:#2a5d9f;'>💧 Current Uses</b>
+                <ul>
+                    <li>Uttam Singh Model Pond now stores rainwater, supporting drinking, irrigation, and livestock, particularly during dry seasons.</li>
+                    <li>Wells remain in use for drawing groundwater, especially where piped supply is absent.</li>
+                    <li>Tankas continue to serve households, collecting rooftop rainwater for drinking and daily chores.</li>
+                    <li>Collectively, these systems still meet basic water needs in an arid region with limited rainfall.</li>
+                </ul>
+            `,
+            religion: `
+                <b style='color:#2a5d9f;'>🕉 Religious Significance</b><br/>
+                <ul>
+                    <li>While no specific rituals are described, Talabs and Wells in Rajasthan traditionally hold cultural and spiritual value.</li>
+                    <li>Ghats around Talabs are often used during festivals, ritual baths, and village ceremonies.</li>
+                    <li>Water from wells and tankas is typically used in domestic religious functions, like pujas and offerings.</li>
+                    <li>The act of maintaining water bodies is itself considered a moral duty in many local traditions.</li>
+                </ul>
+            `,
+            tourism: `
+                <b style='color:#2a5d9f;'>🧭 Tourism Potential</b>
+                <ul>
+                    <li>Uttam Singh Model Pond, if further beautified with ghats, signage, or eco-tourism initiatives, can serve as a case study in successful rural water restoration.</li>
+                    <li>Traditional Talabs and stepwells (baoris) can attract tourists interested in desert architecture, hydraulic engineering, and rural sustainability.</li>
+                    <li>Promotion as part of a Rajasthan water heritage trail could integrate Ramsar into a larger tourism circuit.</li>
+                </ul>
+            `,
+            science: `
+                <b style='color:#2a5d9f;'>🔬 Scientific Novelty</b>
+                <ul>
+                    <li>The renovated pond represents a model for community-led, public-private water rejuvenation, integrating traditional systems with modern rainwater storage goals.</li>
+                    <li>Wells demonstrate adaptive hydrological engineering through deep excavation and pressure distribution via circular design.</li>
+                    <li>Tankas are examples of climate-adaptive, decentralized solutions—simple, yet effective for year-round water security.</li>
+                    <li>The Ramsar example offers insight into cost-effective, grassroots water sustainability practices in arid ecosystems.</li>
+                </ul>
+            `,
+            condition: `
+                <b style='color:#2a5d9f;'>📊 Current Condition</b>
+                <ul>
+                    <li>Uttam Singh Model Pond is functioning and active post-renovation, fulfilling its goal of rainwater conservation.</li>
+                    <li>Tankas and Wells continue to function in homes and villages, although maintenance levels may vary.</li>
+                    <li>The area's water infrastructure reflects a strong revival movement, supported by community partnerships and NGO collaboration, especially since 2020.</li>
+                    <li>These systems highlight a balanced mix of traditional knowledge and modern sustainability efforts, setting a model for other desert regions.</li>
+                </ul>
+            `
+        };
+        function setTab(tab) {
+            tabContent.innerHTML = tabData[tab];
+            villageInfo.querySelectorAll('.ratangarh-tab').forEach(btn => btn.classList.remove('active'));
+            villageInfo.querySelector(`.ratangarh-tab[data-tab="${tab}"]`).classList.add('active');
+        }
+        setTab('overview');
+        villageInfo.querySelectorAll('.ratangarh-tab').forEach(btn => {
+            btn.onclick = () => setTab(btn.getAttribute('data-tab'));
+        });
+    }, 0);
+}
+// ... existing code ...    
+
 
 else {
             // Default for other villages
