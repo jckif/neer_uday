@@ -2,8 +2,11 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Company - JCKIF</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <base href="https://shubh0dev.github.io/retroflowtgs/">
+    <title>JCKIF - Company</title>
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="gallery.css">
 </head>
 <body>
     <!-- Top blue bar -->
@@ -30,7 +33,7 @@
                         <a href="#" class="dropdown-toggle magnetic">About Us</a>
                         <div class="dropdown-menu">
                             <a href="overview.html" class="magnetic">Overview</a>
-                            <a href="company.html" class="active magnetic">Company</a>
+                            <a href="company.html" class="magnetic">Company</a>
                             <a href="team.html" class="magnetic">Team</a>
                         </div>
                     </li>
@@ -40,37 +43,35 @@
         </div>
     </header>
 
-    <!-- Moving Marquee -->
-    <div class="moving-marquee-wrapper">
-        <div class="moving-marquee">
-            <span>JCKIF Foundation</span>
-            <span>Non-Profit Organization</span>
-            <span>Section-8 Company</span>
-            <span>Innovation Hub</span>
-            <span>Knowledge Center</span>
+    <!-- Location Gallery Section -->
+    <section class="location-gallery">
+        <a href="gallery.html" class="back-to-gallery">← Back to Gallery</a>
+        <h1 class="section-title">Company</h1>
+        <div class="location-gallery-grid" id="gallery-grid">
+            <!-- Images and videos will be loaded dynamically -->
         </div>
+    </section>
+
+    <!-- Lightbox -->
+    <div class="lightbox" id="lightbox">
+        <div class="lightbox-content">
+            <img src="" alt="" id="lightbox-image">
+            <video src="" controls id="lightbox-video" style="display: none;"></video>
+            <div class="lightbox-caption" id="lightbox-caption"></div>
+        </div>
+        <div class="lightbox-nav">
+            <button id="prev-button">Previous</button>
+            <button id="next-button">Next</button>
+        </div>
+        <div class="lightbox-close" id="lightbox-close">×</div>
     </div>
 
-    <main class="about-section">
-        <div class="content-wrapper fade-in">
-            <h1 class="section-title">Company</h1>
-            <div class="content-card">
-                <p>Jodhpur City Knowledge and Innovation Foundation (JCKIF), is a Section-8 company (Non-Profit Organization) established on 31st March, 2021 under the Companies Act 2013 to carry out and sustain the activities of Jodhpur City Knowledge and Innovation Cluster (JCKIC).</p>
-            </div>
-
-            <div class="content-card">
-                <p>JCKIC is an initiative of the Office of the Principal Scientific Adviser (PSA) to the Government of India on the recommendation of the Prime Minister's Science, Technology and Innovation Advisory Council (PM-STIAC) to create an Atmanirbhar Bharat through Science & Technology. Indian Institute of Technology Jodhpur (IITJ) is nodal agency for JCKIC.</p>
-            </div>
-
-            <div class="content-card highlight-card">
-                <p>JCKIF acts as a facilitator for Jodhpur Cluster to create strong linkages among major Academic Institutions, R & D Institutes, National & State Research Laboratories, Government Agencies and Industries of the city of Jodhpur and surroundings.</p>
-            </div>
-        </div>
-    </main>
-
+    <!-- Footer -->
     <footer>
         &copy; 2025 JCKIF. All rights reserved.
     </footer>
+
     <script src="script.js"></script>
+    <script src="gallery.js"></script>
 </body>
 </html> 

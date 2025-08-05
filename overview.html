@@ -2,8 +2,11 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Overview - JCKIF</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <base href="https://shubh0dev.github.io/retroflowtgs/">
+    <title>JCKIF - Overview</title>
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="gallery.css">
 </head>
 <body>
     <!-- Top blue bar -->
@@ -29,7 +32,7 @@
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle magnetic">About Us</a>
                         <div class="dropdown-menu">
-                            <a href="overview.html" class="active magnetic">Overview</a>
+                            <a href="overview.html" class="magnetic">Overview</a>
                             <a href="company.html" class="magnetic">Company</a>
                             <a href="team.html" class="magnetic">Team</a>
                         </div>
@@ -40,47 +43,35 @@
         </div>
     </header>
 
-    <!-- Moving Marquee -->
-    <div class="moving-marquee-wrapper">
-        <div class="moving-marquee">
-            <span>Welcome to JCKIF</span>
-            <span>Innovation Hub</span>
-            <span>Technology Cluster</span>
-            <span>Research & Development</span>
-            <span>Knowledge Center</span>
+    <!-- Location Gallery Section -->
+    <section class="location-gallery">
+        <a href="gallery.html" class="back-to-gallery">← Back to Gallery</a>
+        <h1 class="section-title">Overview</h1>
+        <div class="location-gallery-grid" id="gallery-grid">
+            <!-- Images and videos will be loaded dynamically -->
         </div>
+    </section>
+
+    <!-- Lightbox -->
+    <div class="lightbox" id="lightbox">
+        <div class="lightbox-content">
+            <img src="" alt="" id="lightbox-image">
+            <video src="" controls id="lightbox-video" style="display: none;"></video>
+            <div class="lightbox-caption" id="lightbox-caption"></div>
+        </div>
+        <div class="lightbox-nav">
+            <button id="prev-button">Previous</button>
+            <button id="next-button">Next</button>
+        </div>
+        <div class="lightbox-close" id="lightbox-close">×</div>
     </div>
 
-    <main class="about-section">
-        <div class="content-wrapper fade-in">
-            <h1 class="section-title">Overview</h1>
-            <div class="content-card">
-                <p>The Jodhpur City Knowledge and Innovation Cluster (JCKIC) is an initiative of the Office of the Principal Scientific Adviser (PSA) to the Government of India on the recommendation of the Prime Minister's Science, Technology and Innovation Advisory Council (PM-STIAC) to create an Atmanirbhar Bharat through S&T.</p>
-                <p>It is one of the six Science and Technology (S&T) clusters set up across the country with an objective of (i) Creation of a shared ecosystem, (ii) Becoming a regional solution provider, (iii) Becoming nationally and globally competitive.</p>
-            </div>
-
-            <div class="content-card">
-                <p>The main focus of the cluster is to provide a necessary platform to create synergy between all the stakeholders to make use of available knowledge as well as to develop advanced technologies, creative skills, state of the art infrastructure and innovative environment in an organized manner so as to ensure sustainable and systematic development of city of Jodhpur.</p>
-            </div>
-
-            <div class="content-card">
-                <p>The cluster is working towards effective intervention of knowledge, technology and innovation for the society at large and industry and governance in particular. Further, the cluster is also providing platform to the young entrepreneurs to work on their new and innovative ideas. In the long run the cluster is going to be a self-sustaining unit through Jodhpur City Knowledge and Innovation Foundation (JCKIF), a section 8 company established to facilitate and sustain the functioning of Jodhpur Cluster.</p>
-            </div>
-
-            <div class="vision-card">
-                <h2>Vision</h2>
-                <p class="vision-text">"To enable innovation for accelerated growth of local industry, to generate new initiatives in entrepreneurship and develop solutions for the critical problems of the city of Jodhpur and areas around"</p>
-            </div>
-
-            <div class="content-card">
-                <p>The cluster is a collaborative network of a large pool of institutes dealing with academics (covering different domains including science & technology, healthcare, law, police, ayurveda, agriculture, fine arts, fashion design, footwear design, engineering, social science, humanities, ecology etc.), R&D institutes affiliated to all major organizations of the country including DRDO, ICAR, ISRO, ICMR, Forest Research, etc., and highly skill oriented MSMEs having strong elements of innovation and entrepreneurship.</p>
-            </div>
-        </div>
-    </main>
-
+    <!-- Footer -->
     <footer>
         &copy; 2025 JCKIF. All rights reserved.
     </footer>
+
     <script src="script.js"></script>
+    <script src="gallery.js"></script>
 </body>
 </html> 
