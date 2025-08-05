@@ -232,7 +232,6 @@ html {
     white-space: nowrap;
     width: max-content;
 }
-
 .moving-marquee span {
     color: var(--text);
     font-weight: 500;
@@ -248,6 +247,47 @@ html {
     font-weight: bold;
     animation: glow 1.5s ease-in-out infinite alternate;
 }
+
+
+
+
+
+
+/* Moving marquee below header */
+.moving-marquee-wrapper2 {
+    background: linear-gradient(90deg, rgba(108, 99, 255, 0.1), rgba(255, 107, 107, 0.1), rgba(78, 205, 196, 0.1));
+    backdrop-filter: blur(5px);
+    border-bottom: 1px solid rgba(108, 99, 255, 0.2);
+    overflow: hidden;
+    position: relative;
+    height: 40px;
+    display: flex;
+    align-items: center;
+}
+
+.moving-marquee2 {
+    display: flex;
+    animation: marquee-move-continuous 80s linear infinite;
+    white-space: nowrap;
+    width: max-content;
+}
+.moving-marquee2 span {
+    color: var(--text);
+    font-weight: 500;
+    font-size: 0.9rem;
+    padding: 0 20px;
+    position: relative;
+    animation: glow 2s ease-in-out infinite alternate;
+}
+
+.moving-marquee2 span::after {
+    content: ' || ';
+    color: var(--primary);
+    font-weight: bold;
+    animation: glow 1.5s ease-in-out infinite alternate;
+}
+
+
 
 @keyframes marquee-move-continuous {
     0% { transform: translateX(0); }
@@ -360,6 +400,9 @@ body.fullscreen-map-active .map-info-panel {
     background: linear-gradient(135deg, var(--primary), var(--secondary));
     color: white;
     border-radius: 15px 15px 0 0;
+    position: sticky;
+    top: 0;
+    z-index: 2;
 }
 
 .info-header h3 {
@@ -893,7 +936,7 @@ body.fullscreen-map-active .map-info-panel {
 }
 
 .polit-image {
-    max-width: 40%; /* Adjust size as needed */
+    max-width: 50%; /* Adjust size as needed */
     height: auto;
     margin-left: 30px; /* Space between text and image */
     border-radius: 8px; /* Slightly rounded corners for professionalism */
@@ -901,7 +944,7 @@ body.fullscreen-map-active .map-info-panel {
     object-fit: contain; /* Ensures the entire image is visible */
     float: right; /* Align to the right */
     shape-outside: url('../images/polit.png'); /* Wrap text around non-rectangular image */
-    shape-margin: 85px;
+    shape-margin: 120px;
     clear: right; /* Ensure content after the float clears it */
 }
 
@@ -2367,7 +2410,6 @@ body.fullscreen-map-active .map-section .map-heading {
     border-radius: 4px;
 }
 
-/* ... existing code ... */
 /* 🌐 Global Reset */
 * {
   margin: 0;
@@ -2511,7 +2553,7 @@ nav ul li a.active {
 #fullscreen-map-btn {
   position: absolute;
   top: 1rem;
-  right: 1rem;
+  right: 2.5rem;
   background: linear-gradient(135deg, #6C63FF, #FF6B6B);
   color: white;
   border: none;
@@ -2700,6 +2742,34 @@ nav ul li a.active {
   letter-spacing: 0.5px;
 }
 .mathania-main-tab.active {
+  background: #2a5d9f;
+  color: #fff;
+  box-shadow: 0 4px 12px rgba(42,93,159,0.10);
+}
+
+/* 🟢 Kelwa Tabs */
+.kelwa-main-tabs {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 18px;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+}
+.kelwa-main-tab {
+  background: #f2f2f2;
+  color: #333;
+  border: none;
+  border-radius: 8px 8px 0 0;
+  padding: 10px 28px;
+  font-size: 1.08rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s;
+  outline: none;
+  box-shadow: 0 2px 6px rgba(42,93,159,0.04);
+  letter-spacing: 0.5px;
+}
+.kelwa-main-tab.active {
   background: #2a5d9f;
   color: #fff;
   box-shadow: 0 4px 12px rgba(42,93,159,0.10);

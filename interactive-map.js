@@ -763,10 +763,11 @@ class InteractiveMap {
                     <h3>${village.name}</h3>
                     <span class="village-district">${this.currentDistrict ? this.currentDistrict.name : ''} District</span>
                 </div>
-                <div class="kelwa-main-tabs" style="display:flex;gap:12px;margin-bottom:18px;">
-                    <button class="kelwa-main-tab active" data-main-tab="roop">Roop Sagar</button>
-                    <button class="kelwa-main-tab" data-main-tab="dholi">Dholi Bawadi</button>
-                </div>
+                        <div class="kelwa-main-tabs">
+            <button class="kelwa-main-tab active" data-main-tab="roop">Roop Sagar</button>
+            <button class="kelwa-main-tab" data-main-tab="dholi">Dholi Bawadi</button>
+               
+                    </div>
                 <div class="kelwa-bawadi-content"></div>
                 <div class="village-actions">
                     <a href="${village.report}" class="view-report-btn">View Full Report</a>
@@ -911,7 +912,7 @@ class InteractiveMap {
             }, 0);
         }
         // ... existing code ...
-else if (village.id === 'rajasmand_village') {
+else if (village.id === 'rajsamand_village') {
     villageInfo.innerHTML = `
         <div class="village-header">
             <h3>${village.name}</h3>
@@ -1974,6 +1975,156 @@ else if (village.id === 'siyai') {
         });
     }, 0);
 }
+
+else if (village.id === 'sangariya') {
+    villageInfo.innerHTML = `
+        <div class="village-header">
+            <h3>${village.name}</h3>
+            <span class="village-district">${this.currentDistrict ? this.currentDistrict.name : ''} District</span>
+        </div>
+        <div class="ratangarh-image-row-wrapper" style="position:relative;width:100%;height:340px;">
+            <button class="ratangarh-arrow ratangarh-arrow-left" style="position:absolute;left:8px;top:50%;transform:translateY(-50%);z-index:2;display:none;background:rgba(42,93,159,0.7);border:none;border-radius:50%;width:38px;height:38px;color:#fff;font-size:1.5em;cursor:pointer;align-items:center;justify-content:center;outline:none;transition:background 0.2s;">&#8592;</button>
+            <div class="ratangarh-image-row" style="height:100%;"></div>
+            <button class="ratangarh-arrow ratangarh-arrow-right" style="position:absolute;right:8px;top:50%;transform:translateY(-50%);z-index:2;display:none;background:rgba(42,93,159,0.7);border:none;border-radius:50%;width:38px;height:38px;color:#fff;font-size:1.5em;cursor:pointer;align-items:center;justify-content:center;outline:none;transition:background 0.2s;">&#8594;</button>
+        </div>
+        <div class="ratangarh-tabs">
+            <button class="ratangarh-tab active" data-tab="overview">Overview</button>
+            <button class="ratangarh-tab" data-tab="history">📜 History of Waterbody</button>
+            <button class="ratangarh-tab" data-tab="uses">💧 Current Uses</button>
+            <button class="ratangarh-tab" data-tab="religion">🕉 Religious Significance</button>
+            <button class="ratangarh-tab" data-tab="tourism">🧭 Tourism Potential</button>
+            <button class="ratangarh-tab" data-tab="science">🔬 Scientific Novelty</button>
+            <button class="ratangarh-tab" data-tab="condition">📊 Current Condition</button>
+        </div>
+        <div class="ratangarh-tab-content" id="ratangarh-tab-content"></div>
+        <div class="village-actions">
+            <a href="${village.report}" class="view-report-btn">View Full Report</a>
+            <button class="close-popup-btn" onclick="this.closest('.village-info').remove(); document.querySelector('.district-info').style.display='block';">Close</button>
+        </div>
+    `;
+    setTimeout(() => {
+        // Insert images into the image row
+        const images = [
+            {src: 'images/sangariya/1.jpg', caption: 'Traditional Nadi of Sangariya'},
+            {src: 'images/sangariya/2.jpg', caption: 'Village water heritage site'},
+            {src: 'images/sangariya/3.jpg', caption: 'Community water management', viewAll: true}
+        ];
+        const imageRow = villageInfo.querySelector('.ratangarh-image-row');
+        images.forEach((img, i) => {
+            const box = document.createElement('div');
+            box.className = 'ratangarh-img-box';
+            box.innerHTML = `<img src='${img.src}' alt='Sangariya Image ${i+1}'><div class='ratangarh-img-caption'>${img.caption}</div>`;
+            if (img.viewAll) {
+                const btn = document.createElement('a');
+                btn.href = 'sangariya.html';
+                btn.className = 'view-all-photos-btn';
+                btn.textContent = 'View All Photos';
+                box.appendChild(btn);
+            }
+            imageRow.appendChild(box);
+        });
+        // Arrow logic
+        let currentIndex = 0;
+        const leftArrow = villageInfo.querySelector('.ratangarh-arrow-left');
+        const rightArrow = villageInfo.querySelector('.ratangarh-arrow-right');
+        function updateArrows() {
+            leftArrow.style.display = currentIndex > 0 ? 'flex' : 'none';
+            rightArrow.style.display = currentIndex < images.length-1 ? 'flex' : 'none';
+        }
+        function scrollToIndex(idx) {
+            const box = imageRow.children[idx];
+            if (box) box.scrollIntoView({behavior:'smooth',inline:'start'});
+            currentIndex = idx;
+            updateArrows();
+        }
+        leftArrow.onclick = () => scrollToIndex(currentIndex-1);
+        rightArrow.onclick = () => scrollToIndex(currentIndex+1);
+        imageRow.addEventListener('scroll', () => {
+            let minDist = Infinity, idx = 0;
+            for (let i=0; i<imageRow.children.length; ++i) {
+                const rect = imageRow.children[i].getBoundingClientRect();
+                const dist = Math.abs(rect.left - imageRow.getBoundingClientRect().left);
+                if (dist < minDist) { minDist = dist; idx = i; }
+            }
+            currentIndex = idx;
+            updateArrows();
+        });
+        // Initial state
+        scrollToIndex(0);
+        // Tabs logic
+        const tabContent = villageInfo.querySelector('#ratangarh-tab-content');
+        const tabData = {
+            overview: `
+                <b style='color:#2a5d9f;'>Overview</b><br/>
+                <table class='ratangarh-info-table' style='width:100%;margin:18px 0 18px 0;border-collapse:collapse;'>
+                    <tr><th>Location</th><td>Sangariya, Jodhpur District</td></tr>
+                    <tr><th>Latitude</th><td>26.3000</td></tr>
+                    <tr><th>Longitude</th><td>73.0000</td></tr>
+                </table>
+                Sangariya is home to a traditional unnamed Nadi that once served as the village's primary water source. This waterbody represents the historical rainwater harvesting systems of rural Rajasthan and the transition to modern water infrastructure.<br/><br/>
+            `,
+            history: `
+                <b style='color:#2a5d9f;'>📜 History of Waterbody</b><br/>
+                <ul>
+                    <li>The Unnamed Nadi of Sangariya was once a central water source for the village, fulfilling all daily human needs such as drinking, cooking, bathing, and washing.</li>
+                    <li>It represents the traditional rainwater harvesting system commonly used across rural Rajasthan before piped water and modern supply systems became widespread.</li>
+                    <li>The Nadi is part of the historical rural water heritage, symbolizing the self-sufficiency of past village communities.</li>
+                </ul>
+            `,
+            uses: `
+                <b style='color:#2a5d9f;'>💧 Current Uses</b>
+                <ul>
+                    <li>Today, the Nadi is mainly used by animals, especially during dry seasons.</li>
+                    <li>Due to urbanization and modern water supply systems, residents now receive clean, piped water, making reliance on the Nadi obsolete for human use.</li>
+                </ul>
+            `,
+            religion: `
+                <b style='color:#2a5d9f;'>🕉 Religious Significance</b><br/>
+                <ul>
+                    <li>No specific religious activities are reported around this Nadi.</li>
+                    <li>However, like many traditional water bodies in Rajasthan, the cultural reverence for water suggests that it may have once been considered sacred or socially significant in community rituals or festivals.</li>
+                </ul>
+            `,
+            tourism: `
+                <b style='color:#2a5d9f;'>🧭 Tourism Potential</b>
+                <ul>
+                    <li>As of now, the tourism potential is minimal due to the Nadi's unnamed and neglected status.</li>
+                    <li>However, with proper documentation, signage, and ecological restoration, it could serve as a learning site for traditional water management practices.</li>
+                    <li>A joint initiative by RetroFlow and local leaders (including the Sarpanch) could position it as part of a rural eco-tourism trail in the future.</li>
+                </ul>
+            `,
+            science: `
+                <b style='color:#2a5d9f;'>🔬 Scientific Novelty</b>
+                <ul>
+                    <li>The transition from traditional Nadi use to piped water systems provides a live example of rural water infrastructure evolution.</li>
+                    <li>This shift raises important questions on sustainability, groundwater depletion, and community dependence on centralized systems.</li>
+                    <li>It offers opportunities to study salinity issues in underground sources and the ecological role of abandoned water bodies in supporting livestock and biodiversity.</li>
+                </ul>
+            `,
+            condition: `
+                <b style='color:#2a5d9f;'>📊 Current Condition</b>
+                <ul>
+                    <li>The Nadi is still physically present, but its role is greatly reduced—it now serves primarily animals.</li>
+                    <li>Its water is not suitable for human consumption, likely due to salinity or lack of maintenance.</li>
+                    <li>The Sarpanch and Team RetroFlow (JCKIC) have initiated a dialogue for revival, blending local knowledge with innovative water conservation ideas—marking the first step toward rejuvenation.</li>
+                </ul>
+            `
+        };
+        function setTab(tab) {
+            tabContent.innerHTML = tabData[tab];
+            villageInfo.querySelectorAll('.ratangarh-tab').forEach(btn => btn.classList.remove('active'));
+            villageInfo.querySelector(`.ratangarh-tab[data-tab="${tab}"]`).classList.add('active');
+        }
+        setTab('overview');
+        villageInfo.querySelectorAll('.ratangarh-tab').forEach(btn => {
+            btn.onclick = () => setTab(btn.getAttribute('data-tab'));
+        });
+    }, 0);
+}
+// ... existing code ...    
+
+
+
 // ... existing code ...    
 else if (village.id === 'ramsar') {
     villageInfo.innerHTML = `
@@ -2129,6 +2280,1052 @@ else if (village.id === 'ramsar') {
 }
 // ... existing code ...    
 
+
+else if (village.id === 'mandore') {
+    villageInfo.innerHTML = `
+        <div class="village-header">
+            <h3>${village.name}</h3>
+            <span class="village-district">${this.currentDistrict ? this.currentDistrict.name : ''} District</span>
+        </div>
+        <div class="ratangarh-image-row-wrapper" style="position:relative;width:100%;height:340px;">
+            <button class="ratangarh-arrow ratangarh-arrow-left" style="position:absolute;left:8px;top:50%;transform:translateY(-50%);z-index:2;display:none;background:rgba(42,93,159,0.7);border:none;border-radius:50%;width:38px;height:38px;color:#fff;font-size:1.5em;cursor:pointer;align-items:center;justify-content:center;outline:none;transition:background 0.2s;">&#8592;</button>
+            <div class="ratangarh-image-row" style="height:100%;"></div>
+            <button class="ratangarh-arrow ratangarh-arrow-right" style="position:absolute;right:8px;top:50%;transform:translateY(-50%);z-index:2;display:none;background:rgba(42,93,159,0.7);border:none;border-radius:50%;width:38px;height:38px;color:#fff;font-size:1.5em;cursor:pointer;align-items:center;justify-content:center;outline:none;transition:background 0.2s;">&#8594;</button>
+        </div>
+        <div class="ratangarh-tabs">
+            <button class="ratangarh-tab active" data-tab="overview">Overview</button>
+            <button class="ratangarh-tab" data-tab="history">📜 History of Waterbody</button>
+            <button class="ratangarh-tab" data-tab="uses">💧 Current Uses</button>
+            <button class="ratangarh-tab" data-tab="religion">🕉 Religious Significance</button>
+            <button class="ratangarh-tab" data-tab="tourism">🧭 Tourism Potential</button>
+            <button class="ratangarh-tab" data-tab="science">🔬 Scientific Novelty</button>
+            <button class="ratangarh-tab" data-tab="condition">📊 Current Condition</button>
+        </div>
+        <div class="ratangarh-tab-content" id="ratangarh-tab-content"></div>
+        <div class="village-actions">
+            <a href="${village.report}" class="view-report-btn">View Full Report</a>
+            <button class="close-popup-btn" onclick="this.closest('.village-info').remove(); document.querySelector('.district-info').style.display='block';">Close</button>
+        </div>
+    `;
+    setTimeout(() => {
+        // Insert images into the image row
+        const images = [
+            {src: 'images/mandore/1.jpg', caption: 'Naganadi Canal in Mandore Garden'},
+            {src: 'images/mandore/2.jpg', caption: 'Historic waterway and garden heritage'},
+            {src: 'images/mandore/3.jpg', caption: 'Traditional water architecture', viewAll: true}
+        ];
+        const imageRow = villageInfo.querySelector('.ratangarh-image-row');
+        images.forEach((img, i) => {
+            const box = document.createElement('div');
+            box.className = 'ratangarh-img-box';
+            box.innerHTML = `<img src='${img.src}' alt='Mandore Image ${i+1}'><div class='ratangarh-img-caption'>${img.caption}</div>`;
+            if (img.viewAll) {
+                const btn = document.createElement('a');
+                btn.href = 'mandore.html';
+                btn.className = 'view-all-photos-btn';
+                btn.textContent = 'View All Photos';
+                box.appendChild(btn);
+            }
+            imageRow.appendChild(box);
+        });
+        // Arrow logic
+        let currentIndex = 0;
+        const leftArrow = villageInfo.querySelector('.ratangarh-arrow-left');
+        const rightArrow = villageInfo.querySelector('.ratangarh-arrow-right');
+        function updateArrows() {
+            leftArrow.style.display = currentIndex > 0 ? 'flex' : 'none';
+            rightArrow.style.display = currentIndex < images.length-1 ? 'flex' : 'none';
+        }
+        function scrollToIndex(idx) {
+            const box = imageRow.children[idx];
+            if (box) box.scrollIntoView({behavior:'smooth',inline:'start'});
+            currentIndex = idx;
+            updateArrows();
+        }
+        leftArrow.onclick = () => scrollToIndex(currentIndex-1);
+        rightArrow.onclick = () => scrollToIndex(currentIndex+1);
+        imageRow.addEventListener('scroll', () => {
+            let minDist = Infinity, idx = 0;
+            for (let i=0; i<imageRow.children.length; ++i) {
+                const rect = imageRow.children[i].getBoundingClientRect();
+                const dist = Math.abs(rect.left - imageRow.getBoundingClientRect().left);
+                if (dist < minDist) { minDist = dist; idx = i; }
+            }
+            currentIndex = idx;
+            updateArrows();
+        });
+        // Initial state
+        scrollToIndex(0);
+        // Tabs logic
+        const tabContent = villageInfo.querySelector('#ratangarh-tab-content');
+        const tabData = {
+            overview: `
+                <b style='color:#2a5d9f;'>Overview</b><br/>
+                <table class='ratangarh-info-table' style='width:100%;margin:18px 0 18px 0;border-collapse:collapse;'>
+                    <tr><th>Location</th><td>Mandore Garden, Jodhpur District</td></tr>
+                    <tr><th>Latitude</th><td>26.3500</td></tr>
+                    <tr><th>Longitude</th><td>73.0500</td></tr>
+                </table>
+                Mandore is home to the historic Naganadi canal, an ancient waterway flowing through the renowned Mandore Garden. This traditional water system represents the integration of utility and beauty in historical water architecture.<br/><br/>
+            `,
+            history: `
+                <b style='color:#2a5d9f;'>📜 History of Waterbody</b><br/>
+                <ul>
+                    <li>Naganadi is an ancient canal (waterway) flowing through the historic Mandore Garden.</li>
+                    <li>It was originally constructed as a year-round water storage system and played a dual role—irrigation and aesthetic enhancement of the garden.</li>
+                    <li>It represents a significant part of Mandore's water heritage, symbolizing the integration of utility and beauty in traditional water architecture.</li>
+                </ul>
+            `,
+            uses: `
+                <b style='color:#2a5d9f;'>💧 Current Uses</b>
+                <ul>
+                    <li>In its current state, Naganadi is not actively used for irrigation or water supply.</li>
+                    <li>However, redevelopment plans aim to restore its functional and visual utility, focusing on cleanliness, aesthetic revival, and cultural engagement.</li>
+                </ul>
+            `,
+            religion: `
+                <b style='color:#2a5d9f;'>🕉 Religious Significance</b><br/>
+                <ul>
+                    <li>While no specific rituals are detailed, Mandore Garden as a historical and sacred site (associated with ancient Marwar rulers and temples) adds cultural and spiritual weight to Naganadi.</li>
+                    <li>Redevelopment involving ghats may also support religious gatherings or ceremonies in the future.</li>
+                </ul>
+            `,
+            tourism: `
+                <b style='color:#2a5d9f;'>🧭 Tourism Potential</b>
+                <ul>
+                    <li>High tourism potential: Naganadi is located in Mandore Garden, a popular tourist destination.</li>
+                    <li>The Jodhpur Development Authority plans to build footbridges, ghats, and clean-up projects, aiming to re-establish Naganadi as a cultural and tourist hub.</li>
+                    <li>Revived water flow and architectural restoration will enhance the visual and ecological appeal of the garden, drawing more visitors.</li>
+                </ul>
+            `,
+            science: `
+                <b style='color:#2a5d9f;'>🔬 Scientific Novelty</b>
+                <ul>
+                    <li>The canal reflects historical hydrological engineering, built to ensure year-round water availability in a semi-arid region.</li>
+                    <li>Its redevelopment also touches on urban water management, combining heritage conservation with modern water-sensitive planning.</li>
+                    <li>Can become a demonstration site for integrating traditional water bodies in urban resilience planning.</li>
+                </ul>
+            `,
+            condition: `
+                <b style='color:#2a5d9f;'>📊 Current Condition</b>
+                <ul>
+                    <li>Presently, Naganadi is under redevelopment.</li>
+                    <li>Jodhpur Development Authority is actively working on cleaning and restoring the canal, building ghats and pedestrian footbridges, and enhancing aesthetic and cultural value.</li>
+                    <li>The waterway currently lacks active use, but revival efforts are in progress to transform it into a functional and cultural landmark.</li>
+                </ul>
+            `
+        };
+        function setTab(tab) {
+            tabContent.innerHTML = tabData[tab];
+            villageInfo.querySelectorAll('.ratangarh-tab').forEach(btn => btn.classList.remove('active'));
+            villageInfo.querySelector(`.ratangarh-tab[data-tab="${tab}"]`).classList.add('active');
+        }
+        setTab('overview');
+        villageInfo.querySelectorAll('.ratangarh-tab').forEach(btn => {
+            btn.onclick = () => setTab(btn.getAttribute('data-tab'));
+        });
+    }, 0);
+}
+// ... existing code ...    
+
+else if (village.id === 'ramderiya') {
+    villageInfo.innerHTML = `
+        <div class="village-header">
+            <h3>${village.name}</h3>
+            <span class="village-district">${this.currentDistrict ? this.currentDistrict.name : ''} District</span>
+        </div>
+        <div class="ratangarh-image-row-wrapper" style="position:relative;width:100%;height:340px;">
+            <button class="ratangarh-arrow ratangarh-arrow-left" style="position:absolute;left:8px;top:50%;transform:translateY(-50%);z-index:2;display:none;background:rgba(42,93,159,0.7);border:none;border-radius:50%;width:38px;height:38px;color:#fff;font-size:1.5em;cursor:pointer;align-items:center;justify-content:center;outline:none;transition:background 0.2s;">&#8592;</button>
+            <div class="ratangarh-image-row" style="height:100%;"></div>
+            <button class="ratangarh-arrow ratangarh-arrow-right" style="position:absolute;right:8px;top:50%;transform:translateY(-50%);z-index:2;display:none;background:rgba(42,93,159,0.7);border:none;border-radius:50%;width:38px;height:38px;color:#fff;font-size:1.5em;cursor:pointer;align-items:center;justify-content:center;outline:none;transition:background 0.2s;">&#8594;</button>
+        </div>
+        <div class="ratangarh-tabs">
+            <button class="ratangarh-tab active" data-tab="overview">Overview</button>
+            <button class="ratangarh-tab" data-tab="history">📜 History of Waterbody</button>
+            <button class="ratangarh-tab" data-tab="uses">💧 Current Uses</button>
+            <button class="ratangarh-tab" data-tab="religion">🕉 Religious Significance</button>
+            <button class="ratangarh-tab" data-tab="tourism">🧭 Tourism Potential</button>
+            <button class="ratangarh-tab" data-tab="science">🔬 Scientific Novelty</button>
+            <button class="ratangarh-tab" data-tab="condition">📊 Current Condition</button>
+        </div>
+        <div class="ratangarh-tab-content" id="ratangarh-tab-content"></div>
+        <div class="village-actions">
+            <a href="${village.report}" class="view-report-btn">View Full Report</a>
+            <button class="close-popup-btn" onclick="this.closest('.village-info').remove(); document.querySelector('.district-info').style.display='block';">Close</button>
+        </div>
+    `;
+    setTimeout(() => {
+        // Insert images into the image row
+        const images = [
+            {src: 'images/ramderiya/1.jpg', caption: 'Gawiya Kuaan - traditional well'},
+            {src: 'images/ramderiya/2.jpg', caption: 'Rectangular well structure with marble lining'},
+            {src: 'images/ramderiya/3.jpg', caption: 'Stone trenches and heritage architecture', viewAll: true}
+        ];
+        const imageRow = villageInfo.querySelector('.ratangarh-image-row');
+        images.forEach((img, i) => {
+            const box = document.createElement('div');
+            box.className = 'ratangarh-img-box';
+            box.innerHTML = `<img src='${img.src}' alt='Ramderiya Image ${i+1}'><div class='ratangarh-img-caption'>${img.caption}</div>`;
+            if (img.viewAll) {
+                const btn = document.createElement('a');
+                btn.href = 'ramderiya.html';
+                btn.className = 'view-all-photos-btn';
+                btn.textContent = 'View All Photos';
+                box.appendChild(btn);
+            }
+            imageRow.appendChild(box);
+        });
+        // Arrow logic
+        let currentIndex = 0;
+        const leftArrow = villageInfo.querySelector('.ratangarh-arrow-left');
+        const rightArrow = villageInfo.querySelector('.ratangarh-arrow-right');
+        function updateArrows() {
+            leftArrow.style.display = currentIndex > 0 ? 'flex' : 'none';
+            rightArrow.style.display = currentIndex < images.length-1 ? 'flex' : 'none';
+        }
+        function scrollToIndex(idx) {
+            const box = imageRow.children[idx];
+            if (box) box.scrollIntoView({behavior:'smooth',inline:'start'});
+            currentIndex = idx;
+            updateArrows();
+        }
+        leftArrow.onclick = () => scrollToIndex(currentIndex-1);
+        rightArrow.onclick = () => scrollToIndex(currentIndex+1);
+        imageRow.addEventListener('scroll', () => {
+            let minDist = Infinity, idx = 0;
+            for (let i=0; i<imageRow.children.length; ++i) {
+                const rect = imageRow.children[i].getBoundingClientRect();
+                const dist = Math.abs(rect.left - imageRow.getBoundingClientRect().left);
+                if (dist < minDist) { minDist = dist; idx = i; }
+            }
+            currentIndex = idx;
+            updateArrows();
+        });
+        // Initial state
+        scrollToIndex(0);
+        // Tabs logic
+        const tabContent = villageInfo.querySelector('#ratangarh-tab-content');
+        const tabData = {
+            overview: `
+                <b style='color:#2a5d9f;'>Overview</b><br/>
+                <table class='ratangarh-info-table' style='width:100%;margin:18px 0 18px 0;border-collapse:collapse;'>
+                    <tr><th>Location</th><td>Ramderiya, Barmer District</td></tr>
+                    <tr><th>Latitude</th><td>25.9000</td></tr>
+                    <tr><th>Longitude</th><td>71.6000</td></tr>
+                </table>
+                Ramderiya is home to the historic Gawiya Kuaan, a unique rectangular well that is 200-300 years old. This traditional water structure showcases exceptional architectural design with marble lining and stone trenches, representing the region's hydraulic heritage.<br/><br/>
+            `,
+            history: `
+                <b style='color:#2a5d9f;'>📜 History of Waterbody</b><br/>
+                <ul>
+                    <li>The Ramderiya Gawiya Kuaan is a traditional well that is estimated to be 200–300 years old, making it a significant part of the region's hydraulic heritage.</li>
+                    <li>Unlike most circular wells in Rajasthan, this one is rectangular, approximately 30–40 feet deep and 1–2 meters wide.</li>
+                    <li>It was historically the primary water source for both drinking and irrigation, showcasing local adaptation to arid conditions through stone-lined channels and marble construction.</li>
+                </ul>
+            `,
+            uses: `
+                <b style='color:#2a5d9f;'>💧 Current Uses</b>
+                <ul>
+                    <li>Today, the well is rarely used, primarily due to hard water and high fluoride content, which can harm human health.</li>
+                    <li>Villagers now depend on Indira Gandhi Canal, Jal Jeevan Mission taps, and RO (Reverse Osmosis) systems for safe drinking water.</li>
+                    <li>The well may still serve minor irrigation or livestock use, but it's no longer the main water source.</li>
+                </ul>
+            `,
+            religion: `
+                <b style='color:#2a5d9f;'>🕉 Religious Significance</b><br/>
+                <ul>
+                    <li>While no specific rituals are mentioned, traditional wells in Rajasthan are often viewed with cultural reverence.</li>
+                    <li>Given its age and marble structure, the Gawiya Kuaan likely holds spiritual or symbolic value in the local community.</li>
+                    <li>Such water bodies are often connected to ancestral memory and rituals, especially during festivals or seasonal prayers for rain.</li>
+                </ul>
+            `,
+            tourism: `
+                <b style='color:#2a5d9f;'>🧭 Tourism Potential</b>
+                <ul>
+                    <li>The Gawiya Kuaan's unique rectangular structure, stone trenches, and marble lining give it strong architectural and heritage appeal.</li>
+                    <li>As one of the few surviving centuries-old functional water structures, it could attract heritage tourists, researchers, and rural tourism groups.</li>
+                    <li>With minimal restoration and information signage, it can become part of a water heritage trail in Barmer.</li>
+                </ul>
+            `,
+            science: `
+                <b style='color:#2a5d9f;'>🔬 Scientific Novelty</b>
+                <ul>
+                    <li>The rectangular design is rare among traditional wells in Rajasthan, which are typically circular for structural integrity.</li>
+                    <li>The use of marble for lining indicates advanced material usage and aesthetic consideration in traditional water architecture.</li>
+                    <li>This well demonstrates traditional multi-purpose water infrastructure, offering insights into early hydro-engineering, water flow management via trenches, and groundwater access in arid regions.</li>
+                </ul>
+            `,
+            condition: `
+                <b style='color:#2a5d9f;'>📊 Current Condition</b>
+                <ul>
+                    <li>Structurally, the well remains intact and visually impressive, but its water quality is poor due to fluoride contamination and hardness of water.</li>
+                    <li>It has been largely abandoned for regular use in favor of modern piped water systems.</li>
+                    <li>Despite being out of active service, the well is a remarkable symbol of traditional ingenuity and could be preserved as a heritage structure with proper documentation and care.</li>
+                </ul>
+            `
+        };
+        function setTab(tab) {
+            tabContent.innerHTML = tabData[tab];
+            villageInfo.querySelectorAll('.ratangarh-tab').forEach(btn => btn.classList.remove('active'));
+            villageInfo.querySelector(`.ratangarh-tab[data-tab="${tab}"]`).classList.add('active');
+        }
+        setTab('overview');
+        villageInfo.querySelectorAll('.ratangarh-tab').forEach(btn => {
+            btn.onclick = () => setTab(btn.getAttribute('data-tab'));
+        });
+    }, 0);
+}
+
+else if (village.id === 'badabagh') {
+    villageInfo.innerHTML = `
+        <div class="village-header">
+            <h3>${village.name}</h3>
+            <span class="village-district">${this.currentDistrict ? this.currentDistrict.name : ''} District</span>
+        </div>
+        <div class="ratangarh-image-row-wrapper" style="position:relative;width:100%;height:340px;">
+            <button class="ratangarh-arrow ratangarh-arrow-left" style="position:absolute;left:8px;top:50%;transform:translateY(-50%);z-index:2;display:none;background:rgba(42,93,159,0.7);border:none;border-radius:50%;width:38px;height:38px;color:#fff;font-size:1.5em;cursor:pointer;align-items:center;justify-content:center;outline:none;transition:background 0.2s;">&#8592;</button>
+            <div class="ratangarh-image-row" style="height:100%;"></div>
+            <button class="ratangarh-arrow ratangarh-arrow-right" style="position:absolute;right:8px;top:50%;transform:translateY(-50%);z-index:2;display:none;background:rgba(42,93,159,0.7);border:none;border-radius:50%;width:38px;height:38px;color:#fff;font-size:1.5em;cursor:pointer;align-items:center;justify-content:center;outline:none;transition:background 0.2s;">&#8594;</button>
+        </div>
+        <div class="ratangarh-tabs">
+            <button class="ratangarh-tab active" data-tab="overview">Overview</button>
+            <button class="ratangarh-tab" data-tab="history">📜 History of Waterbody</button>
+            <button class="ratangarh-tab" data-tab="uses">💧 Current Uses</button>
+            <button class="ratangarh-tab" data-tab="religion">🕉 Religious Significance</button>
+            <button class="ratangarh-tab" data-tab="tourism">🧭 Tourism Potential</button>
+            <button class="ratangarh-tab" data-tab="science">🔬 Scientific Novelty</button>
+            <button class="ratangarh-tab" data-tab="condition">📊 Current Condition</button>
+        </div>
+        <div class="ratangarh-tab-content" id="ratangarh-tab-content"></div>
+        <div class="village-actions">
+            <a href="${village.report}" class="view-report-btn">View Full Report</a>
+            <button class="close-popup-btn" onclick="this.closest('.village-info').remove(); document.querySelector('.district-info').style.display='block';">Close</button>
+        </div>
+    `;
+    setTimeout(() => {
+        // Insert images into the image row
+        const images = [
+            {src: 'images/badabagh/1.jpg', caption: 'Khitpal Nadi - traditional waterbody'},
+            {src: 'images/badabagh/2.jpg', caption: 'Desert wells and water heritage'},
+            {src: 'images/badabagh/3.jpg', caption: 'Royal cenotaphs and desert landscape', viewAll: true}
+        ];
+        const imageRow = villageInfo.querySelector('.ratangarh-image-row');
+        images.forEach((img, i) => {
+            const box = document.createElement('div');
+            box.className = 'ratangarh-img-box';
+            box.innerHTML = `<img src='${img.src}' alt='Badabagh Image ${i+1}'><div class='ratangarh-img-caption'>${img.caption}</div>`;
+            if (img.viewAll) {
+                const btn = document.createElement('a');
+                btn.href = 'badabagh.html';
+                btn.className = 'view-all-photos-btn';
+                btn.textContent = 'View All Photos';
+                box.appendChild(btn);
+            }
+            imageRow.appendChild(box);
+        });
+        // Arrow logic
+        let currentIndex = 0;
+        const leftArrow = villageInfo.querySelector('.ratangarh-arrow-left');
+        const rightArrow = villageInfo.querySelector('.ratangarh-arrow-right');
+        function updateArrows() {
+            leftArrow.style.display = currentIndex > 0 ? 'flex' : 'none';
+            rightArrow.style.display = currentIndex < images.length-1 ? 'flex' : 'none';
+        }
+        function scrollToIndex(idx) {
+            const box = imageRow.children[idx];
+            if (box) box.scrollIntoView({behavior:'smooth',inline:'start'});
+            currentIndex = idx;
+            updateArrows();
+        }
+        leftArrow.onclick = () => scrollToIndex(currentIndex-1);
+        rightArrow.onclick = () => scrollToIndex(currentIndex+1);
+        imageRow.addEventListener('scroll', () => {
+            let minDist = Infinity, idx = 0;
+            for (let i=0; i<imageRow.children.length; ++i) {
+                const rect = imageRow.children[i].getBoundingClientRect();
+                const dist = Math.abs(rect.left - imageRow.getBoundingClientRect().left);
+                if (dist < minDist) { minDist = dist; idx = i; }
+            }
+            currentIndex = idx;
+            updateArrows();
+        });
+        // Initial state
+        scrollToIndex(0);
+        // Tabs logic
+        const tabContent = villageInfo.querySelector('#ratangarh-tab-content');
+        const tabData = {
+            overview: `
+                <b style='color:#2a5d9f;'>Overview</b><br/>
+                <table class='ratangarh-info-table' style='width:100%;margin:18px 0 18px 0;border-collapse:collapse;'>
+                    <tr><th>Location</th><td>Badabagh, Jaisalmer District</td></tr>
+                    <tr><th>Latitude</th><td>26.9000</td></tr>
+                    <tr><th>Longitude</th><td>70.9000</td></tr>
+                </table>
+                Badabagh is a historically significant desert area in Jaisalmer, known for its royal cenotaphs and traditional water systems. The region features Khitpal Nadi and traditional wells that have sustained desert life for generations, though they now face challenges from climate change and neglect.<br/><br/>
+            `,
+            history: `
+                <b style='color:#2a5d9f;'>📜 History of Waterbody</b><br/>
+                <ul>
+                    <li>Badabagh, a historically significant desert area in Jaisalmer, has long depended on traditional water sources like wells and Nadis (seasonal rain-fed ponds).</li>
+                    <li>Among these, Khitpal Nadi was a major water body, crucial for both local communities and their livestock.</li>
+                    <li>These systems were based on rainwater harvesting and low-maintenance structures, which sustained desert life for generations.</li>
+                    <li>Over time, neglect, urbanization, and climate change have led to the decline of these traditional systems, with Khitpal Nadi now drying up.</li>
+                </ul>
+            `,
+            uses: `
+                <b style='color:#2a5d9f;'>💧 Current Uses</b>
+                <ul>
+                    <li>Well water in Badabagh is still used for drinking and irrigation, though manual extraction is physically exhausting and many wells have dried up due to falling groundwater levels.</li>
+                    <li>Locals increasingly depend on water tankers supplying water from submersible pumps.</li>
+                    <li>The Khitpal Nadi, though polluted and neglected, is still used by cattle for drinking, reflecting its lingering importance despite its degraded state.</li>
+                    <li>Despite challenges, drinking water quality is reported to be good by locals for now.</li>
+                </ul>
+            `,
+            religion: `
+                <b style='color:#2a5d9f;'>🕉 Religious Significance</b><br/>
+                <ul>
+                    <li>While specific religious rituals weren't detailed, traditional water bodies like Khitpal Nadi often hold spiritual and cultural value in Rajasthani villages.</li>
+                    <li>These water bodies are typically integrated into festivals, ancestral worship, and community gatherings, reflecting respect for nature and water as sacred elements.</li>
+                </ul>
+            `,
+            tourism: `
+                <b style='color:#2a5d9f;'>🧭 Tourism Potential</b>
+                <ul>
+                    <li>Badabagh already attracts tourists for its royal cenotaphs and desert landscapes.</li>
+                    <li>Reviving Khitpal Nadi and other water bodies could enhance eco-tourism appeal, offering insight into desert survival techniques, traditional water harvesting systems, and community-driven sustainability efforts.</li>
+                    <li>A cleaned and restored Khitpal Nadi could serve as a heritage spot, showcasing ancient desert water wisdom.</li>
+                </ul>
+            `,
+            science: `
+                <b style='color:#2a5d9f;'>🔬 Scientific Novelty</b>
+                <ul>
+                    <li>The case of Badabagh highlights the evaporation challenge of surface water in extreme heat and the unsustainable dependence on tanker water and deep borewells.</li>
+                    <li>Traditional methods like rainwater harvesting via Nadis and wells are being re-examined for revival.</li>
+                    <li>Restoration efforts could serve as a case study for desert hydrology, contribute to climate-resilient infrastructure, and encourage low-cost, decentralized water systems in arid zones.</li>
+                </ul>
+            `,
+            condition: `
+                <b style='color:#2a5d9f;'>📊 Current Condition</b>
+                <ul>
+                    <li>Khitpal Nadi is in a state of disrepair, with drying water levels, pollution and waste accumulation, and water unfit for human use, though cattle still rely on it.</li>
+                    <li>Hundreds of wells have dried up, worsening the situation.</li>
+                    <li>There is an urgent need for revival, de-silting, pollution removal, and sustainable planning.</li>
+                    <li>Despite the scarcity, the existing water sources are currently safe for drinking, but future availability is under threat.</li>
+                    <li>Community dependence on water tankers and submersibles shows that the situation is unsustainable without intervention.</li>
+                </ul>
+            `
+        };
+        function setTab(tab) {
+            tabContent.innerHTML = tabData[tab];
+            villageInfo.querySelectorAll('.ratangarh-tab').forEach(btn => btn.classList.remove('active'));
+            villageInfo.querySelector(`.ratangarh-tab[data-tab="${tab}"]`).classList.add('active');
+        }
+        setTab('overview');
+        villageInfo.querySelectorAll('.ratangarh-tab').forEach(btn => {
+            btn.onclick = () => setTab(btn.getAttribute('data-tab'));
+        });
+    }, 0);
+}
+
+else if (village.id === 'mokla') {
+    villageInfo.innerHTML = `
+        <div class="village-header">
+            <h3>${village.name}</h3>
+            <span class="village-district">${this.currentDistrict ? this.currentDistrict.name : ''} District</span>
+        </div>
+        <div class="ratangarh-image-row-wrapper" style="position:relative;width:100%;height:340px;">
+            <button class="ratangarh-arrow ratangarh-arrow-left" style="position:absolute;left:8px;top:50%;transform:translateY(-50%);z-index:2;display:none;background:rgba(42,93,159,0.7);border:none;border-radius:50%;width:38px;height:38px;color:#fff;font-size:1.5em;cursor:pointer;align-items:center;justify-content:center;outline:none;transition:background 0.2s;">&#8592;</button>
+            <div class="ratangarh-image-row" style="height:100%;"></div>
+            <button class="ratangarh-arrow ratangarh-arrow-right" style="position:absolute;right:8px;top:50%;transform:translateY(-50%);z-index:2;display:none;background:rgba(42,93,159,0.7);border:none;border-radius:50%;width:38px;height:38px;color:#fff;font-size:1.5em;cursor:pointer;align-items:center;justify-content:center;outline:none;transition:background 0.2s;">&#8594;</button>
+        </div>
+        <div class="ratangarh-tabs">
+            <button class="ratangarh-tab active" data-tab="overview">Overview</button>
+            <button class="ratangarh-tab" data-tab="history">📜 History of Waterbody</button>
+            <button class="ratangarh-tab" data-tab="uses">💧 Current Uses</button>
+            <button class="ratangarh-tab" data-tab="religion">🕉 Religious Significance</button>
+            <button class="ratangarh-tab" data-tab="tourism">🧭 Tourism Potential</button>
+            <button class="ratangarh-tab" data-tab="science">🔬 Scientific Novelty</button>
+            <button class="ratangarh-tab" data-tab="condition">📊 Current Condition</button>
+        </div>
+        <div class="ratangarh-tab-content" id="ratangarh-tab-content"></div>
+        <div class="village-actions">
+            <a href="${village.report}" class="view-report-btn">View Full Report</a>
+            <button class="close-popup-btn" onclick="this.closest('.village-info').remove(); document.querySelector('.district-info').style.display='block';">Close</button>
+        </div>
+    `;
+    setTimeout(() => {
+        // Insert images into the image row
+        const images = [
+            {src: 'images/mokla/1.jpg', caption: 'Traditional Talab in Mokla'},
+            {src: 'images/mokla/2.jpg', caption: 'Stambh memorial pillar'},
+            {src: 'images/mokla/3.jpg', caption: 'Community water conservation', viewAll: true}
+        ];
+        const imageRow = villageInfo.querySelector('.ratangarh-image-row');
+        images.forEach((img, i) => {
+            const box = document.createElement('div');
+            box.className = 'ratangarh-img-box';
+            box.innerHTML = `<img src='${img.src}' alt='Mokla Image ${i+1}'><div class='ratangarh-img-caption'>${img.caption}</div>`;
+            if (img.viewAll) {
+                const btn = document.createElement('a');
+                btn.href = 'mokla.html';
+                btn.className = 'view-all-photos-btn';
+                btn.textContent = 'View All Photos';
+                box.appendChild(btn);
+            }
+            imageRow.appendChild(box);
+        });
+        // Arrow logic
+        let currentIndex = 0;
+        const leftArrow = villageInfo.querySelector('.ratangarh-arrow-left');
+        const rightArrow = villageInfo.querySelector('.ratangarh-arrow-right');
+        function updateArrows() {
+            leftArrow.style.display = currentIndex > 0 ? 'flex' : 'none';
+            rightArrow.style.display = currentIndex < images.length-1 ? 'flex' : 'none';
+        }
+        function scrollToIndex(idx) {
+            const box = imageRow.children[idx];
+            if (box) box.scrollIntoView({behavior:'smooth',inline:'start'});
+            currentIndex = idx;
+            updateArrows();
+        }
+        leftArrow.onclick = () => scrollToIndex(currentIndex-1);
+        rightArrow.onclick = () => scrollToIndex(currentIndex+1);
+        imageRow.addEventListener('scroll', () => {
+            let minDist = Infinity, idx = 0;
+            for (let i=0; i<imageRow.children.length; ++i) {
+                const rect = imageRow.children[i].getBoundingClientRect();
+                const dist = Math.abs(rect.left - imageRow.getBoundingClientRect().left);
+                if (dist < minDist) { minDist = dist; idx = i; }
+            }
+            currentIndex = idx;
+            updateArrows();
+        });
+        // Initial state
+        scrollToIndex(0);
+        // Tabs logic
+        const tabContent = villageInfo.querySelector('#ratangarh-tab-content');
+        const tabData = {
+            overview: `
+                <b style='color:#2a5d9f;'>Overview</b><br/>
+                <table class='ratangarh-info-table' style='width:100%;margin:18px 0 18px 0;border-collapse:collapse;'>
+                    <tr><th>Location</th><td>Mokla, Jaisalmer District</td></tr>
+                    <tr><th>Latitude</th><td>25.9500</td></tr>
+                    <tr><th>Longitude</th><td>71.7000</td></tr>
+                </table>
+                Mokla is a desert village with a rich tradition of water conservation, featuring Nadis, Beris, Talabs, and a commemorative Stambh. The community is actively reviving traditional water systems with NGO support, making it a model for sustainable desert water management.<br/><br/>
+            `,
+            history: `
+                <b style='color:#2a5d9f;'>📜 History of Waterbody</b><br/>
+                <ul>
+                    <li>Mokla has a long history of traditional water conservation, rooted in its arid desert geography.</li>
+                    <li>Key water bodies like Nadis (seasonal ponds), Beris (small wells or stepwells), and Talabs (large ponds) have been the lifelines of the community for generations.</li>
+                    <li>A Stambh (memorial pillar) in the village commemorates the ancestral efforts in water harvesting, symbolizing the community's collective memory and respect for sustainable water wisdom.</li>
+                    <li>One major Talab, historically used by the Oran community and entire village, remains in use and is now undergoing community-led expansion to boost rainwater storage.</li>
+                </ul>
+            `,
+            uses: `
+                <b style='color:#2a5d9f;'>💧 Current Uses</b>
+                <ul>
+                    <li>The only functional Talab in Mokla continues to provide drinking water and support daily needs for the entire village.</li>
+                    <li>Nadis and Beris, though mostly dried up, are being revived for future use with community and NGO support.</li>
+                    <li>Due to water scarcity and deep groundwater, villagers also depend on submersible pump systems and water tankers, especially during extreme summers.</li>
+                    <li>These secondary sources are less sustainable but necessary under current conditions.</li>
+                </ul>
+            `,
+            religion: `
+                <b style='color:#2a5d9f;'>🕉 Religious Significance</b><br/>
+                <ul>
+                    <li>The Stambh marking the historical water structures carries spiritual and cultural importance, acting as a memorial of community resilience and reverence toward water.</li>
+                    <li>Water conservation in Mokla is seen not just as a survival strategy but as a cultural duty, closely tied to ancestral legacy and community pride.</li>
+                </ul>
+            `,
+            tourism: `
+                <b style='color:#2a5d9f;'>🧭 Tourism Potential</b>
+                <ul>
+                    <li>Mokla holds strong rural and heritage tourism potential: the Stambh symbolizing water wisdom, ongoing community revival projects, and involvement of notable water activist movements like Tarun Bharat Sangh.</li>
+                    <li>With proper support, Mokla could become a model village for sustainable water practices, community-led environmental management, and cultural tourism focused on desert resilience.</li>
+                    <li>Visitors interested in eco-tourism or Gandhian water conservation models may find it highly educational and impactful.</li>
+                </ul>
+            `,
+            science: `
+                <b style='color:#2a5d9f;'>🔬 Scientific Novelty</b>
+                <ul>
+                    <li>Mokla's water system reflects a blended model: traditional rainwater harvesting structures (Nadi, Talab, Beri) supplemented by modern mechanical systems (submersible pumps, water tankers).</li>
+                    <li>The revival of Nadis and Talabs showcases cost-effective, community-driven conservation with high impact in drought-prone areas.</li>
+                    <li>Supported by organizations like Tarun Bharat Sangh (TBS), Mokla represents a living lab of desert hydrology and grassroots environmental engineering.</li>
+                    <li>The village highlights challenges in government delivery vs. NGO action, useful for policy and governance studies.</li>
+                </ul>
+            `,
+            condition: `
+                <b style='color:#2a5d9f;'>📊 Current Condition</b>
+                <ul>
+                    <li>Only one Talab remains operational, which is under expansion.</li>
+                    <li>Most other traditional sources (Nadis and Beris) have dried up or fallen into disrepair.</li>
+                    <li>Revival efforts include ₹5 lakhs raised by villagers, ₹15 lakhs funded by Tarun Bharat Sangh, and technical collaboration with MGF India.</li>
+                    <li>Government schemes, according to villagers, exist only on paper—with little to no actual impact seen on the ground.</li>
+                    <li>The situation remains precarious but hopeful, thanks to strong community involvement, Oran leader Kundan Singh, and NGO partnerships.</li>
+                </ul>
+            `
+        };
+        function setTab(tab) {
+            tabContent.innerHTML = tabData[tab];
+            villageInfo.querySelectorAll('.ratangarh-tab').forEach(btn => btn.classList.remove('active'));
+            villageInfo.querySelector(`.ratangarh-tab[data-tab="${tab}"]`).classList.add('active');
+        }
+        setTab('overview');
+        villageInfo.querySelectorAll('.ratangarh-tab').forEach(btn => {
+            btn.onclick = () => setTab(btn.getAttribute('data-tab'));
+        });
+    }, 0);
+}
+else if (village.id === 'pokhran') {
+    villageInfo.innerHTML = `
+        <div class="village-header">
+            <h3>${village.name}</h3>
+            <span class="village-district">${this.currentDistrict ? this.currentDistrict.name : ''} District</span>
+        </div>
+        <div class="ratangarh-image-row-wrapper" style="position:relative;width:100%;height:340px;">
+            <button class="ratangarh-arrow ratangarh-arrow-left" style="position:absolute;left:8px;top:50%;transform:translateY(-50%);z-index:2;display:none;background:rgba(42,93,159,0.7);border:none;border-radius:50%;width:38px;height:38px;color:#fff;font-size:1.5em;cursor:pointer;align-items:center;justify-content:center;outline:none;transition:background 0.2s;">&#8592;</button>
+            <div class="ratangarh-image-row" style="height:100%;"></div>
+            <button class="ratangarh-arrow ratangarh-arrow-right" style="position:absolute;right:8px;top:50%;transform:translateY(-50%);z-index:2;display:none;background:rgba(42,93,159,0.7);border:none;border-radius:50%;width:38px;height:38px;color:#fff;font-size:1.5em;cursor:pointer;align-items:center;justify-content:center;outline:none;transition:background 0.2s;">&#8594;</button>
+        </div>
+        <div class="ratangarh-tabs">
+            <button class="ratangarh-tab active" data-tab="overview">Overview</button>
+            <button class="ratangarh-tab" data-tab="history">📜 History of Waterbody</button>
+            <button class="ratangarh-tab" data-tab="uses">💧 Current Uses</button>
+            <button class="ratangarh-tab" data-tab="religion">🕉 Religious Significance</button>
+            <button class="ratangarh-tab" data-tab="tourism">🧭 Tourism Potential</button>
+            <button class="ratangarh-tab" data-tab="science">🔬 Scientific Novelty</button>
+            <button class="ratangarh-tab" data-tab="condition">📊 Current Condition</button>
+        </div>
+        <div class="ratangarh-tab-content" id="ratangarh-tab-content"></div>
+        <div class="village-actions">
+            <a href="${village.report}" class="view-report-btn">View Full Report</a>
+            <button class="close-popup-btn" onclick="this.closest('.village-info').remove(); document.querySelector('.district-info').style.display='block';">Close</button>
+        </div>
+    `;
+    setTimeout(() => {
+        // Insert images into the image row
+        const images = [
+            {src: 'images/pokhran/1.jpg', caption: 'Ramdevra-Kund sacred water body'},
+            {src: 'images/pokhran/2.jpg', caption: 'Traditional Tankas and Kunds'},
+            {src: 'images/pokhran/3.jpg', caption: 'Desert water heritage', viewAll: true}
+        ];
+        const imageRow = villageInfo.querySelector('.ratangarh-image-row');
+        images.forEach((img, i) => {
+            const box = document.createElement('div');
+            box.className = 'ratangarh-img-box';
+            box.innerHTML = `<img src='${img.src}' alt='Pokhran Image ${i+1}'><div class='ratangarh-img-caption'>${img.caption}</div>`;
+            if (img.viewAll) {
+                const btn = document.createElement('a');
+                btn.href = 'pokhran.html';
+                btn.className = 'view-all-photos-btn';
+                btn.textContent = 'View All Photos';
+                box.appendChild(btn);
+            }
+            imageRow.appendChild(box);
+        });
+        // Arrow logic
+        let currentIndex = 0;
+        const leftArrow = villageInfo.querySelector('.ratangarh-arrow-left');
+        const rightArrow = villageInfo.querySelector('.ratangarh-arrow-right');
+        function updateArrows() {
+            leftArrow.style.display = currentIndex > 0 ? 'flex' : 'none';
+            rightArrow.style.display = currentIndex < images.length-1 ? 'flex' : 'none';
+        }
+        function scrollToIndex(idx) {
+            const box = imageRow.children[idx];
+            if (box) box.scrollIntoView({behavior:'smooth',inline:'start'});
+            currentIndex = idx;
+            updateArrows();
+        }
+        leftArrow.onclick = () => scrollToIndex(currentIndex-1);
+        rightArrow.onclick = () => scrollToIndex(currentIndex+1);
+        imageRow.addEventListener('scroll', () => {
+            let minDist = Infinity, idx = 0;
+            for (let i=0; i<imageRow.children.length; ++i) {
+                const rect = imageRow.children[i].getBoundingClientRect();
+                const dist = Math.abs(rect.left - imageRow.getBoundingClientRect().left);
+                if (dist < minDist) { minDist = dist; idx = i; }
+            }
+            currentIndex = idx;
+            updateArrows();
+        });
+        // Initial state
+        scrollToIndex(0);
+        // Tabs logic
+        const tabContent = villageInfo.querySelector('#ratangarh-tab-content');
+        const tabData = {
+            overview: `
+                <b style='color:#2a5d9f;'>Overview</b><br/>
+                <table class='ratangarh-info-table' style='width:100%;margin:18px 0 18px 0;border-collapse:collapse;'>
+                    <tr><th>Location</th><td>Pokhran, Jaisalmer District</td></tr>
+                    <tr><th>Latitude</th><td>27.1000</td></tr>
+                    <tr><th>Longitude</th><td>71.5000</td></tr>
+                </table>
+                Pokhran is a historically significant town in the Thar Desert, known for its traditional water harvesting systems including Tankas, Kunds, and Johads. The sacred Ramdevra-Kund near the revered Ramdev Pir Temple continues to serve as a spiritual water source for pilgrims.<br/><br/>
+            `,
+            history: `
+                <b style='color:#2a5d9f;'>📜 History of Waterbody</b><br/>
+                <ul>
+                    <li>Pokhran, a historically significant town in the Thar Desert, has long relied on traditional water harvesting systems such as Tankas (underground water tanks), Kunds (domed reservoirs), and Johads (small earthen check dams).</li>
+                    <li>These systems once formed the lifeline of desert survival, storing rainwater for domestic and religious use.</li>
+                    <li>The Ramdevra-Kund, near the revered Ramdev Pir Temple, is a historically sacred water body where pilgrims performed ritualistic dips for centuries.</li>
+                    <li>Over time, neglect, low rainfall, and urbanization have led to drying up or underuse of these systems.</li>
+                </ul>
+            `,
+            uses: `
+                <b style='color:#2a5d9f;'>💧 Current Uses</b>
+                <ul>
+                    <li>Today, many tankas, kunds, and johads in Pokhran are dried up or in disrepair, with residents primarily depending on piped water supply and occasional restored water bodies.</li>
+                    <li>The Ramdevra-Kund continues to be used for ritualistic bathing by pilgrims during specific religious events.</li>
+                    <li>Some revived structures under MNREGA (rural employment scheme) are beginning to restore traditional functionality.</li>
+                </ul>
+            `,
+            religion: `
+                <b style='color:#2a5d9f;'>🕉 Religious Significance</b><br/>
+                <ul>
+                    <li>Ramdevra-Kund is a sacred site for devotees of Baba Ramdev Pir, a revered local deity worshipped across Rajasthan and Gujarat.</li>
+                    <li>Pilgrims believe a ritual dip in the kund grants spiritual blessings, healing, and fulfillment of wishes.</li>
+                    <li>Despite challenges with water level and cleanliness, the devotional use of this kund continues, supported by temple authorities and locals.</li>
+                </ul>
+            `,
+            tourism: `
+                <b style='color:#2a5d9f;'>🧭 Tourism Potential</b>
+                <ul>
+                    <li>Ramdevra is already a major pilgrimage destination, attracting thousands during annual Ramdevra Mela.</li>
+                    <li>Reviving and beautifying Ramdevra-Kund and nearby traditional water bodies can enhance the spiritual and heritage tourism experience, educate visitors about ancient water conservation systems, and support eco-tourism initiatives in the desert landscape.</li>
+                    <li>Such restoration would add cultural and environmental value to the Pokhran area.</li>
+                </ul>
+            `,
+            science: `
+                <b style='color:#2a5d9f;'>🔬 Scientific Novelty</b>
+                <ul>
+                    <li>The Pokhran water systems showcase centuries-old engineering optimized for desert ecology: Tankas and Kunds efficiently collect and store rainwater, while Johads facilitate groundwater recharge.</li>
+                    <li>These are now being reintegrated through MNREGA, indicating a blending of traditional wisdom with modern development.</li>
+                    <li>Their revival presents a replicable model for other drought-prone regions in India and beyond.</li>
+                </ul>
+            `,
+            condition: `
+                <b style='color:#2a5d9f;'>📊 Current Condition</b>
+                <ul>
+                    <li>Most traditional water bodies in Pokhran are dried up or underutilized, primarily due to low rainfall, shift to piped water supply, and lack of consistent maintenance.</li>
+                    <li>Revival work is ongoing through MNREGA, but progress varies.</li>
+                    <li>Ramdevra-Kund, although affected by water shortage, is still cared for by the temple and remains a functioning spiritual water source.</li>
+                    <li>The area urgently needs regular desilting, structural repairs, and community involvement and monitoring.</li>
+                </ul>
+            `
+        };
+        function setTab(tab) {
+            tabContent.innerHTML = tabData[tab];
+            villageInfo.querySelectorAll('.ratangarh-tab').forEach(btn => btn.classList.remove('active'));
+            villageInfo.querySelector(`.ratangarh-tab[data-tab="${tab}"]`).classList.add('active');
+        }
+        setTab('overview');
+        villageInfo.querySelectorAll('.ratangarh-tab').forEach(btn => {
+            btn.onclick = () => setTab(btn.getAttribute('data-tab'));
+        });
+    }, 0);
+}
+
+else if (village.id === 'rajasmand_village') {
+    villageInfo.innerHTML = `
+        <div class="village-header">
+            <h3>${village.name}</h3>
+            <span class="village-district">${this.currentDistrict ? this.currentDistrict.name : ''} District</span>
+        </div>
+        <div class="ratangarh-image-row-wrapper" style="position:relative;width:100%;height:340px;">
+            <button class="ratangarh-arrow ratangarh-arrow-left" style="position:absolute;left:8px;top:50%;transform:translateY(-50%);z-index:2;display:none;background:rgba(42,93,159,0.7);border:none;border-radius:50%;width:38px;height:38px;color:#fff;font-size:1.5em;cursor:pointer;align-items:center;justify-content:center;outline:none;transition:background 0.2s;">&#8592;</button>
+            <div class="ratangarh-image-row" style="height:100%;"></div>
+            <button class="ratangarh-arrow ratangarh-arrow-right" style="position:absolute;right:8px;top:50%;transform:translateY(-50%);z-index:2;display:none;background:rgba(42,93,159,0.7);border:none;border-radius:50%;width:38px;height:38px;color:#fff;font-size:1.5em;cursor:pointer;align-items:center;justify-content:center;outline:none;transition:background 0.2s;">&#8594;</button>
+        </div>
+        <div class="ratangarh-tabs">
+            <button class="ratangarh-tab active" data-tab="overview">Overview</button>
+            <button class="ratangarh-tab" data-tab="history">📜 History of Waterbody</button>
+            <button class="ratangarh-tab" data-tab="uses">💧 Current Uses</button>
+            <button class="ratangarh-tab" data-tab="religion">🕉 Religious Significance</button>
+            <button class="ratangarh-tab" data-tab="tourism">🧭 Tourism Potential</button>
+            <button class="ratangarh-tab" data-tab="science">🔬 Scientific Novelty</button>
+            <button class="ratangarh-tab" data-tab="condition">📊 Current Condition</button>
+        </div>
+        <div class="ratangarh-tab-content" id="ratangarh-tab-content"></div>
+        <div class="village-actions">
+            <a href="${village.report}" class="view-report-btn">View Full Report</a>
+            <button class="close-popup-btn" onclick="this.closest('.village-info').remove(); document.querySelector('.district-info').style.display='block';">Close</button>
+        </div>
+    `;
+    setTimeout(() => {
+        // Insert images into the image row
+        const images = [
+            {src: 'images/rajasmand/1.jpg', caption: 'Rajsamand Lake - largest artificial lake'},
+            {src: 'images/rajasmand/2.jpg', caption: 'Raj Prashasti inscription on marble'},
+            {src: 'images/rajasmand/3.jpg', caption: 'Marble embankments and pavilions', viewAll: true}
+        ];
+        const imageRow = villageInfo.querySelector('.ratangarh-image-row');
+        images.forEach((img, i) => {
+            const box = document.createElement('div');
+            box.className = 'ratangarh-img-box';
+            box.innerHTML = `<img src='${img.src}' alt='Rajsamand Image ${i+1}'><div class='ratangarh-img-caption'>${img.caption}</div>`;
+            if (img.viewAll) {
+                const btn = document.createElement('a');
+                btn.href = 'rajasmand.html';
+                btn.className = 'view-all-photos-btn';
+                btn.textContent = 'View All Photos';
+                box.appendChild(btn);
+            }
+            imageRow.appendChild(box);
+        });
+        // Arrow logic
+        let currentIndex = 0;
+        const leftArrow = villageInfo.querySelector('.ratangarh-arrow-left');
+        const rightArrow = villageInfo.querySelector('.ratangarh-arrow-right');
+        function updateArrows() {
+            leftArrow.style.display = currentIndex > 0 ? 'flex' : 'none';
+            rightArrow.style.display = currentIndex < images.length-1 ? 'flex' : 'none';
+        }
+        function scrollToIndex(idx) {
+            const box = imageRow.children[idx];
+            if (box) box.scrollIntoView({behavior:'smooth',inline:'start'});
+            currentIndex = idx;
+            updateArrows();
+        }
+        leftArrow.onclick = () => scrollToIndex(currentIndex-1);
+        rightArrow.onclick = () => scrollToIndex(currentIndex+1);
+        imageRow.addEventListener('scroll', () => {
+            let minDist = Infinity, idx = 0;
+            for (let i=0; i<imageRow.children.length; ++i) {
+                const rect = imageRow.children[i].getBoundingClientRect();
+                const dist = Math.abs(rect.left - imageRow.getBoundingClientRect().left);
+                if (dist < minDist) { minDist = dist; idx = i; }
+            }
+            currentIndex = idx;
+            updateArrows();
+        });
+        // Initial state
+        scrollToIndex(0);
+        // Tabs logic
+        const tabContent = villageInfo.querySelector('#ratangarh-tab-content');
+        const tabData = {
+            overview: `
+                <b style='color:#2a5d9f;'>Overview</b><br/>
+                <table class='ratangarh-info-table' style='width:100%;margin:18px 0 18px 0;border-collapse:collapse;'>
+                    <tr><th>Location</th><td>Rajsamand, Rajsamand District</td></tr>
+                    <tr><th>Latitude</th><td>25.0667</td></tr>
+                    <tr><th>Longitude</th><td>73.8833</td></tr>
+                </table>
+                Rajsamand Lake is one of the largest artificial lakes in Rajasthan, built in 1662 AD by Maharana Raj Singh I of Mewar. This magnificent water body features the famous Raj Prashasti inscription and serves as a vital source for drinking water, irrigation, and tourism in the region.<br/><br/>
+            `,
+            history: `
+                <b style='color:#2a5d9f;'>📜 History of Waterbody</b><br/>
+                <ul>
+                    <li>Rajsamand Lake is one of the largest artificial lakes in Rajasthan, built in 1662 AD by Maharana Raj Singh I of Mewar. The lake was constructed across the Gomati, Kelwa, and Tali rivers to combat droughts and provide water for agriculture, drinking, and daily use in the Mewar region.</li>
+                    <li>An important historical feature is the Raj Prashasti, the longest stone inscription in India, engraved on marble slabs along the dam embankment. It records the history and achievements of Mewar rulers and reflects the cultural richness of the era.</li>
+                </ul>
+            `,
+            uses: `
+                <b style='color:#2a5d9f;'>💧 Current Uses</b>
+                <ul>
+                    <li>Drinking Water: The lake continues to supply potable water to nearby towns and villages.</li>
+                    <li>Irrigation: It supports farming and agriculture by providing irrigation water.</li>
+                    <li>Tourism & Recreation: Locals and tourists visit for boating, picnics, and leisure walks.</li>
+                    <li>Fisheries: Fishing is practiced in a regulated manner, supporting local livelihoods.</li>
+                </ul>
+            `,
+            religion: `
+                <b style='color:#2a5d9f;'>🕉 Religious Significance</b><br/>
+                <ul>
+                    <li>Rajsamand Lake is considered spiritually important, especially during festivals like Gangaur and Kartik Purnima. The lakefront has temples and ghats (bathing steps), where rituals, aartis, and religious processions take place.</li>
+                    <li>Many locals perform ancestral rituals and holy dips here.</li>
+                </ul>
+            `,
+            tourism: `
+                <b style='color:#2a5d9f;'>🧭 Tourism Potential</b>
+                <ul>
+                    <li>Scenic Spot: Surrounded by hills and palaces, it's a tranquil escape for tourists and nature lovers.</li>
+                    <li>Historical Attraction: Visitors come to see Raj Prashasti, the dam (Nauchowki), and the marble embankments.</li>
+                    <li>Cultural Tourism: Festivals and fairs at the lake draw large crowds.</li>
+                    <li>Photography & Boating: A popular spot for sunset photography, birdwatching, and boat rides.</li>
+                </ul>
+            `,
+            science: `
+                <b style='color:#2a5d9f;'>🔬 Scientific Novelty</b>
+                <ul>
+                    <li>Massive Embankment: Built using white marble, the lake is bordered by nine pavilions (nauchowki) with beautiful carvings.</li>
+                    <li>Hydraulic Engineering: Diverts and stores river water, prevents flood damage, and maintains groundwater levels.</li>
+                    <li>Early Water Management: Represents 17th-century water sustainability efforts, showing foresight in managing water in arid zones.</li>
+                </ul>
+            `,
+            condition: `
+                <b style='color:#2a5d9f;'>📊 Current Condition</b>
+                <ul>
+                    <li>Water Quantity: Well-maintained with a large storage capacity. The lake fills up during monsoons and sustains year-round.</li>
+                    <li>Water Quality: Generally good, but prone to pollution from urban runoff or human activity during festivals.</li>
+                    <li>Conservation Efforts: Ongoing government and community efforts aim to clean, preserve, and beautify the lake for tourism and heritage protection.</li>
+                </ul>
+            `
+        };
+        function setTab(tab) {
+            tabContent.innerHTML = tabData[tab];
+            villageInfo.querySelectorAll('.ratangarh-tab').forEach(btn => btn.classList.remove('active'));
+            villageInfo.querySelector(`.ratangarh-tab[data-tab="${tab}"]`).classList.add('active');
+        }
+        setTab('overview');
+        villageInfo.querySelectorAll('.ratangarh-tab').forEach(btn => {
+            btn.onclick = () => setTab(btn.getAttribute('data-tab'));
+        });
+    }, 0);
+}
+else if (village.id === 'gajsar') {
+    villageInfo.innerHTML = `
+        <div class="village-header">
+            <h3>${village.name}</h3>
+            <span class="village-district">${this.currentDistrict ? this.currentDistrict.name : ''} District</span>
+        </div>
+        <div class="ratangarh-image-row-wrapper" style="position:relative;width:100%;height:340px;">
+            <button class="ratangarh-arrow ratangarh-arrow-left" style="position:absolute;left:8px;top:50%;transform:translateY(-50%);z-index:2;display:none;background:rgba(42,93,159,0.7);border:none;border-radius:50%;width:38px;height:38px;color:#fff;font-size:1.5em;cursor:pointer;align-items:center;justify-content:center;outline:none;transition:background 0.2s;">&#8592;</button>
+            <div class="ratangarh-image-row" style="height:100%;"></div>
+            <button class="ratangarh-arrow ratangarh-arrow-right" style="position:absolute;right:8px;top:50%;transform:translateY(-50%);z-index:2;display:none;background:rgba(42,93,159,0.7);border:none;border-radius:50%;width:38px;height:38px;color:#fff;font-size:1.5em;cursor:pointer;align-items:center;justify-content:center;outline:none;transition:background 0.2s;">&#8594;</button>
+        </div>
+        <div class="ratangarh-tabs">
+            <button class="ratangarh-tab active" data-tab="overview">Overview</button>
+            <button class="ratangarh-tab" data-tab="history">📜 History of Waterbody</button>
+            <button class="ratangarh-tab" data-tab="uses">💧 Current Uses</button>
+            <button class="ratangarh-tab" data-tab="religion">🕉 Religious Significance</button>
+            <button class="ratangarh-tab" data-tab="tourism">🧭 Tourism Potential</button>
+            <button class="ratangarh-tab" data-tab="science">🔬 Scientific Novelty</button>
+            <button class="ratangarh-tab" data-tab="condition">📊 Current Condition</button>
+        </div>
+        <div class="ratangarh-tab-content" id="ratangarh-tab-content"></div>
+        <div class="village-actions">
+            <a href="${village.report}" class="view-report-btn">View Full Report</a>
+            <button class="close-popup-btn" onclick="this.closest('.village-info').remove(); document.querySelector('.district-info').style.display='block';">Close</button>
+        </div>
+    `;
+    setTimeout(() => {
+        // Insert images into the image row
+        const images = [
+            {src: 'images/gajsar/1.jpg', caption: 'Historic well and collecting tank'},
+            {src: 'images/gajsar/2.jpg', caption: 'Dome-shaped kundi (underground tank)'},
+            {src: 'images/gajsar/3.jpg', caption: 'Khara Pani Aquaculture Lab', viewAll: true}
+        ];
+        const imageRow = villageInfo.querySelector('.ratangarh-image-row');
+        images.forEach((img, i) => {
+            const box = document.createElement('div');
+            box.className = 'ratangarh-img-box';
+            box.innerHTML = `<img src='${img.src}' alt='Gajsar Image ${i+1}'><div class='ratangarh-img-caption'>${img.caption}</div>`;
+            if (img.viewAll) {
+                const btn = document.createElement('a');
+                btn.href = 'gajsar.html';
+                btn.className = 'view-all-photos-btn';
+                btn.textContent = 'View All Photos';
+                box.appendChild(btn);
+            }
+            imageRow.appendChild(box);
+        });
+        // Arrow logic
+        let currentIndex = 0;
+        const leftArrow = villageInfo.querySelector('.ratangarh-arrow-left');
+        const rightArrow = villageInfo.querySelector('.ratangarh-arrow-right');
+        function updateArrows() {
+            leftArrow.style.display = currentIndex > 0 ? 'flex' : 'none';
+            rightArrow.style.display = currentIndex < images.length-1 ? 'flex' : 'none';
+        }
+        function scrollToIndex(idx) {
+            const box = imageRow.children[idx];
+            if (box) box.scrollIntoView({behavior:'smooth',inline:'start'});
+            currentIndex = idx;
+            updateArrows();
+        }
+        leftArrow.onclick = () => scrollToIndex(currentIndex-1);
+        rightArrow.onclick = () => scrollToIndex(currentIndex+1);
+        imageRow.addEventListener('scroll', () => {
+            let minDist = Infinity, idx = 0;
+            for (let i=0; i<imageRow.children.length; ++i) {
+                const rect = imageRow.children[i].getBoundingClientRect();
+                const dist = Math.abs(rect.left - imageRow.getBoundingClientRect().left);
+                if (dist < minDist) { minDist = dist; idx = i; }
+            }
+            currentIndex = idx;
+            updateArrows();
+        });
+        // Initial state
+        scrollToIndex(0);
+        // Tabs logic
+        const tabContent = villageInfo.querySelector('#ratangarh-tab-content');
+        const tabData = {
+            overview: `
+                <b style='color:#2a5d9f;'>Overview</b><br/>
+                <table class='ratangarh-info-table' style='width:100%;margin:18px 0 18px 0;border-collapse:collapse;'>
+                    <tr><th>Location</th><td>Gajsar, Jaisalmer District</td></tr>
+                    <tr><th>Latitude</th><td>26.8000</td></tr>
+                    <tr><th>Longitude</th><td>70.8000</td></tr>
+                </table>
+                Gajsar village holds a rich legacy of traditional water systems including a historic well, collecting tank, and dome-shaped kundi. The village is also home to innovative modern infrastructure like the Khara Pani Aquaculture Prayogshala, blending traditional wisdom with scientific adaptation to desert challenges.<br/><br/>
+            `,
+            history: `
+                <b style='color:#2a5d9f;'>📜 History of Waterbody</b><br/>
+                <ul>
+                    <li>Gajsar village holds a rich legacy of traditional water systems, particularly a historic well and collecting tank, once a lifeline for the village, supplying water for daily use.</li>
+                    <li>A dome-shaped kundi (underground water tank), historically used to harvest and store rainwater in this arid region.</li>
+                    <li>These systems reflect indigenous water management knowledge that sustained desert communities for generations.</li>
+                    <li>Today, they serve as symbols of Rajasthan's water heritage, though some now lie in neglect.</li>
+                </ul>
+            `,
+            uses: `
+                <b style='color:#2a5d9f;'>💧 Current Uses</b>
+                <ul>
+                    <li>The historic well and tank are now largely abandoned and misused as garbage dumps, with no functional utility for locals today.</li>
+                    <li>The kundi, though old, still symbolizes sustainable practices and may retain occasional or symbolic use.</li>
+                    <li>The region uses a Sewage Treatment Plant (STP) and GRP Outlet Drainage to treat and dispose of wastewater.</li>
+                    <li>Khara Pani Aquaculture Prayogshala, which repurposes saline water for fish farming.</li>
+                    <li>Despite infrastructure, the local water is saline and unpleasant, likely due to treated sewage infiltration or groundwater contamination.</li>
+                </ul>
+            `,
+            religion: `
+                <b style='color:#2a5d9f;'>🕉 Religious Significance</b><br/>
+                <ul>
+                    <li>No major religious uses or spiritual associations were reported with the well, kundi, or current water infrastructure.</li>
+                    <li>However, traditional water bodies in rural Rajasthan often held ceremonial or seasonal importance, even if not currently observed in Gajsar.</li>
+                </ul>
+            `,
+            tourism: `
+                <b style='color:#2a5d9f;'>🧭 Tourism Potential</b>
+                <ul>
+                    <li>The historic kundi and well have cultural tourism potential if restored and promoted as part of heritage water architecture.</li>
+                    <li>The Khara Pani Aquaculture Lab can attract academic and eco-tourism interest due to its innovative saltwater fish farming model.</li>
+                    <li>Promoting sustainable water innovation and heritage conservation could make Gajsar a learning site for rural water management.</li>
+                </ul>
+            `,
+            science: `
+                <b style='color:#2a5d9f;'>🔬 Scientific Novelty</b>
+                <ul>
+                    <li>Gajsar is home to pioneering experiments in aquaculture through the Khara Pani Aquaculture Prayogshala, which uses saline water for fish farming and promotes salt-tolerant fish species as an alternative livelihood in water-scarce, saline regions.</li>
+                    <li>The STP and GRP drainage system offer a complementary water treatment model, filtering pollutants and supporting reuse in agriculture.</li>
+                    <li>These developments reflect scientific adaptation to desert challenges, blending traditional systems with modern innovation.</li>
+                </ul>
+            `,
+            condition: `
+                <b style='color:#2a5d9f;'>📊 Current Condition</b>
+                <ul>
+                    <li>The historic well and collecting tank are in a state of neglect, currently used as a waste dumping site.</li>
+                    <li>Water quality in the region is highly saline, posing a major challenge for drinking and daily use.</li>
+                    <li>While the STP and GRP system function, their integration with groundwater sources may be causing contamination.</li>
+                    <li>The kundi remains structurally sound and symbolically valuable, though underutilized.</li>
+                    <li>The RetroFlow team's field survey confirmed high salinity levels, urgent need for revival and maintenance of water infrastructure, and importance of public awareness and scientific interventions.</li>
+                </ul>
+            `
+        };
+        function setTab(tab) {
+            tabContent.innerHTML = tabData[tab];
+            villageInfo.querySelectorAll('.ratangarh-tab').forEach(btn => btn.classList.remove('active'));
+            villageInfo.querySelector(`.ratangarh-tab[data-tab="${tab}"]`).classList.add('active');
+        }
+        setTab('overview');
+        villageInfo.querySelectorAll('.ratangarh-tab').forEach(btn => {
+            btn.onclick = () => setTab(btn.getAttribute('data-tab'));
+        });
+    }, 0);
+}
 
 else {
             // Default for other villages
@@ -2361,4 +3558,4 @@ document.addEventListener('DOMContentLoaded', function() {
     if (typeof mapData !== 'undefined') {
         mapInstance = new InteractiveMap('map', mapData);
     }
-}); 
+});  

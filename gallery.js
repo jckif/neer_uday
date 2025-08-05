@@ -274,10 +274,10 @@ async function loadGalleryItems() {
                 break;
             case 'pokhran':
                 mediaFiles = [
-                    { type: 'image', src: 'images/pokhran/1.jpg', caption: 'Pokhran & Ramdevra - Traditional Water Body', size: 'big' },
-                    { type: 'image', src: 'images/pokhran/2.jpg', caption: 'Ancient Stepwell in Pokhran Region', size: 'big' },
-                    { type: 'image', src: 'images/pokhran/3.jpg', caption: 'Ramdevra Sacred Water Source', size: 'big' },
-                    { type: 'image', src: 'images/pokhran/4.jpg', size: 'normal' },
+                    { type: 'image', src: 'images/pokhran/1.jpg', caption: 'Pokhran, in Jaisalmer, has long depended on traditional water bodies like tankas, kunds, and johads. Today, many are dried or neglected due to low rainfall and reliance on piped supply. However, revival efforts under MNREGA are helping restore these age-old systems for sustainable use.', size: 'big' },
+                    { type: 'image', src: 'images/pokhran/4.jpg', caption: 'Ramdevra Baori is a 663-year-old stepwell, with a groundwater level of around 150 feet. Though it still holds water, it is not used for drinking baori was converted into a temple, adding spiritual significance to its historical value. At present, the water is considered holy and medicinal, and locals believe it has healing properties, using it as a form of sacred remedy.', size: 'big' },
+                    { type: 'image', src: 'images/pokhran/2.jpg', caption: 'Ramdevra Sacred Water Source', size: 'big' },
+                    { type: 'image', src: 'images/pokhran/3.jpg', size: 'normal' },
                     { type: 'image', src: 'images/pokhran/5.jpg', size: 'normal' },
                     { type: 'image', src: 'images/pokhran/6.jpg', size: 'normal' },
                     { type: 'image', src: 'images/pokhran/7.jpg', size: 'normal' }
@@ -285,27 +285,27 @@ async function loadGalleryItems() {
                 break;
             case 'badabagh':
                 mediaFiles = [
-                    { type: 'image', src: 'images/badabagh/1.jpg', caption: 'Badabagh - Historical Water Conservation Site', size: 'big' },
-                    { type: 'image', src: 'images/badabagh/2.jpg', caption: 'Ancient Stepwell Architecture in Badabagh', size: 'big' },
-                    { type: 'image', src: 'images/badabagh/3.jpg', caption: 'Traditional Water Harvesting System', size: 'big' },
-                    { type: 'image', src: 'images/badabagh/4.jpg', size: 'normal' },
+                    { type: 'image', src: 'images/badabagh/1.jpg', caption: 'Badabagh in Jaisalmer faces acute water scarcity due to low rainfall and deep groundwater levels. The available water is in good condition for drinking purposes, as per locals. Surface water quickly evaporates under harsh sunlight, worsening the crisis. Sustainable solutions like rainwater harvesting and the revival of traditional sources are urgently needed.', size: 'big' },
+                    { type: 'image', src: 'images/badabagh/3.jpg', caption: 'In Badabagh, Jaisalmer, well water is used for irrigation and drinking, but manually drawing it is physically exhausting. As a result, locals rely on water tankers that bring water from submersible pumps. Though hundreds of wells exist in the area, most have dried up due to falling groundwater levels. This highlights the urgent need for sustainable and accessible water solutions in the region.Ancient Stepwell Architecture in Badabagh', size: 'big' },
+                    { type: 'image', src: 'images/badabagh/8.jpg', caption: 'KHITPAL NADI', size: 'big' },
+                    { type: 'image', src: 'images/badabagh/9.jpg',  caption: 'Khitpal Nadi is a traditional water body located in the Badabagh area of Jaisalmer, once serving as a major water source for local communities and their livestock. Based on rainwater harvesting, it also supported irrigation for nearby fields. Over time, due to a lack of maintenance, the Nadi is now drying up. The accumulation of waste and pollution has further made the water unfit for use, but used by cattles to drink water. Today, Khitpal Nadi stands in urgent need of revival and preservation to once again serve the needs of the region.',  size: 'big' ,},
                     { type: 'image', src: 'images/badabagh/5.jpg', size: 'normal' },
                     { type: 'image', src: 'images/badabagh/6.jpg', size: 'normal' },
                     { type: 'image', src: 'images/badabagh/7.jpg', size: 'normal' },
-                    { type: 'image', src: 'images/badabagh/8.jpg', size: 'normal' },
-                    { type: 'image', src: 'images/badabagh/9.jpg', size: 'normal' },
+                    { type: 'image', src: 'images/badabagh/4.jpg', size: 'normal' },
+                    { type: 'image', src: 'images/badabagh/2.jpg', size: 'normal' },
                     { type: 'image', src: 'images/badabagh/10.jpg', size: 'normal' }
                 ];
                 break;
             case 'mokla':
                 mediaFiles = [
-                    { type: 'image', src: 'images/mokla/1.jpg', caption: 'Mokla - Traditional Water Body', size: 'big' },
-                    { type: 'image', src: 'images/mokla/2.jpg', caption: 'Ancient Stepwell in Mokla', size: 'big' },
-                    { type: 'image', src: 'images/mokla/3.jpg', caption: 'Community Water Source in Mokla', size: 'big' },
-                    { type: 'image', src: 'images/mokla/4.jpg', size: 'normal' },
-                    { type: 'image', src: 'images/mokla/5.jpg', size: 'normal' },
+                    { type: 'image', src: 'images/mokla/1.jpg', caption: 'Mokla is a village located in the arid region of Jaisalmer, Rajasthan, where water scarcity is a significant challenge due to low rainfall and deep groundwater levels. The village relies heavily on traditional water bodies like Nadis and Beris, though many have dried up. Submersible pump systems and water tankers now serve as the secondary sources of drinking water. Despite its harsh conditions, Mokla holds a rich cultural heritage and offers great potential for reviving traditional water systems through sustainable efforts.', size: 'big' },
+                    { type: 'image', src: 'images/mokla/2.jpg', caption: 'In Mokla village, Jaisalmer, a Stambh (pillar or memorial) stands as a symbol of the community"traditional efforts to conserve water. It marks the historical site where Nadis (seasonal ponds) and other traditional water bodies were established to collect and store rainwater for drinking, daily use, and cattle. This Stambh not only honors the ancestors who initiated these systems but also serves as a reminder of the village’s water wisdom. Reviving these heritage structures today is key to tackling ongoing water scarcity.', size: 'big' },
+                    { type: 'image', src: 'images/mokla/5.jpg', caption: 'In Mokla village, Jaisalmer, only one existing talab (traditional pond) has been in use by the Oran community & whole village. That one Talab is the sole source of water for drinking and daily needs, making it vital for the village’s survival, which is present in the outer area of Mokla Village. And this is another Nadi revived by the water man of India and the Oran Community. To improve its capacity, the community is expanding the talab to store more rainwater. Despite their hard work, they have received no government support, and villagers express that government help exists only on paper, urging authorities to visit and witness the real situation on the ground.', size: 'big' },
+                    { type: 'image', src: 'images/mokla/7.jpg', caption : 'RetroFlow team members met with Mokla villagers, Oran leader Kundan Singh, and MGF India’s project in-charge Jitender Singh Shekhawat to understand efforts to revive the village’s only Nadi for drinking and daily water needs. The project is being funded by ₹5 lakhs from villagers and ₹15 lakhs from Tarun Bharat Sangh (TBS). Villagers strongly criticized government schemes, saying they don’t work in reality and that funds never reach the ground.' , size: 'big' },
+                    { type: 'image', src: 'images/mokla/3.jpg', size: 'normal' },
                     { type: 'image', src: 'images/mokla/6.jpg', size: 'normal' },
-                    { type: 'image', src: 'images/mokla/7.jpg', size: 'normal' },
+                    { type: 'image', src: 'images/mokla/4.jpg', size: 'normal' },
                     { type: 'image', src: 'images/mokla/8.jpg', size: 'normal' },
                     { type: 'image', src: 'images/mokla/9.jpg', size: 'normal' },
                     { type: 'image', src: 'images/mokla/10.jpg', size: 'normal' }
@@ -313,17 +313,16 @@ async function loadGalleryItems() {
                 break;
             case 'ramgarh':
                 mediaFiles = [
-                    { type: 'image', src: 'images/ramgarh/1.jpg', caption: 'Ramgarh - Traditional Water Conservation Site', size: 'big' },
-                    { type: 'image', src: 'images/ramgarh/2.jpg', caption: 'Ancient Stepwell in Ramgarh', size: 'big' },
-                    { type: 'image', src: 'images/ramgarh/3.jpg', caption: 'Community Water Source in Ramgarh', size: 'big' },
+                    { type: 'image', src: 'images/ramgarh/1.jpg', caption: 'Ramgarh, Jaisalmer, faces water scarcity and groundwater issues. While the region once relied on Nadis, tankas, and wells, many are now neglected or dried up. With the arrival of pipeline water supply, the use of traditional sources has declined. However, local efforts are ongoing to revive and preserve these historic water bodies for future resilience.', size: 'big' },
+                    { type: 'image', src: 'images/ramgarh/3.jpg', caption: 'Kshatriyon Ki Nadi, a 100-year-old traditional water body, is maintained under MNREGA and holds deep local significance. Despite restoration efforts, it remains dry due to low rainfall, reflecting the growing impact of drought in the region.', size: 'big' },
+                    { type: 'image', src: 'images/ramgarh/7.jpg', caption:'Kshatriyon Ki Nadi-2' ,size: 'big' },
+                    { type: 'image', src: 'images/ramgarh/11.jpg', caption: 'The Ramgarh Panchayat members actively supported our documentation of traditional water bodies, sharing valuable local insights and guiding us to key sites, reflecting their strong commitment to preserving the region’s water heritage.',  size: 'big' },
                     { type: 'image', src: 'images/ramgarh/4.jpg', size: 'normal' },
                     { type: 'image', src: 'images/ramgarh/5.jpg', size: 'normal' },
                     { type: 'image', src: 'images/ramgarh/6.jpg', size: 'normal' },
-                    { type: 'image', src: 'images/ramgarh/7.jpg', size: 'normal' },
                     { type: 'image', src: 'images/ramgarh/8.jpg', size: 'normal' },
                     { type: 'image', src: 'images/ramgarh/9.jpg', size: 'normal' },
                     { type: 'image', src: 'images/ramgarh/10.jpg', size: 'normal' },
-                    { type: 'image', src: 'images/ramgarh/11.jpg', size: 'normal' },
                     { type: 'image', src: 'images/ramgarh/12.jpg', size: 'normal' }
                 ];
                 break;
@@ -400,46 +399,46 @@ async function loadGalleryItems() {
                 break
             case 'gajsar':
                 mediaFiles = [
-                    { type: 'image', src: 'images/gajsar/1.jpg', size: 'big', caption: 'Gajsar Heritage Site' },
-                    { type: 'image', src: 'images/gajsar/2.jpg', size: 'big', caption: 'Cultural Heritage of Gajsar' },
-                    { type: 'image', src: 'images/gajsar/3.jpg', size: 'big', caption: 'Historical Monuments' },
-                    { type: 'image', src: 'images/gajsar/4.jpg', size: 'normal', caption: 'Local Architecture' },
-                    { type: 'image', src: 'images/gajsar/5.jpg', size: 'normal', caption: 'Traditional Buildings' },
-                    { type: 'image', src: 'images/gajsar/6.jpg', size: 'normal', caption: 'Heritage Structures' },
-                    { type: 'image', src: 'images/gajsar/7.jpg', size: 'normal', caption: 'Cultural Landmarks' },
-                    { type: 'image', src: 'images/gajsar/8.jpg', size: 'normal', caption: 'Historical Sites' },
-                    { type: 'image', src: 'images/gajsar/9.jpg', size: 'normal', caption: 'Ancient Architecture' }
+                    { type: 'image', src: 'images/gajsar/1.jpg', size: 'big', caption: 'Well' },
+                    { type: 'image', src: 'images/gajsar/3.jpg', size: 'big', caption: 'This historic well and collecting tank in Gajsar, Churu, once served as a lifeline for the village, providing water for daily use. Today, it lies neglected, turned into a garbage dumping site, losing its identity as a symbol of traditional rural water heritage. Its revival is essential for preserving both culture and community health.' },
+                    { type: 'image', src: 'images/gajsar/4.jpg', size: 'big', caption: 'This dome-shaped Kundi (traditional underground water tank) is located in Gajsar village, Churu, Rajasthan. Designed for rainwater harvesting, it features a plastered dome, catchment platform, and small steps for access. Such structures were crucial for drinking water storage in arid zones and reflect the region’s age-old wisdom in water conservation. Even today, it stands as a symbol of sustainable rural practices.' },
+                    { type: 'image', src: 'images/gajsar/5.jpg', size: 'big', caption: 'Team RetroFlow is conducting field surveys and water sample collections at Gajsar, Churu, with a focus on the dam and drainage system. The visit aimed to assess water quality, understand salinity issues, and document the existing water management infrastructure for future conservation efforts.' },
+                    { type: 'image', src: 'images/gajsar/6.jpg', size: 'big', caption: 'Sewage Treatment Plant and GRP Outlet Drainage – A Complementary System The Sewage Treatment Plant (STP) and GRP Outlet Drainage seen in the image work as a complementary system for managing wastewater efficiently. The STP treats sewage by removing harmful pollutants, making the water environmentally safe. The GRP Outlet Drainage then carries this treated water to nearby water bodies or agricultural fields, ensuring safe disposal or reuse. Together, they support clean water flow, pollution control, and promote sustainable water management in the region. However, during their visit, the RetroFlow team observed that the local water was highly saline, possibly due to contamination or infiltration from nearby treated sewage, making even normal drinking water unpleasantly salty.' },
+                    { type: 'image', src: 'images/gajsar/7.jpg', size: 'big', caption: 'Khara Pani Aquaculture Prayogshala –Located in Gajsar, Churu, this unique lab promotes fish farming using saline water. It experiments with salt-tolerant species, turning unfit water into a sustainable livelihood source for arid regions through innovative aquaculture practices.' },
+                    { type: 'image', src: 'images/gajsar/2.jpg', size: 'normal'},
+                    { type: 'image', src: 'images/gajsar/8.jpg', size: 'normal'},
+                    { type: 'image', src: 'images/gajsar/9.jpg', size: 'normal'}
                 ];
                 break
             case 'dadrewa':
                 mediaFiles = [
-                    { type: 'image', src: 'images/dadrewa/1.jpg', size: 'big', caption: 'Dadrewa Heritage Site' },
-                    { type: 'image', src: 'images/dadrewa/2.jpg', size: 'big', caption: 'Cultural Heritage of Dadrewa' },
-                    { type: 'image', src: 'images/dadrewa/3.jpg', size: 'big', caption: 'Historical Monuments' },
-                    { type: 'image', src: 'images/dadrewa/4.jpg', size: 'normal', caption: 'Local Architecture' },
-                    { type: 'image', src: 'images/dadrewa/5.jpg', size: 'normal', caption: 'Traditional Buildings' },
-                    { type: 'image', src: 'images/dadrewa/6.jpg', size: 'normal', caption: 'Heritage Structures' },
-                    { type: 'image', src: 'images/dadrewa/7.jpg', size: 'normal', caption: 'Cultural Landmarks' },
-                    { type: 'image', src: 'images/dadrewa/8.jpg', size: 'normal', caption: 'Historical Sites' },
-                    { type: 'image', src: 'images/dadrewa/9.jpg', size: 'normal', caption: 'Ancient Architecture' },
-                    { type: 'image', src: 'images/dadrewa/10.jpg', size: 'normal', caption: 'Heritage Buildings' },
-                    { type: 'image', src: 'images/dadrewa/11.jpg', size: 'normal', caption: 'Cultural Monuments' },
-                    { type: 'image', src: 'images/dadrewa/12.jpg', size: 'normal', caption: 'Historical Landmarks' },
-                    { type: 'image', src: 'images/dadrewa/13.jpg', size: 'normal', caption: 'Traditional Sites' },
-                    { type: 'image', src: 'images/dadrewa/14.jpg', size: 'normal', caption: 'Heritage Architecture' },
-                    { type: 'image', src: 'images/dadrewa/15.jpg', size: 'normal', caption: 'Cultural Sites' },
-                    { type: 'image', src: 'images/dadrewa/16.jpg', size: 'normal', caption: 'Historical Buildings' },
-                    { type: 'image', src: 'images/dadrewa/17.jpg', size: 'normal', caption: 'Ancient Monuments' },
-                    { type: 'image', src: 'images/dadrewa/18.jpg', size: 'normal', caption: 'Heritage Structures' },
-                    { type: 'image', src: 'images/dadrewa/19.jpg', size: 'normal', caption: 'Cultural Architecture' },
-                    { type: 'image', src: 'images/dadrewa/20.jpg', size: 'normal', caption: 'Historical Sites' },
-                    { type: 'image', src: 'images/dadrewa/21.jpg', size: 'normal', caption: 'Traditional Buildings' },
-                    { type: 'image', src: 'images/dadrewa/22.jpg', size: 'normal', caption: 'Heritage Monuments' },
-                    { type: 'image', src: 'images/dadrewa/23.jpg', size: 'normal', caption: 'Cultural Landmarks' },
-                    { type: 'image', src: 'images/dadrewa/24.jpg', size: 'normal', caption: 'Historical Architecture' },
-                    { type: 'image', src: 'images/dadrewa/25.jpg', size: 'normal', caption: 'Ancient Sites' },
-                    { type: 'image', src: 'images/dadrewa/26.jpg', size: 'normal', caption: 'Heritage Buildings' },
-                    { type: 'image', src: 'images/dadrewa/27.jpg', size: 'normal', caption: 'Cultural Structures' }
+                    { type: 'image', src: 'images/dadrewa/1.jpg', size: 'big', caption: 'This structure in the image is a traditional underground water tank, locally known as a “Kundi”, found in Dadrewa village, Churu district, Rajasthan. ' },
+                    { type: 'image', src: 'images/dadrewa/2.jpg', size: 'big', caption: 'This dome-shaped Kundi in Churu is a traditional, centuries-old rainwater harvesting system built for water conservation in arid regions. Designed with a sloped catchment, underground tank, and domed top to keep water cool and clean, it includes a staircase leading to the inlet. Once a vital source of drinking water during droughts, many such Kundis are now being revived under schemes like MNREGA and Jal Shakti Abhiyan.' },
+                    { type: 'image', src: 'images/dadrewa/4.jpg', size: 'big', caption: 'Daab' },
+                    { type: 'image', src: 'images/dadrewa/5.jpg', size: 'big', caption: 'This rectangular Talab in Churu is a traditional community water body which is known as  Daab, related to the spiritual Gagoji God, once central to rainwater harvesting, ritual bathing, and cattle use. Bordered by masonry embankments, steps, and protective fencing, it reflects both historical utility and later restoration efforts. Though it still holds water, visible garbage accumulation highlights the urgent need for revival and cleanliness to restore its cultural and ecological value.' },
+                    { type: 'image', src: 'images/dadrewa/7.jpg', size: 'big', caption: 'Who is Goga ji....? Gogaji, the revered folk deity born in Dadrewa, Churu, is worshipped as the protector from snakebites and a symbol of courage and justice. His temple attracts thousands during the Gogaji Mela each year. Depicted on a blue horse with a cobra hood, he is honored by all communities, reflecting unity in faith and Rajasthan’s rich folk tradition.' },
+                    { type: 'image', src: 'images/dadrewa/11.jpg', size: 'big', caption: 'Mithdi Patta & Gogaji ka Talab' },
+                    { type: 'image', src: 'images/dadrewa/12.jpg', size: 'big', caption: 'In the heart of Dadrewa village, the area known as Mithdi Patta is famous for its numerous wells and stepwells (baoris). Built on a low-lying terrain, this zone naturally supports rainwater harvesting and groundwater recharge. The nearby Gogaji ka Talab plays a key role in keeping the water table high, making it an ideal spot for building multiple water structures.' },
+                    { type: 'image', src: 'images/dadrewa/19.jpg', size: 'big', caption: 'Situated close to the sacred Gogaji Temple, Mithdi Patta became a vital water source for pilgrims, rituals, and daily village life. These traditional wells reflect the wisdom of desert water management, ensuring year-round water availability in Churu’s arid climate. Even today, this area stands as a symbol of community-driven conservation and cultural heritage.' },
+                    { type: 'image', src: 'images/dadrewa/24.jpg', size: 'big', caption: 'The RetroFlow team visited Dadrewa to gather insights on traditional water structures like Gogaji ka Talab and the well-rich area of Mithdi Patta, exploring their design, purpose, and significance in local water conservation.' },
+                    { type: 'image', src: 'images/dadrewa/8.jpg', size: 'normal'},
+                    { type: 'image', src: 'images/dadrewa/9.jpg', size: 'normal'},
+                    { type: 'image', src: 'images/dadrewa/10.jpg', size: 'normal'},
+                    { type: 'image', src: 'images/dadrewa/3.jpg', size: 'normal'},
+                    { type: 'image', src: 'images/dadrewa/6.jpg', size: 'normal'},
+                    { type: 'image', src: 'images/dadrewa/13.jpg', size: 'normal'},
+                    { type: 'image', src: 'images/dadrewa/14.jpg', size: 'normal'},
+                    { type: 'image', src: 'images/dadrewa/15.jpg', size: 'normal'},
+                    { type: 'image', src: 'images/dadrewa/16.jpg', size: 'normal'},
+                    { type: 'image', src: 'images/dadrewa/17.jpg', size: 'normal'},
+                    { type: 'image', src: 'images/dadrewa/18.jpg', size: 'normal'},
+                    { type: 'image', src: 'images/dadrewa/20.jpg', size: 'normal'},
+                    { type: 'image', src: 'images/dadrewa/21.jpg', size: 'normal'},
+                    { type: 'image', src: 'images/dadrewa/22.jpg', size: 'normal'},
+                    { type: 'image', src: 'images/dadrewa/23.jpg', size: 'normal' },
+                    { type: 'image', src: 'images/dadrewa/25.jpg', size: 'normal'},
+                    { type: 'image', src: 'images/dadrewa/26.jpg', size: 'normal'},
+                    { type: 'image', src: 'images/dadrewa/27.jpg', size: 'normal'}
                 ];
                 break
                 case 'amet':
