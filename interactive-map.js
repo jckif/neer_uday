@@ -1702,9 +1702,9 @@ else if (village.id === 'khejarala') {
     setTimeout(() => {
         // Insert images into the image row
         const images = [
-            {src: 'images/khejarala/1.jpg', caption: 'Sujaan Sagar Talab - community waterbody'},
-            {src: 'images/khejarala/2.jpg', caption: 'Jinn Ka Bera - legendary well'},
-            {src: 'images/khejarala/3.jpg', caption: 'Traditional Tanka and Nadi', viewAll: true}
+            {src: 'images/Khejarala/1.jpg', caption: 'Sujaan Sagar Talab - community waterbody'},
+            {src: 'images/Khejarala/2.jpg', caption: 'Jinn Ka Bera - legendary well'},
+            {src: 'images/Khejarala/3.jpg', caption: 'Traditional Tanka and Nadi', viewAll: true}
         ];
         const imageRow = villageInfo.querySelector('.ratangarh-image-row');
         images.forEach((img, i) => {
