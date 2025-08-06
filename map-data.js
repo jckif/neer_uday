@@ -9,12 +9,12 @@ const mapData = {
                 (73.690678 + 73.042004 + 73.020657 + 72.998051 + 72.9989 + 72.980735) / 6
             ],
             villages: [
-                { id: "khejarala", name: "Khejarala", coordinates: [26.311878, 73.690678], description: "Khejarala village.", image: "images/Khejarala/1.jpg", report: "khejarala.html" },
+                { id: "khejarala", name: "Khejarala", coordinates: [26.311878, 73.690678], description: "Khejarala village.", image: "images/khejarala/1.jpg", report: "khejarala.html" },
                 { id: "mandore", name: "Mandore", coordinates: [26.341206, 73.042004], description: "Mandore village.", image: "images/mandore/1.jpg", report: "mandore.html" },
                 { id: "sangariya", name: "Sangariya", coordinates: [26.182362, 73.020657], description: "Sangariya village.", image: "images/Sangariya/1.jpg", report: "sangariya.html" },
                 { id: "salawas", name: "Salawas", coordinates: [26.121780, 72.998051], description: "Salawas village.", image: "images/Salawas/1.jpg", report: "salawas.html" },
-                { id: "osian", name: "Osian", coordinates: [26.2756, 72.9989], description: "Osian village.", image: "images/Osian/1.jpg", report: "osian.html" },
-                { id: "mathania", name: "Mathania", coordinates: [26.526706, 72.980735], description: "Mathania village.", image: "images/Mathania/1.jpg", report: "mathania.html" }
+                { id: "osian", name: "Osian", coordinates: [26.2756, 72.9989], description: "Osian village.", image: "images/osian/1.jpg", report: "osian.html" },
+                { id: "mathania", name: "Mathania", coordinates: [26.526706, 72.980735], description: "Mathania village.", image: "images/mathania/1.jpg", report: "mathania.html" }
             ]
         },
         {
@@ -34,8 +34,8 @@ const mapData = {
             ],
             villages: [
                 { id: "pokhran", name: "Pokhran", coordinates: [26.919431, 71.920681], description: "Pokhran village.", image: "images/Pokhran/1.jpg", report: "pokhran.html" },
-                { id: "badabagh", name: "Badabagh", coordinates: [26.954915, 70.887797], description: "Badabagh village.", image: "images/Badabagh/1.jpg", report: "badabagh.html" },
-                { id: "mokla", name: "Mokla", coordinates: [27.125381, 70.682734], description: "Mokla village.", image: "images/Mokla/1.jpg", report: "mokla.html" },
+                { id: "badabagh", name: "Badabagh", coordinates: [26.954915, 70.887797], description: "Badabagh village.", image: "images/badabagh/1.jpg", report: "badabagh.html" },
+                { id: "mokla", name: "Mokla", coordinates: [27.125381, 70.682734], description: "Mokla village.", image: "images/mokla/1.jpg", report: "mokla.html" },
                 { id: "ramgarh", name: "Ramgarh", coordinates: [27.374339, 70.494761], description: "Ramgarh village.", image: "images/Ramgarh/1.jpg", report: "ramgarh.html" }
             ]
         },
@@ -95,7 +95,7 @@ const mapData = {
                         <li>Maintenance Status: Largely community-maintained, with occasional NGO support.</li>
                     </ul>
                 `, image: "images/Ratangarh/10.jpg", report: "ratangarh.html" },
-                { id: "gajsar", name: "Gajsar", coordinates: [28.320121, 74.938591], description: "Gajsar village.", image: "images/Gajsar/1.jpg", report: "gajsar.html" },
+                { id: "gajsar", name: "Gajsar", coordinates: [28.320121, 74.938591], description: "Gajsar village.", image: "images/gajsar/1.jpg", report: "gajsar.html" },
                 { id: "dadrewa", name: "Dadrewa", coordinates: [28.672894, 75.232712], description: "Dadrewa village.", image: "images/Dadrewa/1.jpg", report: "dadrewa.html" }
             ]
         },                                                                                                                                        
@@ -107,7 +107,7 @@ const mapData = {
                 (73.927947 + 73.843907 + 73.870447 + 73.884692) / 4
             ],
             villages: [
-                { id: "amet", name: "Amet", coordinates: [25.300737, 73.927947], description: "Amet village.", image: "images/Amet/1.jpg", report: "amet.html" },
+                { id: "amet", name: "Amet", coordinates: [25.300737, 73.927947], description: "Amet village.", image: "images/amet/1.jpg", report: "amet.html" },
                 { id: "kelwa", name: "Kelwa", coordinates: [25.150419, 73.843907], description: "Kelwa village.", image: "images/Kelwa/1.jpg", report: "kelwa.html" },
                 { id: "rajnagar", name: "Rajnagar", coordinates: [25.071369, 73.870447], description: "Rajnagar village.", image: "images/Rajnagar/1.jpg", report: "rajnagar.html" },
                 { id: "rajasmand_village", name: "Rajsamand Lake", coordinates: [25.077304, 73.884692], description: "Rajsamand Lake.", image: "images/Rajasmand/1.jpg", report: "rajasmand.html" }
