@@ -315,9 +315,9 @@ class InteractiveMap {
             setTimeout(() => { // Wait for DOM
                 // Insert images into the image row
                 const images = [
-                    {src: 'images/salawas/1.jpg', caption: 'Joon ki Bawadi – Salawas, Jodhpur'},
-                    {src: 'images/salawas/2.jpg', caption: 'Traditional stepwell structure, partially submerged.'},
-                    {src: 'images/salawas/3.jpg', caption: 'Current state of the Bawadi.', viewAll: true}
+                    {src: 'images/Salawas/1.jpg', caption: 'Joon ki Bawadi – Salawas, Jodhpur'},
+                    {src: 'images/Salawas/2.jpg', caption: 'Traditional stepwell structure, partially submerged.'},
+                    {src: 'images/Salawas/3.jpg', caption: 'Current state of the Bawadi.', viewAll: true}
                 ];
                 const imageRow = villageInfo.querySelector('.ratangarh-image-row');
                 images.forEach((img, i) => {
@@ -421,9 +421,9 @@ class InteractiveMap {
             setTimeout(() => { // Wait for DOM
                 // Insert images into the image row
                 const images = [
-                    {src: 'images/salawas/1.jpg', caption: 'Joon ki Bawadi – Salawas, Jodhpur'},
-                    {src: 'images/salawas/2.jpg', caption: 'Traditional stepwell structure, partially submerged.'},
-                    {src: 'images/salawas/3.jpg', caption: 'Current state of the Bawadi.', viewAll: true}
+                    {src: 'images/Salawas/1.jpg', caption: 'Joon ki Bawadi – Salawas, Jodhpur'},
+                    {src: 'images/Salawas/2.jpg', caption: 'Traditional stepwell structure, partially submerged.'},
+                    {src: 'images/Salawas/3.jpg', caption: 'Current state of the Bawadi.', viewAll: true}
                 ];
                 const imageRow = villageInfo.querySelector('.ratangarh-image-row');
                 images.forEach((img, i) => {
@@ -2005,9 +2005,9 @@ else if (village.id === 'sangariya') {
     setTimeout(() => {
         // Insert images into the image row
         const images = [
-            {src: 'images/sangariya/1.jpg', caption: 'Traditional Nadi of Sangariya'},
-            {src: 'images/sangariya/2.jpg', caption: 'Village water heritage site'},
-            {src: 'images/sangariya/3.jpg', caption: 'Community water management', viewAll: true}
+            {src: 'images/Sangariya/1.jpg', caption: 'Traditional Nadi of Sangariya'},
+            {src: 'images/Sangariya/2.jpg', caption: 'Village water heritage site'},
+            {src: 'images/Sangariya/3.jpg', caption: 'Community water management', viewAll: true}
         ];
         const imageRow = villageInfo.querySelector('.ratangarh-image-row');
         images.forEach((img, i) => {
