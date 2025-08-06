@@ -97,7 +97,6 @@ async function loadGalleryItems() {
                     { type: 'image', src: 'images/Sangariya/1.jpg', caption: 'Unnamed Nadi of Sangariya, which was once a source of water for all daily chores, and today it is only for animals, because of urbanization, water supply to people is easy, and they get fresh, clean water instead of getting salty water from underground or well.', size: 'big' },
                     { type: 'image', src: 'images/Sangariya/18.jpg', caption: 'Sarpanch shares local insight, RetroFlow shares new ideas – collaboration begins here with JCKIC.', size: 'big' },
                     { type: 'image', src: 'images/Sangariya/2.jpg', size: 'normal' },
-                    { type: 'image', src: 'images/Sangariya/3.jpg', size: 'normal' },
                     { type: 'image', src: 'images/Sangariya/4.jpg', size: 'normal' },
                     { type: 'image', src: 'images/Sangariya/5.jpg', size: 'normal' },
                     { type: 'image', src: 'images/Sangariya/6.jpg', size: 'normal' },
