@@ -210,9 +210,9 @@ class InteractiveMap {
             setTimeout(() => { // Wait for DOM
                 // Insert images into the image row
                 const images = [
-                    {src: 'images/ratangarh/9.jpg', caption: 'Visit Ratangarh for the traditional water body.'},
-                    {src: 'images/ratangarh/3.jpg', caption: 'Sethani Ka Johar - community engagement.'},
-                    {src: 'images/ratangarh/10.jpg', caption: 'Sethani Ka Johar - historic reservoir.', viewAll: true}
+                    {src: 'images/Ratangarh/9.jpg', caption: 'Visit Ratangarh for the traditional water body.'},
+                    {src: 'images/Ratangarh/3.jpg', caption: 'Sethani Ka Johar - community engagement.'},
+                    {src: 'images/Ratangarh/10.jpg', caption: 'Sethani Ka Johar - historic reservoir.', viewAll: true}
                 ];
                 const imageRow = villageInfo.querySelector('.ratangarh-image-row');
                 images.forEach((img, i) => {
@@ -517,14 +517,14 @@ class InteractiveMap {
             setTimeout(() => {
                 // Images for Mathania
                 const images = [
-                    {src: 'images/mathania/1.jpg', caption: 'Katan Bawadi – Mathania, Rajasthan'},
-                    {src: 'images/mathania/2.jpg', caption: 'Traditional stepwell structure, Mathania.'},
-                    {src: 'images/mathania/3.jpg', caption: 'Current state of the Bawadi.', viewAll: true}
+                    {src: 'images/Mathania/1.jpg', caption: 'Katan Bawadi – Mathania, Rajasthan'},
+                    {src: 'images/Mathania/2.jpg', caption: 'Traditional stepwell structure, Mathania.'},
+                    {src: 'images/Mathania/3.jpg', caption: 'Current state of the Bawadi.', viewAll: true}
                 ];
                 const karniImages = [
-                    {src: 'images/mathania/4.jpg', caption: 'Karni Mata Mandir Bawadi – Mathania'},
-                    {src: 'images/mathania/5.jpg', caption: 'Sacred stepwell near Karni Mata Mandir.'},
-                    {src: 'images/mathania/6.jpg', caption: 'Present condition of the Mandir Bawadi.', viewAll: true}
+                    {src: 'images/Mathania/4.jpg', caption: 'Karni Mata Mandir Bawadi – Mathania'},
+                    {src: 'images/Mathania/5.jpg', caption: 'Sacred stepwell near Karni Mata Mandir.'},
+                    {src: 'images/Mathania/6.jpg', caption: 'Present condition of the Mandir Bawadi.', viewAll: true}
                 ];
                 // Tab content for Katan Bawadi
                 const katanTabData = {
@@ -681,9 +681,9 @@ class InteractiveMap {
             setTimeout(() => { // Wait for DOM
                 // Insert images into the image row
                 const images = [
-                    {src: 'images/ramgarh/1.jpg', caption: 'Kshatriyoon ki Nadi – Ramgarh, Jaisalmer'},
-                    {src: 'images/ramgarh/2.jpg', caption: 'Traditional rain-fed tank, Ramgarh.'},
-                    {src: 'images/ramgarh/3.jpg', caption: 'Current state of the Nadi.', viewAll: true}
+                    {src: 'images/Ramgarh/1.jpg', caption: 'Kshatriyoon ki Nadi – Ramgarh, Jaisalmer'},
+                    {src: 'images/Ramgarh/2.jpg', caption: 'Traditional rain-fed tank, Ramgarh.'},
+                    {src: 'images/Ramgarh/3.jpg', caption: 'Current state of the Nadi.', viewAll: true}
                 ];
                 const imageRow = villageInfo.querySelector('.ratangarh-image-row');
                 images.forEach((img, i) => {
@@ -777,14 +777,14 @@ class InteractiveMap {
             setTimeout(() => {
                 // Images for Kelwa
                 const roopImages = [
-                    {src: 'images/kelwa/1.jpg', caption: 'Roop Sagar – Kelwa, Rajasthan'},
-                    {src: 'images/kelwa/2.jpg', caption: 'Traditional man-made lake, Kelwa.'},
-                    {src: 'images/kelwa/3.jpg', caption: 'Current state of Roop Sagar.', viewAll: true}
+                    {src: 'images/Kelwa/1.jpg', caption: 'Roop Sagar – Kelwa, Rajasthan'},
+                    {src: 'images/Kelwa/2.jpg', caption: 'Traditional man-made lake, Kelwa.'},
+                    {src: 'images/Kelwa/3.jpg', caption: 'Current state of Roop Sagar.', viewAll: true}
                 ];
                 const dholiImages = [
-                    {src: 'images/kelwa/4.jpg', caption: 'Dholi Bawadi – Kelwa, Rajasthan'},
-                    {src: 'images/kelwa/5.jpg', caption: 'Traditional stepwell structure, Dholi Bawadi.'},
-                    {src: 'images/kelwa/6.jpg', caption: 'Current state of Dholi Bawadi.', viewAll: true}
+                    {src: 'images/Kelwa/4.jpg', caption: 'Dholi Bawadi – Kelwa, Rajasthan'},
+                    {src: 'images/Kelwa/5.jpg', caption: 'Traditional stepwell structure, Dholi Bawadi.'},
+                    {src: 'images/Kelwa/6.jpg', caption: 'Current state of Dholi Bawadi.', viewAll: true}
                 ];
                 // Tab content for Roop Sagar
                 const roopTabData = {
@@ -1093,9 +1093,9 @@ else if (village.id === 'dadrewa') {
     setTimeout(() => {
         // Insert images into the image row
         const images = [
-            {src: 'images/dadrewa/1.jpg', caption: 'View of Daab, Dadrewa'},
-            {src: 'images/dadrewa/2.jpg', caption: 'Gorkh Ganga Daab during monsoon'},
-            {src: 'images/dadrewa/3.jpg', caption: 'Community gathering at Daab', viewAll: true}
+            {src: 'images/Dadrewa/1.jpg', caption: 'View of Daab, Dadrewa'},
+            {src: 'images/Dadrewa/2.jpg', caption: 'Gorkh Ganga Daab during monsoon'},
+            {src: 'images/Dadrewa/3.jpg', caption: 'Community gathering at Daab', viewAll: true}
         ];
         const imageRow = villageInfo.querySelector('.ratangarh-image-row');
         images.forEach((img, i) => {
@@ -1243,9 +1243,9 @@ else if (village.id === 'rajnagar') {
     setTimeout(() => {
         // Insert images into the image row
         const images = [
-            {src: 'images/rajnagar/1.jpg', caption: 'Ood Bawadi Stepwell, Rajnagar'},
-            {src: 'images/rajnagar/2.jpg', caption: 'Intricate stonework of Ood Bawadi'},
-            {src: 'images/rajnagar/3.jpg', caption: 'Community event at Ood Bawadi', viewAll: true}
+            {src: 'images/Rajnagar/1.jpg', caption: 'Ood Bawadi Stepwell, Rajnagar'},
+            {src: 'images/Rajnagar/2.jpg', caption: 'Intricate stonework of Ood Bawadi'},
+            {src: 'images/Rajnagar/3.jpg', caption: 'Community event at Ood Bawadi', viewAll: true}
         ];
         const imageRow = villageInfo.querySelector('.ratangarh-image-row');
         images.forEach((img, i) => {
@@ -1393,9 +1393,9 @@ else if (village.id === 'amet') {
     setTimeout(() => {
         // Insert images into the image row
         const images = [
-            {src: 'images/amet/1.jpg', caption: 'Rajon Ki Bawadi, Amet'},
-            {src: 'images/amet/2.jpg', caption: 'Stone masonry and steps of Rajon Ki Bawadi'},
-            {src: 'images/amet/3.jpg', caption: 'Heritage architecture of the stepwell', viewAll: true}
+            {src: 'images/Amet/1.jpg', caption: 'Rajon Ki Bawadi, Amet'},
+            {src: 'images/Amet/2.jpg', caption: 'Stone masonry and steps of Rajon Ki Bawadi'},
+            {src: 'images/Amet/3.jpg', caption: 'Heritage architecture of the stepwell', viewAll: true}
         ];
         const imageRow = villageInfo.querySelector('.ratangarh-image-row');
         images.forEach((img, i) => {
@@ -1860,9 +1860,9 @@ else if (village.id === 'siyai') {
     setTimeout(() => {
         // Insert images into the image row
         const images = [
-            {src: 'images/siyai/1.jpg', caption: 'Traditional Tanka in Siyai'},
-            {src: 'images/siyai/2.jpg', caption: 'Rainwater harvesting system'},
-            {src: 'images/siyai/3.jpg', caption: 'Desert water conservation', viewAll: true}
+            {src: 'images/Siyai/1.jpg', caption: 'Traditional Tanka in Siyai'},
+            {src: 'images/Siyai/2.jpg', caption: 'Rainwater harvesting system'},
+            {src: 'images/Siyai/3.jpg', caption: 'Desert water conservation', viewAll: true}
         ];
         const imageRow = villageInfo.querySelector('.ratangarh-image-row');
         images.forEach((img, i) => {
@@ -2155,9 +2155,9 @@ else if (village.id === 'ramsar') {
     setTimeout(() => {
         // Insert images into the image row
         const images = [
-            {src: 'images/ramsar/1.jpg', caption: 'Uttam Singh Model Pond'},
-            {src: 'images/ramsar/2.jpg', caption: 'Traditional Talab and Wells'},
-            {src: 'images/ramsar/3.jpg', caption: 'Community water heritage', viewAll: true}
+            {src: 'images/Ramsar/1.jpg', caption: 'Uttam Singh Model Pond'},
+            {src: 'images/Ramsar/2.jpg', caption: 'Traditional Talab and Wells'},
+            {src: 'images/Ramsar/3.jpg', caption: 'Community water heritage', viewAll: true}
         ];
         const imageRow = villageInfo.querySelector('.ratangarh-image-row');
         images.forEach((img, i) => {
@@ -2457,9 +2457,9 @@ else if (village.id === 'ramderiya') {
     setTimeout(() => {
         // Insert images into the image row
         const images = [
-            {src: 'images/ramderiya/1.jpg', caption: 'Gawiya Kuaan - traditional well'},
-            {src: 'images/ramderiya/2.jpg', caption: 'Rectangular well structure with marble lining'},
-            {src: 'images/ramderiya/3.jpg', caption: 'Stone trenches and heritage architecture', viewAll: true}
+            {src: 'images/Ramderiya/1.jpg', caption: 'Gawiya Kuaan - traditional well'},
+            {src: 'images/Ramderiya/2.jpg', caption: 'Rectangular well structure with marble lining'},
+            {src: 'images/Ramderiya/3.jpg', caption: 'Stone trenches and heritage architecture', viewAll: true}
         ];
         const imageRow = villageInfo.querySelector('.ratangarh-image-row');
         images.forEach((img, i) => {
@@ -2605,9 +2605,9 @@ else if (village.id === 'badabagh') {
     setTimeout(() => {
         // Insert images into the image row
         const images = [
-            {src: 'images/badabagh/1.jpg', caption: 'Khitpal Nadi - traditional waterbody'},
-            {src: 'images/badabagh/2.jpg', caption: 'Desert wells and water heritage'},
-            {src: 'images/badabagh/3.jpg', caption: 'Royal cenotaphs and desert landscape', viewAll: true}
+            {src: 'images/Badabagh/1.jpg', caption: 'Khitpal Nadi - traditional waterbody'},
+            {src: 'images/Badabagh/2.jpg', caption: 'Desert wells and water heritage'},
+            {src: 'images/Badabagh/3.jpg', caption: 'Royal cenotaphs and desert landscape', viewAll: true}
         ];
         const imageRow = villageInfo.querySelector('.ratangarh-image-row');
         images.forEach((img, i) => {
@@ -2756,9 +2756,9 @@ else if (village.id === 'mokla') {
     setTimeout(() => {
         // Insert images into the image row
         const images = [
-            {src: 'images/mokla/1.jpg', caption: 'Traditional Talab in Mokla'},
-            {src: 'images/mokla/2.jpg', caption: 'Stambh memorial pillar'},
-            {src: 'images/mokla/3.jpg', caption: 'Community water conservation', viewAll: true}
+            {src: 'images/Mokla/1.jpg', caption: 'Traditional Talab in Mokla'},
+            {src: 'images/Mokla/2.jpg', caption: 'Stambh memorial pillar'},
+            {src: 'images/Mokla/3.jpg', caption: 'Community water conservation', viewAll: true}
         ];
         const imageRow = villageInfo.querySelector('.ratangarh-image-row');
         images.forEach((img, i) => {
@@ -2907,9 +2907,9 @@ else if (village.id === 'pokhran') {
     setTimeout(() => {
         // Insert images into the image row
         const images = [
-            {src: 'images/pokhran/1.jpg', caption: 'Ramdevra-Kund sacred water body'},
-            {src: 'images/pokhran/2.jpg', caption: 'Traditional Tankas and Kunds'},
-            {src: 'images/pokhran/3.jpg', caption: 'Desert water heritage', viewAll: true}
+            {src: 'images/Pokhran/1.jpg', caption: 'Ramdevra-Kund sacred water body'},
+            {src: 'images/Pokhran/2.jpg', caption: 'Traditional Tankas and Kunds'},
+            {src: 'images/Pokhran/3.jpg', caption: 'Desert water heritage', viewAll: true}
         ];
         const imageRow = villageInfo.querySelector('.ratangarh-image-row');
         images.forEach((img, i) => {
@@ -3057,9 +3057,9 @@ else if (village.id === 'rajasmand_village') {
     setTimeout(() => {
         // Insert images into the image row
         const images = [
-            {src: 'images/rajasmand/1.jpg', caption: 'Rajsamand Lake - largest artificial lake'},
-            {src: 'images/rajasmand/2.jpg', caption: 'Raj Prashasti inscription on marble'},
-            {src: 'images/rajasmand/3.jpg', caption: 'Marble embankments and pavilions', viewAll: true}
+            {src: 'images/Rajsamand/1.jpg', caption: 'Rajsamand Lake - largest artificial lake'},
+            {src: 'images/Rajsamand/2.jpg', caption: 'Raj Prashasti inscription on marble'},
+            {src: 'images/Rajsamand/3.jpg', caption: 'Marble embankments and pavilions', viewAll: true}
         ];
         const imageRow = villageInfo.querySelector('.ratangarh-image-row');
         images.forEach((img, i) => {
@@ -3204,9 +3204,9 @@ else if (village.id === 'gajsar') {
     setTimeout(() => {
         // Insert images into the image row
         const images = [
-            {src: 'images/gajsar/1.jpg', caption: 'Historic well and collecting tank'},
-            {src: 'images/gajsar/2.jpg', caption: 'Dome-shaped kundi (underground tank)'},
-            {src: 'images/gajsar/3.jpg', caption: 'Khara Pani Aquaculture Lab', viewAll: true}
+            {src: 'images/Gajsar/1.jpg', caption: 'Historic well and collecting tank'},
+            {src: 'images/Gajsar/2.jpg', caption: 'Dome-shaped kundi (underground tank)'},
+            {src: 'images/Gajsar/3.jpg', caption: 'Khara Pani Aquaculture Lab', viewAll: true}
         ];
         const imageRow = villageInfo.querySelector('.ratangarh-image-row');
         images.forEach((img, i) => {
