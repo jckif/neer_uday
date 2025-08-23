@@ -2428,6 +2428,1774 @@ else if (village.id === 'mandore') {
 }
 // ... existing code ...    
 
+else if (village.id === 'shribalaji') {
+    villageInfo.innerHTML = `
+        <div class="village-header">
+            <h3>${village.name}</h3>
+            <span class="village-district">${this.currentDistrict ? this.currentDistrict.name : ''} District</span>
+        </div>
+        <div class="ratangarh-image-row-wrapper" style="position:relative;width:100%;height:340px;">
+            <button class="ratangarh-arrow ratangarh-arrow-left" style="position:absolute;left:8px;top:50%;transform:translateY(-50%);z-index:2;display:none;background:rgba(42,93,159,0.7);border:none;border-radius:50%;width:38px;height:38px;color:#fff;font-size:1.5em;cursor:pointer;align-items:center;justify-content:center;outline:none;transition:background 0.2s;">&#8592;</button>
+            <div class="ratangarh-image-row" style="height:100%;"></div>
+            <button class="ratangarh-arrow ratangarh-arrow-right" style="position:absolute;right:8px;top:50%;transform:translateY(-50%);z-index:2;display:none;background:rgba(42,93,159,0.7);border:none;border-radius:50%;width:38px;height:38px;color:#fff;font-size:1.5em;cursor:pointer;align-items:center;justify-content:center;outline:none;transition:background 0.2s;">&#8594;</button>
+        </div>
+        <div class="ratangarh-tabs">
+            <button class="ratangarh-tab active" data-tab="overview">Overview</button>
+            <button class="ratangarh-tab" data-tab="history">📜 History of Waterbody</button>
+            <button class="ratangarh-tab" data-tab="uses">💧 Current Uses</button>
+            <button class="ratangarh-tab" data-tab="religion">🕉 Religious Significance</button>
+            <button class="ratangarh-tab" data-tab="tourism">🧭 Tourism Potential</button>
+            <button class="ratangarh-tab" data-tab="science">🔬 Scientific Novelty</button>
+            <button class="ratangarh-tab" data-tab="condition">📊 Current Condition</button>
+        </div>
+        <div class="ratangarh-tab-content" id="ratangarh-tab-content"></div>
+        <div class="village-actions">
+            <a href="${village.report}" class="view-report-btn">View Full Report</a>
+            <button class="close-popup-btn" onclick="this.closest('.village-info').remove(); document.querySelector('.district-info').style.display='block';">Close</button>
+        </div>
+    `;
+    setTimeout(() => {
+        // Insert images into the image row
+        const images = [
+            {src: 'images/Shribalaji/1.jpg', caption: 'Shree Balaji – Rectangular Cemented Tank'},
+            {src: 'images/Shribalaji/2.jpg', caption: 'PVC pipe connections for rooftop harvesting'},
+            {src: 'images/Shribalaji/3.jpg', caption: 'Sealed, clean storage tank', viewAll: true}
+        ];
+        const imageRow = villageInfo.querySelector('.ratangarh-image-row');
+        images.forEach((img, i) => {
+            const box = document.createElement('div');
+            box.className = 'ratangarh-img-box';
+            box.innerHTML = `<img src='${img.src}' alt='Shri Balaji Image ${i+1}'><div class='ratangarh-img-caption'>${img.caption}</div>`;
+            if (img.viewAll) {
+                const btn = document.createElement('a');
+                btn.href = 'shribalaji.html';
+                btn.className = 'view-all-photos-btn';
+                btn.textContent = 'View All Photos';
+                box.appendChild(btn);
+            }
+            imageRow.appendChild(box);
+        });
+        // Arrow logic
+        let currentIndex = 0;
+        const leftArrow = villageInfo.querySelector('.ratangarh-arrow-left');
+        const rightArrow = villageInfo.querySelector('.ratangarh-arrow-right');
+        function updateArrows() {
+            leftArrow.style.display = currentIndex > 0 ? 'flex' : 'none';
+            rightArrow.style.display = currentIndex < images.length-1 ? 'flex' : 'none';
+        }
+        function scrollToIndex(idx) {
+            const box = imageRow.children[idx];
+            if (box) box.scrollIntoView({behavior:'smooth',inline:'start'});
+            currentIndex = idx;
+            updateArrows();
+        }
+        leftArrow.onclick = () => scrollToIndex(currentIndex-1);
+        rightArrow.onclick = () => scrollToIndex(currentIndex+1);
+        imageRow.addEventListener('scroll', () => {
+            let minDist = Infinity, idx = 0;
+            for (let i=0; i<imageRow.children.length; ++i) {
+                const rect = imageRow.children[i].getBoundingClientRect();
+                const dist = Math.abs(rect.left - imageRow.getBoundingClientRect().left);
+                if (dist < minDist) { minDist = dist; idx = i; }
+            }
+            currentIndex = idx;
+            updateArrows();
+        });
+        // Initial state
+        scrollToIndex(0);
+        // Tabs logic
+        const tabContent = villageInfo.querySelector('#ratangarh-tab-content');
+        const tabData = {
+            overview: `
+                <b style='color:#2a5d9f;'>Overview</b><br/>
+                <table class='ratangarh-info-table' style='width:100%;margin:18px 0 18px 0;border-collapse:collapse;'>
+                    <tr><th>Location</th><td>Shri Balaji, Nagaur District</td></tr>
+                    <tr><th>Latitude</th><td>27.398808</td></tr>
+                    <tr><th>Longitude</th><td>73.532659</td></tr>
+                </table>
+                Shree Balaji – Rectangular Cemented Tank: a compact, modern rainwater harvesting and storage unit built in cement with sealed walls and PVC inlet piping. Designed primarily for rooftop runoff collection, it provides reliable clean-water storage for drinking and household use.<br/><br/>
+            `,
+            history: `
+                <b style='color:#2a5d9f;'>📜 History of the Waterbody</b><br/>
+                Constructed less than 10 years ago, this tank represents household/community-level rainwater harvesting. Built of cement with PVC pipe connections, it reflects the shift towards modern small-scale harvesting rather than large communal ponds.<br/>
+            `,
+            uses: `
+                <b style='color:#2a5d9f;'>💧 Current Uses</b>
+                <ul>
+                    <li>Collects rooftop rainwater and runoff.</li>
+                    <li>Serves as clean water storage for drinking and domestic use.</li>
+                </ul>
+            `,
+            religion: `
+                <b style='color:#2a5d9f;'>🕉 Religious Significance</b><br/>
+                Located near Balaji region, occasionally linked to small temple rituals.<br/>
+            `,
+            tourism: `
+                <b style='color:#2a5d9f;'>🧭 Tourism Potential</b>
+                <ul>
+                    <li>Limited direct tourism.</li>
+                    <li>Valuable as a demonstration model for NGOs promoting micro-harvesting.</li>
+                </ul>
+            `,
+            science: `
+                <b style='color:#2a5d9f;'>🔬 Scientific Novelty</b>
+                <ul>
+                    <li>Compact design (3–4 m wide, 1.2–1.5 m high).</li>
+                    <li>Sealed tank → prevents contamination.</li>
+                    <li>Use of PVC pipes = modern engineering integration.</li>
+                </ul>
+            `,
+            condition: `
+                <b style='color:#2a5d9f;'>📊 Current Condition</b>
+                <ul>
+                    <li>Functional and clean.</li>
+                    <li>Storage capacity limited compared to Nadis.</li>
+                </ul>
+            `
+        };
+        function setTab(tab) {
+            tabContent.innerHTML = tabData[tab];
+            villageInfo.querySelectorAll('.ratangarh-tab').forEach(btn => btn.classList.remove('active'));
+            villageInfo.querySelector(`.ratangarh-tab[data-tab="${tab}"]`).classList.add('active');
+        }
+        setTab('overview');
+        villageInfo.querySelectorAll('.ratangarh-tab').forEach(btn => {
+            btn.onclick = () => setTab(btn.getAttribute('data-tab'));
+        });
+    }, 0);
+}
+// ... existing code ...    
+
+else if (village.id === 'alai') {
+    villageInfo.innerHTML = `
+        <div class="village-header">
+            <h3>${village.name}</h3>
+            <span class="village-district">${this.currentDistrict ? this.currentDistrict.name : ''} District</span>
+        </div>
+        <div class="ratangarh-image-row-wrapper" style="position:relative;width:100%;height:340px;">
+            <button class="ratangarh-arrow ratangarh-arrow-left" style="position:absolute;left:8px;top:50%;transform:translateY(-50%);z-index:2;display:none;background:rgba(42,93,159,0.7);border:none;border-radius:50%;width:38px;height:38px;color:#fff;font-size:1.5em;cursor:pointer;align-items:center;justify-content:center;outline:none;transition:background 0.2s;">&#8592;</button>
+            <div class="ratangarh-image-row" style="height:100%;"></div>
+            <button class="ratangarh-arrow ratangarh-arrow-right" style="position:absolute;right:8px;top:50%;transform:translateY(-50%);z-index:2;display:none;background:rgba(42,93,159,0.7);border:none;border-radius:50%;width:38px;height:38px;color:#fff;font-size:1.5em;cursor:pointer;align-items:center;justify-content:center;outline:none;transition:background 0.2s;">&#8594;</button>
+        </div>
+        <div class="ratangarh-tabs">
+            <button class="ratangarh-tab active" data-tab="overview">Overview</button>
+            <button class="ratangarh-tab" data-tab="history">📜 History of Waterbody</button>
+            <button class="ratangarh-tab" data-tab="uses">💧 Current Uses</button>
+            <button class="ratangarh-tab" data-tab="religion">🕉 Religious Significance</button>
+            <button class="ratangarh-tab" data-tab="tourism">🧭 Tourism Potential</button>
+            <button class="ratangarh-tab" data-tab="science">🔬 Scientific Novelty</button>
+            <button class="ratangarh-tab" data-tab="condition">📊 Current Condition</button>
+        </div>
+        <div class="ratangarh-tab-content" id="ratangarh-tab-content"></div>
+        <div class="village-actions">
+            <a href="${village.report}" class="view-report-btn">View Full Report</a>
+            <button class="close-popup-btn" onclick="this.closest('.village-info').remove(); document.querySelector('.district-info').style.display='block';">Close</button>
+        </div>
+    `;
+    setTimeout(() => {
+        // Insert images into the image row
+        const images = [
+            {src: 'images/Alai/1.jpg', caption: 'Alai Nadi – seasonal water storage'},
+            {src: 'images/Alai/2.jpg', caption: 'Masonry embankment and catchment siting'},
+            {src: 'images/Alai/3.jpg', caption: 'Post-monsoon water holding', viewAll: true}
+        ];
+        const imageRow = villageInfo.querySelector('.ratangarh-image-row');
+        images.forEach((img, i) => {
+            const box = document.createElement('div');
+            box.className = 'ratangarh-img-box';
+            box.innerHTML = `<img src='${img.src}' alt='Alai Image ${i+1}'><div class='ratangarh-img-caption'>${img.caption}</div>`;
+            if (img.viewAll) {
+                const btn = document.createElement('a');
+                btn.href = 'alai.html';
+                btn.className = 'view-all-photos-btn';
+                btn.textContent = 'View All Photos';
+                box.appendChild(btn);
+            }
+            imageRow.appendChild(box);
+        });
+        // Arrow logic
+        let currentIndex = 0;
+        const leftArrow = villageInfo.querySelector('.ratangarh-arrow-left');
+        const rightArrow = villageInfo.querySelector('.ratangarh-arrow-right');
+        function updateArrows() {
+            leftArrow.style.display = currentIndex > 0 ? 'flex' : 'none';
+            rightArrow.style.display = currentIndex < images.length-1 ? 'flex' : 'none';
+        }
+        function scrollToIndex(idx) {
+            const box = imageRow.children[idx];
+            if (box) box.scrollIntoView({behavior:'smooth',inline:'start'});
+            currentIndex = idx;
+            updateArrows();
+        }
+        leftArrow.onclick = () => scrollToIndex(currentIndex-1);
+        rightArrow.onclick = () => scrollToIndex(currentIndex+1);
+        imageRow.addEventListener('scroll', () => {
+            let minDist = Infinity, idx = 0;
+            for (let i=0; i<imageRow.children.length; ++i) {
+                const rect = imageRow.children[i].getBoundingClientRect();
+                const dist = Math.abs(rect.left - imageRow.getBoundingClientRect().left);
+                if (dist < minDist) { minDist = dist; idx = i; }
+            }
+            currentIndex = idx;
+            updateArrows();
+        });
+        // Initial state
+        scrollToIndex(0);
+        // Tabs logic
+        const tabContent = villageInfo.querySelector('#ratangarh-tab-content');
+        const tabData = {
+            overview: `
+                <b style='color:#2a5d9f;'>Overview</b><br/>
+                <table class='ratangarh-info-table' style='width:100%;margin:18px 0 18px 0;border-collapse:collapse;'>
+                    <tr><th>Location</th><td>Alai Village, Nagaur District</td></tr>
+                    <tr><th>Latitude</th><td>27.328257</td></tr>
+                    <tr><th>Longitude</th><td>73.576669</td></tr>
+                </table>
+                Alai Village – Alai Nadi: a community rainwater storage system situated to capture catchment runoff and seasonal rainfall, supporting agriculture and local water needs.<br/><br/>
+            `,
+            history: `
+                <b style='color:#2a5d9f;'>📜 History of the Waterbody</b><br/>
+                Built in January 2022 under MGNREGA at a cost of ₹2.84 lakh, this Nadi is 25×32 meters in size. Historically, Alai region has depended on Nadis and wells; this new structure revives that tradition but with government support.<br/>
+            `,
+            uses: `
+                <b style='color:#2a5d9f;'>💧 Current Uses</b>
+                <ul>
+                    <li>Stores rainwater for agriculture, livestock, and groundwater recharge.</li>
+                    <li>Used seasonally for supplementary irrigation.</li>
+                </ul>
+            `,
+            religion: `
+                <b style='color:#2a5d9f;'>🕉 Religious Significance</b><br/>
+                While not sacred, water from Nadis is traditionally used in community festivals for rituals like Gangaur and Teej.<br/>
+            `,
+            tourism: `
+                <b style='color:#2a5d9f;'>🧭 Tourism Potential</b>
+                <ul>
+                    <li>Potential to become a learning site for water conservation NGOs, students, and researchers.</li>
+                </ul>
+            `,
+            science: `
+                <b style='color:#2a5d9f;'>🔬 Scientific Novelty</b>
+                <ul>
+                    <li>Smart placement in a catchment area.</li>
+                    <li>Masonry embankment increases durability.</li>
+                    <li>Water infiltration supports aquifer recharge.</li>
+                </ul>
+            `,
+            condition: `
+                <b style='color:#2a5d9f;'>📊 Current Condition</b>
+                <ul>
+                    <li>Holds good water after monsoon.</li>
+                    <li>Requires yearly maintenance to prevent siltation.</li>
+                </ul>
+            `
+        };
+        function setTab(tab) {
+            tabContent.innerHTML = tabData[tab];
+            villageInfo.querySelectorAll('.ratangarh-tab').forEach(btn => btn.classList.remove('active'));
+            villageInfo.querySelector(`.ratangarh-tab[data-tab="${tab}"]`).classList.add('active');
+        }
+        setTab('overview');
+        villageInfo.querySelectorAll('.ratangarh-tab').forEach(btn => {
+            btn.onclick = () => setTab(btn.getAttribute('data-tab'));
+        });
+    }, 0);
+}
+// ... existing code ...    
+
+else if (village.id === 'barani') {
+    villageInfo.innerHTML = `
+        <div class="village-header">
+            <h3>${village.name}</h3>
+            <span class="village-district">${this.currentDistrict ? this.currentDistrict.name : ''} District</span>
+        </div>
+        <div class="ratangarh-image-row-wrapper" style="position:relative;width:100%;height:340px;">
+            <button class="ratangarh-arrow ratangarh-arrow-left" style="position:absolute;left:8px;top:50%;transform:translateY(-50%);z-index:2;display:none;background:rgba(42,93,159,0.7);border:none;border-radius:50%;width:38px;height:38px;color:#fff;font-size:1.5em;cursor:pointer;align-items:center;justify-content:center;outline:none;transition:background 0.2s;">&#8592;</button>
+            <div class="ratangarh-image-row" style="height:100%;"></div>
+            <button class="ratangarh-arrow ratangarh-arrow-right" style="position:absolute;right:8px;top:50%;transform:translateY(-50%);z-index:2;display:none;background:rgba(42,93,159,0.7);border:none;border-radius:50%;width:38px;height:38px;color:#fff;font-size:1.5em;cursor:pointer;align-items:center;justify-content:center;outline:none;transition:background 0.2s;">&#8594;</button>
+        </div>
+        <div class="ratangarh-tabs">
+            <button class="ratangarh-tab active" data-tab="overview">Overview</button>
+            <button class="ratangarh-tab" data-tab="history">📜 History of Waterbody</button>
+            <button class="ratangarh-tab" data-tab="uses">💧 Current Uses</button>
+            <button class="ratangarh-tab" data-tab="religion">🕉 Religious Significance</button>
+            <button class="ratangarh-tab" data-tab="tourism">🧭 Tourism Potential</button>
+            <button class="ratangarh-tab" data-tab="science">🔬 Scientific Novelty</button>
+            <button class="ratangarh-tab" data-tab="condition">📊 Current Condition</button>
+        </div>
+        <div class="ratangarh-tab-content" id="ratangarh-tab-content"></div>
+        <div class="village-actions">
+            <a href="${village.report}" class="view-report-btn">View Full Report</a>
+            <button class="close-popup-btn" onclick="this.closest('.village-info').remove(); document.querySelector('.district-info').style.display='block';">Close</button>
+        </div>
+    `;
+    setTimeout(() => {
+        // Insert images into the image row
+        const images = [
+            {src: 'images/Barani/1.jpg', caption: 'Kachauliya Nadi – reinforced masonry tank'},
+            {src: 'images/Barani/2.jpg', caption: 'Circular layout and stone-lining detail'},
+            {src: 'images/Barani/3.jpg', caption: 'Seasonal storage post-monsoon', viewAll: true}
+        ];
+        const imageRow = villageInfo.querySelector('.ratangarh-image-row');
+        images.forEach((img, i) => {
+            const box = document.createElement('div');
+            box.className = 'ratangarh-img-box';
+            box.innerHTML = `<img src='${img.src}' alt='Barani Image ${i+1}'><div class='ratangarh-img-caption'>${img.caption}</div>`;
+            if (img.viewAll) {
+                const btn = document.createElement('a');
+                btn.href = 'barani.html';
+                btn.className = 'view-all-photos-btn';
+                btn.textContent = 'View All Photos';
+                box.appendChild(btn);
+            }
+            imageRow.appendChild(box);
+        });
+        // Arrow logic
+        let currentIndex = 0;
+        const leftArrow = villageInfo.querySelector('.ratangarh-arrow-left');
+        const rightArrow = villageInfo.querySelector('.ratangarh-arrow-right');
+        function updateArrows() {
+            leftArrow.style.display = currentIndex > 0 ? 'flex' : 'none';
+            rightArrow.style.display = currentIndex < images.length-1 ? 'flex' : 'none';
+        }
+        function scrollToIndex(idx) {
+            const box = imageRow.children[idx];
+            if (box) box.scrollIntoView({behavior:'smooth',inline:'start'});
+            currentIndex = idx;
+            updateArrows();
+        }
+        leftArrow.onclick = () => scrollToIndex(currentIndex-1);
+        rightArrow.onclick = () => scrollToIndex(currentIndex+1);
+        imageRow.addEventListener('scroll', () => {
+            let minDist = Infinity, idx = 0;
+            for (let i=0; i<imageRow.children.length; ++i) {
+                const rect = imageRow.children[i].getBoundingClientRect();
+                const dist = Math.abs(rect.left - imageRow.getBoundingClientRect().left);
+                if (dist < minDist) { minDist = dist; idx = i; }
+            }
+            currentIndex = idx;
+            updateArrows();
+        });
+        // Initial state
+        scrollToIndex(0);
+        // Tabs logic
+        const tabContent = villageInfo.querySelector('#ratangarh-tab-content');
+        const tabData = {
+            overview: `
+                <b style='color:#2a5d9f;'>Overview</b><br/>
+                <table class='ratangarh-info-table' style='width:100%;margin:18px 0 18px 0;border-collapse:collapse;'>
+                    <tr><th>Location</th><td>Barani Village – Kachauliya Nadi, Nagaur District</td></tr>
+                    <tr><th>Latitude</th><td>27.290657</td></tr>
+                    <tr><th>Longitude</th><td>73.618387</td></tr>
+                </table>
+                Kachauliya Nadi is a circular, reinforced water structure serving as seasonal storage and recharge for the Barani region.<br/><br/>
+            `,
+            history: `
+                <b style='color:#2a5d9f;'>📜 History of the Waterbody</b><br/>
+                Kachauliya Nadi is a cemented and stone masonry water structure built under MGNREGA around 2020–21. Though newly constructed, it continues the ancient tradition of Nadis in Rajasthan, which for centuries have been shallow depressions dug at the village outskirts to collect rainwater. Unlike old earthen Nadis, this one uses cement reinforcement and stone masonry, preventing erosion and seepage — a modern twist to a traditional idea.<br/>
+            `,
+            uses: `
+                <b style='color:#2a5d9f;'>💧 Current Uses</b>
+                <ul>
+                    <li>Stores monsoon rainwater.</li>
+                    <li>Primary source for cattle drinking water, domestic needs, and limited irrigation.</li>
+                    <li>Supports local ecology by percolating water into shallow aquifers.</li>
+                </ul>
+            `,
+            religion: `
+                <b style='color:#2a5d9f;'>🕉 Religious Significance</b><br/>
+                While not directly tied to a temple, Nadis like this hold cultural value. Traditionally, after the first rainfall, villagers perform small rituals at water bodies, thanking nature.<br/>
+            `,
+            tourism: `
+                <b style='color:#2a5d9f;'>🧭 Tourism Potential</b>
+                <ul>
+                    <li>Limited, but could be part of eco-tourism and water heritage tours highlighting modern revival of old systems.</li>
+                </ul>
+            `,
+            science: `
+                <b style='color:#2a5d9f;'>🔬 Scientific Novelty</b>
+                <ul>
+                    <li>Circular shape ensures uniform water pressure on walls.</li>
+                    <li>Reinforced masonry prevents soil erosion.</li>
+                    <li>Functions like a mini check-dam, recharging groundwater.</li>
+                </ul>
+            `,
+            condition: `
+                <b style='color:#2a5d9f;'>📊 Current Condition</b>
+                <ul>
+                    <li>Adequate water storage post-monsoon.</li>
+                    <li>In summers, dries partially due to low rainfall dependency.</li>
+                    <li>Clean water, but vulnerable to pollution if cattle enter directly.</li>
+                </ul>
+            `
+        };
+        function setTab(tab) {
+            tabContent.innerHTML = tabData[tab];
+            villageInfo.querySelectorAll('.ratangarh-tab').forEach(btn => btn.classList.remove('active'));
+            villageInfo.querySelector(`.ratangarh-tab[data-tab="${tab}"]`).classList.add('active');
+        }
+        setTab('overview');
+        villageInfo.querySelectorAll('.ratangarh-tab').forEach(btn => {
+            btn.onclick = () => setTab(btn.getAttribute('data-tab'));
+        });
+    }, 0);
+}
+// ... existing code ...    
+
+else if (village.id === 'gogelaw') {
+	villageInfo.innerHTML = `
+		<div class="village-header">
+			<h3>${village.name}</h3>
+			<span class="village-district">${this.currentDistrict ? this.currentDistrict.name : ''} District</span>
+		</div>
+		<div class="ratangarh-image-row-wrapper" style="position:relative;width:100%;height:340px;">
+			<button class="ratangarh-arrow ratangarh-arrow-left" style="position:absolute;left:8px;top:50%;transform:translateY(-50%);z-index:2;display:none;background:rgba(42,93,159,0.7);border:none;border-radius:50%;width:38px;height:38px;color:#fff;font-size:1.5em;cursor:pointer;align-items:center;justify-content:center;outline:none;transition:background 0.2s;">&#8592;</button>
+			<div class="ratangarh-image-row" style="height:100%;"></div>
+			<button class="ratangarh-arrow ratangarh-arrow-right" style="position:absolute;right:8px;top:50%;transform:translateY(-50%);z-index:2;display:none;background:rgba(42,93,159,0.7);border:none;border-radius:50%;width:38px;height:38px;color:#fff;font-size:1.5em;cursor:pointer;align-items:center;justify-content:center;outline:none;transition:background 0.2s;">&#8594;</button>
+		</div>
+		<div class="ratangarh-tabs">
+			<button class="ratangarh-tab active" data-tab="overview">Overview</button>
+			<button class="ratangarh-tab" data-tab="history">📜 History of Waterbodies</button>
+			<button class="ratangarh-tab" data-tab="uses">💧 Current Uses</button>
+			<button class="ratangarh-tab" data-tab="religion">🕉 Religious Significance</button>
+			<button class="ratangarh-tab" data-tab="tourism">🧭 Tourism Potential</button>
+			<button class="ratangarh-tab" data-tab="science">🔬 Scientific Novelty</button>
+			<button class="ratangarh-tab" data-tab="condition">📊 Current Condition</button>
+		</div>
+		<div class="ratangarh-tab-content" id="ratangarh-tab-content"></div>
+		<div class="village-actions">
+			<a href="${village.report}" class="view-report-btn">View Full Report</a>
+			<button class="close-popup-btn" onclick="this.closest('.village-info').remove(); document.querySelector('.district-info').style.display='block';">Close</button>
+		</div>
+	`;
+	setTimeout(() => {
+		// Insert images into the image row
+		const images = [
+			{src: 'images/Gogelaw/1.jpg', caption: 'Adarsh Talaab – communal reservoir'},
+			{src: 'images/Gogelaw/14.png', caption: 'Dual-pipe culvert for drainage and flood control'},
+			{src: 'images/Gogelaw/3.jpg', caption: 'Traditional circular wells and household tankas', viewAll: true}
+		];
+		const imageRow = villageInfo.querySelector('.ratangarh-image-row');
+		images.forEach((img, i) => {
+			const box = document.createElement('div');
+			box.className = 'ratangarh-img-box';
+			box.innerHTML = `<img src='${img.src}' alt='Gogelaw Image ${i+1}'><div class='ratangarh-img-caption'>${img.caption}</div>`;
+			if (img.viewAll) {
+				const btn = document.createElement('a');
+				btn.href = 'gogelaw.html';
+				btn.className = 'view-all-photos-btn';
+				btn.textContent = 'View All Photos';
+				box.appendChild(btn);
+			}
+			imageRow.appendChild(box);
+		});
+		// Arrow logic
+		let currentIndex = 0;
+		const leftArrow = villageInfo.querySelector('.ratangarh-arrow-left');
+		const rightArrow = villageInfo.querySelector('.ratangarh-arrow-right');
+		function updateArrows() {
+			leftArrow.style.display = currentIndex > 0 ? 'flex' : 'none';
+			rightArrow.style.display = currentIndex < images.length-1 ? 'flex' : 'none';
+		}
+		function scrollToIndex(idx) {
+			const box = imageRow.children[idx];
+			if (box) box.scrollIntoView({behavior:'smooth',inline:'start'});
+			currentIndex = idx;
+			updateArrows();
+		}
+		leftArrow.onclick = () => scrollToIndex(currentIndex-1);
+		rightArrow.onclick = () => scrollToIndex(currentIndex+1);
+		imageRow.addEventListener('scroll', () => {
+			let minDist = Infinity, idx = 0;
+			for (let i=0; i<imageRow.children.length; ++i) {
+				const rect = imageRow.children[i].getBoundingClientRect();
+				const dist = Math.abs(rect.left - imageRow.getBoundingClientRect().left);
+				if (dist < minDist) { minDist = dist; idx = i; }
+			}
+			currentIndex = idx;
+			updateArrows();
+		});
+		// Initial state
+		scrollToIndex(0);
+		// Tabs logic
+		const tabContent = villageInfo.querySelector('#ratangarh-tab-content');
+		const tabData = {
+			overview: `
+				<b style='color:#2a5d9f;'>Overview</b><br/>
+				<table class='ratangarh-info-table' style='width:100%;margin:18px 0 18px 0;border-collapse:collapse;'>
+					<tr><th>Location</th><td>Gogelaw Village – Adarsh Talaab, Nadis, Wells, and Tanka (Nagaur)</td></tr>
+					<tr><th>Latitude</th><td>27.239266</td></tr>
+					<tr><th>Longitude</th><td>73.651575</td></tr>
+				</table>
+				Gogelaw hosts a network of traditional and modern water systems including the expansive Adarsh Talaab, historic nadis, household tankas, and red sandstone wells.<br/><br/>
+			`,
+			history: `
+				<b style='color:#2a5d9f;'>📜 History of the Waterbodies</b><br/>
+				<ul>
+					<li>Gogelaw is home to some of the oldest johads/nadis in Nagaur, dating back 300–600 years, with oral history suggesting even 1,000 years.</li>
+					<li>The Adarsh Talaab, spanning 2000 bighas, is among the largest communal water bodies in Marwar.</li>
+					<li>Inscriptions show new structures were built under MGNREGA (2014–15).</li>
+					<li>Wells built from red sandstone (10–30 years old) add to its heritage.</li>
+				</ul>
+			`,
+			uses: `
+				<b style='color:#2a5d9f;'>💧 Current Uses</b>
+				<ul>
+					<li>Adarsh Talaab: Cattle grazing, water storage, recharge.</li>
+					<li>Tanka: Potable water storage for households.</li>
+					<li>Wells: Domestic water supply, partial irrigation.</li>
+				</ul>
+			`,
+			religion: `
+				<b style='color:#2a5d9f;'>🕉 Religious Significance</b><br/>
+				<ul>
+					<li>Goga Talab dedicated to Gogaji, Rajasthan’s snake-deity, worshipped as protector.</li>
+					<li>Site of annual pilgrimages and fairs.</li>
+				</ul>
+			`,
+			tourism: `
+				<b style='color:#2a5d9f;'>🧭 Tourism Potential</b>
+				<ul>
+					<li>Very high — combination of heritage, faith, and ecosystems.</li>
+					<li>Could be promoted as a heritage tourism circuit around Gogaji.</li>
+				</ul>
+			`,
+			science: `
+				<b style='color:#2a5d9f;'>🔬 Scientific Novelty</b>
+				<ul>
+					<li>Dual-pipe culvert for drainage and flood control.</li>
+					<li>Large catchment design for maximum rainwater storage.</li>
+					<li>Traditional circular wells ensure year-round access.</li>
+				</ul>
+			`,
+			condition: `
+				<b style='color:#2a5d9f;'>📊 Current Condition</b>
+				<ul>
+					<li>Adequate storage post-monsoon.</li>
+					<li>Risk of drying and siltation in summers.</li>
+					<li>Pollution risk from open grazing.</li>
+				</ul>
+			`
+		};
+		function setTab(tab) {
+			tabContent.innerHTML = tabData[tab];
+			villageInfo.querySelectorAll('.ratangarh-tab').forEach(btn => btn.classList.remove('active'));
+			villageInfo.querySelector(`.ratangarh-tab[data-tab="${tab}"]`).classList.add('active');
+		}
+		setTab('overview');
+		villageInfo.querySelectorAll('.ratangarh-tab').forEach(btn => {
+			btn.onclick = () => setTab(btn.getAttribute('data-tab'));
+		});
+	}, 0);
+}
+// ... existing code ...    
+
+else if (village.id === 'beer') {
+    villageInfo.innerHTML = `
+        <div class="village-header">
+            <h3>${village.name}</h3>
+            <span class="village-district">${this.currentDistrict ? this.currentDistrict.name : ''} District</span>
+        </div>
+        <div class="beer-main-tabs" style="display:flex;gap:12px;margin-bottom:18px;">
+            <button class="beer-main-tab active" data-main-tab="well">Ancient Well (Beer Panchayat)</button>
+            <button class="beer-main-tab" data-main-tab="bawdi">Beer Stepwell (Bawdi)</button>
+            <button class="beer-main-tab" data-main-tab="phool">Phool Sagar (Reservoir)</button>
+        </div>
+        <div class="beer-section-content"></div>
+        <div class="village-actions">
+            <a href="${village.report}" class="view-report-btn">View Full Report</a>
+            <button class="close-popup-btn" onclick="this.closest('.village-info').remove(); document.querySelector('.district-info').style.display='block';">Close</button>
+        </div>
+    `;
+    setTimeout(() => {
+        // Images for Beer
+        const wellImages = [
+            {src: 'images/Beer/1.jpg', caption: 'Ancient circular well – heritage structure'},
+            {src: 'images/Beer/2.jpg', caption: 'Well masonry and current condition'},
+            {src: 'images/Beer/3.jpg', caption: 'Overgrown and garbage-filled, needs revival', viewAll: true}
+        ];
+        const bawdiImages = [
+            {src: 'images/Beer/4.jpg', caption: 'Beer Stepwell (Bawdi) – historic access steps'},
+            {src: 'images/Beer/5.jpg', caption: 'Traditional cooling architecture'},
+            {src: 'images/Beer/6.jpg', caption: 'Silted and neglected; restoration needed', viewAll: true}
+        ];
+        const phoolImages = [
+            {src: 'images/Beer/7.jpg', caption: 'Phool Sagar – large reservoir expanse'},
+            {src: 'images/Beer/8.jpg', caption: 'Stone embankments and catchment area'},
+            {src: 'images/Beer/9.jpg', caption: 'Functional reservoir; water quality concerns', viewAll: true}
+        ];
+
+        // Tab data per main section
+        const wellTabData = {
+            overview: `
+                <b style='color:#2a5d9f;'>Overview</b><br/>
+                <table class='ratangarh-info-table' style='width:100%;margin:18px 0 18px 0;border-collapse:collapse;'>
+                    <tr><th>Location</th><td>Ancient Well (Beer Panchayat), Beer Village</td></tr>
+                    <tr><th>District</th><td>Ajmer</td></tr>
+                    <tr><th>Latitude</th><td>26.390705</td></tr>
+                    <tr><th>Longitude</th><td>74.729613</td></tr>
+                </table>
+                This well, estimated to be 200–500 years old, is the oldest water structure in Beer Panchayat. Once the sole source of drinking water and domestic use, it now stands dry due to falling groundwater levels and neglect.<br/><br/>
+            `,
+            history: `
+                <b style='color:#2a5d9f;'>📜 History</b><br/>
+                200–500 years old; generations relied on it before pipelines and modern schemes. Oral histories highlight its central role in Beer’s past water security.<br/>
+            `,
+            uses: `
+                <b style='color:#2a5d9f;'>💧 Current Uses</b><ul><li>None; dried and abandoned.</li></ul>
+            `,
+            religion: `
+                <b style='color:#2a5d9f;'>🕉 Religious Significance</b><br/>Considered a heritage well; historically used in rituals.<br/>
+            `,
+            tourism: `
+                <b style='color:#2a5d9f;'>🧭 Tourism Potential</b><ul><li>Low unless revived as a heritage/educational site.</li></ul>
+            `,
+            science: `
+                <b style='color:#2a5d9f;'>🔬 Scientific Novelty</b><ul><li>Traditional masonry circular well tapping shallow aquifer.</li></ul>
+            `,
+            condition: `
+                <b style='color:#2a5d9f;'>📊 Current Condition</b><ul><li>Dry, cracked walls; garbage-filled; overgrown vegetation.</li></ul>
+                <br/><b>Solution:</b> Desilting, heritage conservation, safety railing, community cleanup, explore recharge-well revival.
+            `
+        };
+        const bawdiTabData = {
+            overview: `
+                <b style='color:#2a5d9f;'>Overview</b><br/>
+                <table class='ratangarh-info-table' style='width:100%;margin:18px 0 18px 0;border-collapse:collapse;'>
+                    <tr><th>Location</th><td>Beer Stepwell (Bawdi), Beer Village</td></tr>
+                    <tr><th>District</th><td>Ajmer</td></tr>
+                    <tr><th>Latitude</th><td>26.390705</td></tr>
+                    <tr><th>Longitude</th><td>74.729613</td></tr>
+                </table>
+                A 400-year-old stepwell that once served as the community’s lifeline for drinking, irrigation, and livestock—now neglected and silted.<br/><br/>
+            `,
+            history: `
+                <b style='color:#2a5d9f;'>📜 History</b><br/>
+                400 years old; architectural design ensured cool storage and access in summers. Symbol of Beer’s community-based conservation.
+            `,
+            uses: `
+                <b style='color:#2a5d9f;'>💧 Current Uses</b><ul><li>Abandoned; not in use.</li></ul>
+            `,
+            religion: `
+                <b style='color:#2a5d9f;'>🕉 Religious Significance</b><br/>Culturally linked to village identity.
+            `,
+            tourism: `
+                <b style='color:#2a5d9f;'>🧭 Tourism Potential</b><ul><li>High if restored (heritage tourism, stepwell circuit).</li></ul>
+            `,
+            science: `
+                <b style='color:#2a5d9f;'>🔬 Scientific Novelty</b><ul><li>Stepwell design minimized evaporation and allowed year-round access.</li></ul>
+            `,
+            condition: `
+                <b style='color:#2a5d9f;'>📊 Current Condition</b><ul><li>Garbage-filled; silted; overgrown.</li></ul>
+                <br/><b>Solution:</b> Cleaning, desilting, heritage tourism project, awareness drives, integrate modern rainwater harvesting.
+            `
+        };
+        const phoolTabData = {
+            overview: `
+                <b style='color:#2a5d9f;'>Overview</b><br/>
+                <table class='ratangarh-info-table' style='width:100%;margin:18px 0 18px 0;border-collapse:collapse;'>
+                    <tr><th>Location</th><td>Phool Sagar (Reservoir), near Beer Panchayat</td></tr>
+                    <tr><th>District</th><td>Ajmer</td></tr>
+                    <tr><th>Latitude</th><td>26.390705</td></tr>
+                    <tr><th>Longitude</th><td>74.729613</td></tr>
+                </table>
+                A 500+ year-old reservoir likely built by local royals; still functional for storage and recharge, but faces water quality challenges.<br/><br/>
+            `,
+            history: `
+                <b style='color:#2a5d9f;'>📜 History</b><br/>
+                500+ years old; large-scale rainwater reservoir with stone embankments supporting irrigation and domestic needs historically.
+            `,
+            uses: `
+                <b style='color:#2a5d9f;'>💧 Current Uses</b><ul><li>Irrigation, livestock, groundwater recharge.</li></ul>
+            `,
+            religion: `
+                <b style='color:#2a5d9f;'>🕉 Religious Significance</b><br/>Likely linked to local rituals/fairs.
+            `,
+            tourism: `
+                <b style='color:#2a5d9f;'>🧭 Tourism Potential</b><ul><li>Scenic; can be developed as an eco-tourism site.</li></ul>
+            `,
+            science: `
+                <b style='color:#2a5d9f;'>🔬 Scientific Novelty</b><ul><li>Large catchment; stone embankments; contributes to recharge.</li></ul>
+            `,
+            condition: `
+                <b style='color:#2a5d9f;'>📊 Current Condition</b>
+                <ul>
+                    <li>Functional; adequate storage post-monsoon.</li>
+                    <li>Poor water quality (salinity, nitrate, fluoride) limits drinking use.</li>
+                </ul>
+                <br/><b>Solution:</b> Water treatment units, controlled cattle washing, buffer plantation, community awareness.
+            `
+        };
+
+        function renderBeerTab(mainTab) {
+            const contentDiv = villageInfo.querySelector('.beer-section-content');
+            const imgs = mainTab === 'well' ? wellImages : (mainTab === 'bawdi' ? bawdiImages : phoolImages);
+            const tabData = mainTab === 'well' ? wellTabData : (mainTab === 'bawdi' ? bawdiTabData : phoolTabData);
+            contentDiv.innerHTML = `
+                <div class="ratangarh-image-row-wrapper" style="position:relative;width:100%;height:340px;">
+                    <button class="ratangarh-arrow ratangarh-arrow-left" style="position:absolute;left:8px;top:50%;transform:translateY(-50%);z-index:2;display:none;background:rgba(42,93,159,0.7);border:none;border-radius:50%;width:38px;height:38px;color:#fff;font-size:1.5em;cursor:pointer;align-items:center;justify-content:center;outline:none;transition:background 0.2s;">&#8592;</button>
+                    <div class="ratangarh-image-row" style="height:100%;"></div>
+                    <button class="ratangarh-arrow ratangarh-arrow-right" style="position:absolute;right:8px;top:50%;transform:translateY(-50%);z-index:2;display:none;background:rgba(42,93,159,0.7);border:none;border-radius:50%;width:38px;height:38px;color:#fff;font-size:1.5em;cursor:pointer;align-items:center;justify-content:center;outline:none;transition:background 0.2s;">&#8594;</button>
+                </div>
+                <div class="ratangarh-tabs">
+                    <button class="ratangarh-tab active" data-tab="overview">Overview</button>
+                    <button class="ratangarh-tab" data-tab="history">📜 History</button>
+                    <button class="ratangarh-tab" data-tab="uses">💧 Current Uses</button>
+                    <button class="ratangarh-tab" data-tab="religion">🕉 Religious Significance</button>
+                    <button class="ratangarh-tab" data-tab="tourism">🧭 Tourism Potential</button>
+                    <button class="ratangarh-tab" data-tab="science">🔬 Scientific Novelty</button>
+                    <button class="ratangarh-tab" data-tab="condition">📊 Current Condition</button>
+                </div>
+                <div class="ratangarh-tab-content" id="ratangarh-tab-content"></div>
+            `;
+            // Insert images
+            const imageRow = contentDiv.querySelector('.ratangarh-image-row');
+            imgs.forEach((img, i) => {
+                const box = document.createElement('div');
+                box.className = 'ratangarh-img-box';
+                box.innerHTML = `<img src='${img.src}' alt='Beer Image ${i+1}'><div class='ratangarh-img-caption'>${img.caption}</div>`;
+                if (img.viewAll) {
+                    const btn = document.createElement('a');
+                    btn.href = 'beer.html';
+                    btn.className = 'view-all-photos-btn';
+                    btn.textContent = 'View All Photos';
+                    box.appendChild(btn);
+                }
+                imageRow.appendChild(box);
+            });
+            // Arrow logic
+            let currentIndex = 0;
+            const leftArrow = contentDiv.querySelector('.ratangarh-arrow-left');
+            const rightArrow = contentDiv.querySelector('.ratangarh-arrow-right');
+            function updateArrows() {
+                leftArrow.style.display = currentIndex > 0 ? 'flex' : 'none';
+                rightArrow.style.display = currentIndex < imgs.length-1 ? 'flex' : 'none';
+            }
+            function scrollToIndex(idx) {
+                const box = imageRow.children[idx];
+                if (box) box.scrollIntoView({behavior:'smooth',inline:'start'});
+                currentIndex = idx;
+                updateArrows();
+            }
+            leftArrow.onclick = () => scrollToIndex(currentIndex-1);
+            rightArrow.onclick = () => scrollToIndex(currentIndex+1);
+            imageRow.addEventListener('scroll', () => {
+                let minDist = Infinity, idx = 0;
+                for (let i=0; i<imageRow.children.length; ++i) {
+                    const rect = imageRow.children[i].getBoundingClientRect();
+                    const dist = Math.abs(rect.left - imageRow.getBoundingClientRect().left);
+                    if (dist < minDist) { minDist = dist; idx = i; }
+                }
+                currentIndex = idx;
+                updateArrows();
+            });
+            // Initial state
+            scrollToIndex(0);
+            // Sub-tabs logic
+            const tabContent = contentDiv.querySelector('#ratangarh-tab-content');
+            function setTab(tab) {
+                tabContent.innerHTML = tabData[tab];
+                contentDiv.querySelectorAll('.ratangarh-tab').forEach(btn => btn.classList.remove('active'));
+                contentDiv.querySelector(`.ratangarh-tab[data-tab="${tab}"]`).classList.add('active');
+            }
+            setTab('overview');
+            contentDiv.querySelectorAll('.ratangarh-tab').forEach(btn => {
+                btn.onclick = () => setTab(btn.getAttribute('data-tab'));
+            });
+        }
+
+        // Main tab logic
+        let currentMainTab = 'well';
+        renderBeerTab(currentMainTab);
+        villageInfo.querySelectorAll('.beer-main-tab').forEach(btn => {
+            btn.onclick = () => {
+                villageInfo.querySelectorAll('.beer-main-tab').forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                currentMainTab = btn.getAttribute('data-main-tab');
+                renderBeerTab(currentMainTab);
+            };
+        });
+    }, 0);
+}
+// ... existing code ...    
+
+else if (village.id === 'banseli') {
+    villageInfo.innerHTML = `
+        <div class="village-header">
+            <h3>${village.name}</h3>
+            <span class="village-district">${this.currentDistrict ? this.currentDistrict.name : ''} District</span>
+        </div>
+        <div class="ratangarh-image-row-wrapper" style="position:relative;width:100%;height:340px;">
+            <button class="ratangarh-arrow ratangarh-arrow-left" style="position:absolute;left:8px;top:50%;transform:translateY(-50%);z-index:2;display:none;background:rgba(42,93,159,0.7);border:none;border-radius:50%;width:38px;height:38px;color:#fff;font-size:1.5em;cursor:pointer;align-items:center;justify-content:center;outline:none;transition:background 0.2s;">&#8592;</button>
+            <div class="ratangarh-image-row" style="height:100%;"></div>
+            <button class="ratangarh-arrow ratangarh-arrow-right" style="position:absolute;right:8px;top:50%;transform:translateY(-50%);z-index:2;display:none;background:rgba(42,93,159,0.7);border:none;border-radius:50%;width:38px;height:38px;color:#fff;font-size:1.5em;cursor:pointer;align-items:center;justify-content:center;outline:none;transition:background 0.2s;">&#8594;</button>
+        </div>
+        <div class="ratangarh-tabs">
+            <button class="ratangarh-tab active" data-tab="overview">Overview</button>
+            <button class="ratangarh-tab" data-tab="history">📜 History of Waterbody</button>
+            <button class="ratangarh-tab" data-tab="uses">💧 Current Uses</button>
+            <button class="ratangarh-tab" data-tab="religion">🕉 Religious Significance</button>
+            <button class="ratangarh-tab" data-tab="tourism">🧭 Tourism Potential</button>
+            <button class="ratangarh-tab" data-tab="science">🔬 Scientific Novelty</button>
+            <button class="ratangarh-tab" data-tab="condition">📊 Current Condition</button>
+        </div>
+        <div class="ratangarh-tab-content" id="ratangarh-tab-content"></div>
+        <div class="village-actions">
+            <a href="${village.report}" class="view-report-btn">View Full Report</a>
+            <button class="close-popup-btn" onclick="this.closest('.village-info').remove(); document.querySelector('.district-info').style.display='block';">Close</button>
+        </div>
+    `;
+    setTimeout(() => { // Wait for DOM
+        // Insert images into the image row
+        const images = [
+            {src: 'images/Banseli/1.jpg', caption: 'Banseli Talab – large rectangular pond'},
+            {src: 'images/Banseli/2.jpg', caption: 'Ancient Bawdi near settlement'},
+            {src: 'images/Banseli/3.jpg', caption: 'Seasonal storage; heritage in decline', viewAll: true}
+        ];
+        const imageRow = villageInfo.querySelector('.ratangarh-image-row');
+        images.forEach((img, i) => {
+            const box = document.createElement('div');
+            box.className = 'ratangarh-img-box';
+            box.innerHTML = `<img src='${img.src}' alt='Banseli Image ${i+1}'><div class='ratangarh-img-caption'>${img.caption}</div>`;
+            if (img.viewAll) {
+                const btn = document.createElement('a');
+                btn.href = 'banseli.html';
+                btn.className = 'view-all-photos-btn';
+                btn.textContent = 'View All Photos';
+                box.appendChild(btn);
+            }
+            imageRow.appendChild(box);
+        });
+        // Arrow logic
+        let currentIndex = 0;
+        const leftArrow = villageInfo.querySelector('.ratangarh-arrow-left');
+        const rightArrow = villageInfo.querySelector('.ratangarh-arrow-right');
+        function updateArrows() {
+            leftArrow.style.display = currentIndex > 0 ? 'flex' : 'none';
+            rightArrow.style.display = currentIndex < images.length-1 ? 'flex' : 'none';
+        }
+        function scrollToIndex(idx) {
+            const box = imageRow.children[idx];
+            if (box) box.scrollIntoView({behavior:'smooth',inline:'start'});
+            currentIndex = idx;
+            updateArrows();
+        }
+        leftArrow.onclick = () => scrollToIndex(currentIndex-1);
+        rightArrow.onclick = () => scrollToIndex(currentIndex+1);
+        imageRow.addEventListener('scroll', () => {
+            let minDist = Infinity, idx = 0;
+            for (let i=0; i<imageRow.children.length; ++i) {
+                const rect = imageRow.children[i].getBoundingClientRect();
+                const dist = Math.abs(rect.left - imageRow.getBoundingClientRect().left);
+                if (dist < minDist) { minDist = dist; idx = i; }
+            }
+            currentIndex = idx;
+            updateArrows();
+        });
+        // Initial state
+        scrollToIndex(0);
+        // Tabs logic
+        const tabContent = villageInfo.querySelector('#ratangarh-tab-content');
+        const tabData = {
+            overview: `
+                <b style='color:#2a5d9f;'>Overview</b><br/>
+                <table class='ratangarh-info-table' style='width:100%;margin:18px 0 18px 0;border-collapse:collapse;'>
+                    <tr><th>Location</th><td>Banseli Village, Ajmer District</td></tr>
+                    <tr><th>Latitude</th><td>26.517267</td></tr>
+                    <tr><th>Longitude</th><td>74.552184</td></tr>
+                </table>
+                Banseli village contains two major traditional water structures: a large rectangular talab and an ancient bawdi near the settlement. Historically, these provided irrigation, cattle water, and domestic supply. Today, the talab holds seasonal water but is polluted with plastic and silt; the bawdi is partially collapsed. These represent not just functional water bodies, but also symbols of community cooperation and traditional engineering.<br/><br/>
+            `,
+            history: `
+                <b style='color:#2a5d9f;'>📜 History of the Waterbody</b><br/>
+                <ul>
+                    <li>Talab is nearly 500 years old.</li>
+                    <li>Bawdi dates to the Rajput–Mughal period.</li>
+                </ul>
+            `,
+            uses: `
+                <b style='color:#2a5d9f;'>💧 Current Uses</b>
+                <ul>
+                    <li>Talab — cattle use, occasional irrigation.</li>
+                    <li>Bawdi — abandoned.</li>
+                </ul>
+            `,
+            religion: `
+                <b style='color:#2a5d9f;'>🕉 Religious Significance</b><br/>
+                Local fairs and rituals historically linked to the talab.
+            `,
+            tourism: `
+                <b style='color:#2a5d9f;'>🧭 Tourism Potential</b>
+                <ul>
+                    <li>Good — if restored, can attract heritage enthusiasts.</li>
+                </ul>
+            `,
+            science: `
+                <b style='color:#2a5d9f;'>🔬 Scientific Novelty</b>
+                <ul>
+                    <li>Talab supports groundwater recharge.</li>
+                    <li>Stepwell ensures perennial access historically by reducing evaporation.</li>
+                </ul>
+            `,
+            condition: `
+                <b style='color:#2a5d9f;'>📊 Current Condition</b>
+                <ul>
+                    <li>Talab polluted (plastic, silt); seasonal water.</li>
+                    <li>Bawdi partially collapsed/neglected.</li>
+                </ul>
+                <br/><b>Solution:</b> Revival through MGNREGA, eco-restoration, fencing, and linking to tourism/heritage walks.
+            `
+        };
+        function setTab(tab) {
+            tabContent.innerHTML = tabData[tab];
+            villageInfo.querySelectorAll('.ratangarh-tab').forEach(btn => btn.classList.remove('active'));
+            villageInfo.querySelector(`.ratangarh-tab[data-tab="${tab}"]`).classList.add('active');
+        }
+        setTab('overview');
+        villageInfo.querySelectorAll('.ratangarh-tab').forEach(btn => {
+            btn.onclick = () => setTab(btn.getAttribute('data-tab'));
+        });
+    }, 0);
+}
+// ... existing code ...    
+
+else if (village.id === 'bhinmal') {
+    villageInfo.innerHTML = `
+        <div class="village-header">
+            <h3>${village.name}</h3>
+            <span class="village-district">${this.currentDistrict ? this.currentDistrict.name : ''} District</span>
+        </div>
+        <div class="bhinmal-main-tabs" style="display:flex;gap:12px;margin-bottom:18px;">
+            <button class="bhinmal-main-tab active" data-main-tab="brahm">Brahmkund</button>
+            <button class="bhinmal-main-tab" data-main-tab="obalwa">Obalwa Bera</button>
+            <button class="bhinmal-main-tab" data-main-tab="talbi">Talbi Talab</button>
+            <button class="bhinmal-main-tab" data-main-tab="wasari">Wasari Mata Mandir & Sukri River</button>
+        </div>
+        <div class="bhinmal-section-content"></div>
+        <div class="village-actions">
+            <a href="${village.report}" class="view-report-btn">View Full Report</a>
+            <button class="close-popup-btn" onclick="this.closest('.village-info').remove(); document.querySelector('.district-info').style.display='block';">Close</button>
+        </div>
+    `;
+    setTimeout(() => {
+        // Images for sections (using available folder images)
+        const brahmImages = [
+            {src: 'images/Bhinmal/1.jpg', caption: 'Brahmkund – ancient stepwell beside Chandeshwar Mahadev'},
+            {src: 'images/Bhinmal/2.jpg', caption: 'Medieval stepwell geometry and depth'},
+            {src: 'images/Bhinmal/3.jpg', caption: 'Siltation and urban pressure visible', viewAll: true}
+        ];
+        const obalwaImages = [
+            {src: 'images/Bhinmal/2.jpg', caption: 'Obalwa Bera – historic reservoir'},
+            {src: 'images/Bhinmal/3.jpg', caption: 'Encroachment and siltation issues'},
+            {src: 'images/Bhinmal/4.jpg', caption: 'Potential for eco-heritage revival', viewAll: true}
+        ];
+        const talbiImages = [
+            {src: 'images/Bhinmal/3.jpg', caption: 'Talbi Talab (Triyambh Mansarovar) – sacred waterbody'},
+            {src: 'images/Bhinmal/1.jpg', caption: 'Temple adjacency and catchment layout'},
+            {src: 'images/Bhinmal/4.jpg', caption: 'Neglect and drying concerns', viewAll: true}
+        ];
+        const wasariImages = [
+            {src: 'images/Bhinmal/4.jpg', caption: 'Wasari Mata Mandir – spiritual hub'},
+            {src: 'images/Bhinmal/3.jpg', caption: 'Sukri River (seasonal) near temple precinct'},
+            {src: 'images/Bhinmal/2.jpg', caption: 'Temple–river ecology context', viewAll: true}
+        ];
+
+        // Tab contents for each main section
+        const brahmTabData = {
+            overview: `
+                <b style='color:#2a5d9f;'>Overview</b><br/>
+                <table class='ratangarh-info-table' style='width:100%;margin:18px 0 18px 0;border-collapse:collapse;'>
+                    <tr><th>Location</th><td>Brahmkund (Arikup/Chandeshwar Kund), Bhinmal</td></tr>
+                    <tr><th>Latitude</th><td>25.002867</td></tr>
+                    <tr><th>Longitude</th><td>72.267944</td></tr>
+                </table>
+                Brahmkund is an ancient stepwell believed to be over 1000 years old, near Chandeshwar Mahadev temple. Built with local sandstone, its deep, symmetric steps ensured access even during droughts.<br/><br/>
+            `,
+            history: `
+                <b style='color:#2a5d9f;'>📜 History of the Waterbody</b><br/>
+                Constructed during the medieval Rajput period, the stepwell reflects Rajasthan’s traditional water architecture and community water wisdom.
+            `,
+            uses: `
+                <b style='color:#2a5d9f;'>💧 Current Uses</b><ul><li>Rarely used; mostly ritual/occasional baths.</li><li>Storage reduced due to siltation and urban pressure.</li></ul>
+            `,
+            religion: `
+                <b style='color:#2a5d9f;'>🕉 Religious Significance</b><br/>
+                Beside Chandeshwar Mahadev; considered purifying to bathe before prayers; rituals especially around Shivratri.
+            `,
+            tourism: `
+                <b style='color:#2a5d9f;'>🧭 Tourism Potential</b><ul><li>High for heritage+religious tourism with restoration.</li><li>Depth (~21 m) and temple proximity suit cultural trails.</li></ul>
+            `,
+            science: `
+                <b style='color:#2a5d9f;'>🔬 Scientific Novelty</b><ul><li>Medieval stepwell engineering; groundwater recharge; drought-resilient access.</li></ul>
+            `,
+            condition: `
+                <b style='color:#2a5d9f;'>📊 Current Condition</b><ul><li>Siltation, encroachments, drying; reduced prominence.</li></ul>
+            `
+        };
+
+        const obalwaTabData = {
+            overview: `
+                <b style='color:#2a5d9f;'>Overview</b><br/>
+                <table class='ratangarh-info-table' style='width:100%;margin:18px 0 18px 0;border-collapse:collapse;'>
+                    <tr><th>Location</th><td>Obalwa Bera, Bhinmal</td></tr>
+                    <tr><th>Latitude</th><td>25.002867</td></tr>
+                    <tr><th>Longitude</th><td>72.267944</td></tr>
+                </table>
+                A centuries-old reservoir (likely >1000 years) built for sustainable storage in an arid zone; once central to agriculture and drinking water.
+            `,
+            history: `<b style='color:#2a5d9f;'>📜 History of the Waterbody</b><br/>Constructed by local rulers; multi-use bera typical to desert hydrology.`,
+            uses: `<b style='color:#2a5d9f;'>💧 Current Uses</b><ul><li>Limited; occasional livestock support.</li></ul>`,
+            religion: `<b style='color:#2a5d9f;'>🕉 Religious Significance</b><br/>Linked with community gatherings and local traditions.`,
+            tourism: `<b style='color:#2a5d9f;'>🧭 Tourism Potential</b><ul><li>Good if revived—eco/heritage trail inclusion.</li></ul>`,
+            science: `<b style='color:#2a5d9f;'>🔬 Scientific Novelty</b><ul><li>Stone reservoir; runoff capture; groundwater recharge.</li></ul>`,
+            condition: `<b style='color:#2a5d9f;'>📊 Current Condition</b><ul><li>Highly silted, partially polluted, encroached; capacity reduced.</li></ul>`
+        };
+
+        const talbiTabData = {
+            overview: `
+                <b style='color:#2a5d9f;'>Overview</b><br/>
+                <table class='ratangarh-info-table' style='width:100%;margin:18px 0 18px 0;border-collapse:collapse;'>
+                    <tr><th>Location</th><td>Talbi Talab (Triyambh Mansarovar), Bhinmal</td></tr>
+                    <tr><th>Latitude</th><td>25.002867</td></tr>
+                    <tr><th>Longitude</th><td>72.267944</td></tr>
+                </table>
+                A 300–400 year-old sacred talab near Triyambh Mahadev temple; modeled after Mansarovar Lake; used during religious festivals.
+            `,
+            history: `<b style='color:#2a5d9f;'>📜 History of the Waterbody</b><br/>Temple-linked sacred waterbody with historic hydrological design.`,
+            uses: `<b style='color:#2a5d9f;'>💧 Current Uses</b><ul><li>Festival use; some livestock watering.</li></ul>`,
+            religion: `<b style='color:#2a5d9f;'>🕉 Religious Significance</b><br/>Purificatory bathing before temple prayers; fairs/events.`,
+            tourism: `<b style='color:#2a5d9f;'>🧭 Tourism Potential</b><ul><li>High—pilgrimage tourism if restored.</li></ul>`,
+            science: `<b style='color:#2a5d9f;'>🔬 Scientific Novelty</b><ul><li>Large catchment-based rainwater storage; prolonged retention.</li></ul>`,
+            condition: `<b style='color:#2a5d9f;'>📊 Current Condition</b><ul><li>Neglected, polluted, drying; siltation and urban damage.</li></ul>`
+        };
+
+        const wasariTabData = {
+            overview: `
+                <b style='color:#2a5d9f;'>Overview</b><br/>
+                <table class='ratangarh-info-table' style='width:100%;margin:18px 0 18px 0;border-collapse:collapse;'>
+                    <tr><th>Location</th><td>Wasari Mata Mandir & Sukri River, Bhinmal</td></tr>
+                    <tr><th>Latitude</th><td>25.002867</td></tr>
+                    <tr><th>Longitude</th><td>72.267944</td></tr>
+                </table>
+                A ~1300-year-old temple by the seasonal Sukri River (Luni tributary); a historic temple–river ecology that sustained settlements and rituals.
+            `,
+            history: `<b style='color:#2a5d9f;'>📜 History of the Waterbody</b><br/>Temple–river relationship supported rituals, agriculture, and settlement patterns.`,
+            uses: `<b style='color:#2a5d9f;'>💧 Current Uses</b><ul><li>Temple active with peak Navratri footfall; river mostly dry.</li></ul>`,
+            religion: `<b style='color:#2a5d9f;'>🕉 Religious Significance</b><br/>Among the most sacred sites; pilgrims bathed in Sukri before entering shrine.`,
+            tourism: `<b style='color:#2a5d9f;'>🧭 Tourism Potential</b><ul><li>Immense—eco-spiritual hub if river rejuvenated.</li></ul>`,
+            science: `<b style='color:#2a5d9f;'>🔬 Scientific Novelty</b><ul><li>Temple–river ecology; sacred geography integrated with water management.</li></ul>`,
+            condition: `<b style='color:#2a5d9f;'>📊 Current Condition</b><ul><li>Temple well maintained; river shrinking due to rainfall decline and degradation.</li></ul>`
+        };
+
+        function renderBhinmalTab(mainTab) {
+            const contentDiv = villageInfo.querySelector('.bhinmal-section-content');
+            const imgs = mainTab === 'brahm' ? brahmImages : mainTab === 'obalwa' ? obalwaImages : mainTab === 'talbi' ? talbiImages : wasariImages;
+            const tabData = mainTab === 'brahm' ? brahmTabData : mainTab === 'obalwa' ? obalwaTabData : mainTab === 'talbi' ? talbiTabData : wasariTabData;
+            contentDiv.innerHTML = `
+                <div class="ratangarh-image-row-wrapper" style="position:relative;width:100%;height:340px;">
+                    <button class="ratangarh-arrow ratangarh-arrow-left" style="position:absolute;left:8px;top:50%;transform:translateY(-50%);z-index:2;display:none;background:rgba(42,93,159,0.7);border:none;border-radius:50%;width:38px;height:38px;color:#fff;font-size:1.5em;cursor:pointer;align-items:center;justify-content:center;outline:none;transition:background 0.2s;">&#8592;</button>
+                    <div class="ratangarh-image-row" style="height:100%;"></div>
+                    <button class="ratangarh-arrow ratangarh-arrow-right" style="position:absolute;right:8px;top:50%;transform:translateY(-50%);z-index:2;display:none;background:rgba(42,93,159,0.7);border:none;border-radius:50%;width:38px;height:38px;color:#fff;font-size:1.5em;cursor:pointer;align-items:center;justify-content:center;outline:none;transition:background 0.2s;">&#8594;</button>
+                </div>
+                <div class="ratangarh-tabs">
+                    <button class="ratangarh-tab active" data-tab="overview">Overview</button>
+                    <button class="ratangarh-tab" data-tab="history">📜 History</button>
+                    <button class="ratangarh-tab" data-tab="uses">💧 Current Uses</button>
+                    <button class="ratangarh-tab" data-tab="religion">🕉 Religious Significance</button>
+                    <button class="ratangarh-tab" data-tab="tourism">🧭 Tourism Potential</button>
+                    <button class="ratangarh-tab" data-tab="science">🔬 Scientific Novelty</button>
+                    <button class="ratangarh-tab" data-tab="condition">📊 Current Condition</button>
+                </div>
+                <div class="ratangarh-tab-content" id="ratangarh-tab-content"></div>
+            `;
+            // Insert images
+            const imageRow = contentDiv.querySelector('.ratangarh-image-row');
+            imgs.forEach((img, i) => {
+                const box = document.createElement('div');
+                box.className = 'ratangarh-img-box';
+                box.innerHTML = `<img src='${img.src}' alt='Bhinmal Image ${i+1}'><div class='ratangarh-img-caption'>${img.caption}</div>`;
+                if (img.viewAll) {
+                    const btn = document.createElement('a');
+                    btn.href = 'bhinmal.html';
+                    btn.className = 'view-all-photos-btn';
+                    btn.textContent = 'View All Photos';
+                    box.appendChild(btn);
+                }
+                imageRow.appendChild(box);
+            });
+            // Arrow logic
+            let currentIndex = 0;
+            const leftArrow = contentDiv.querySelector('.ratangarh-arrow-left');
+            const rightArrow = contentDiv.querySelector('.ratangarh-arrow-right');
+            function updateArrows() {
+                leftArrow.style.display = currentIndex > 0 ? 'flex' : 'none';
+                rightArrow.style.display = currentIndex < imgs.length-1 ? 'flex' : 'none';
+            }
+            function scrollToIndex(idx) {
+                const box = imageRow.children[idx];
+                if (box) box.scrollIntoView({behavior:'smooth',inline:'start'});
+                currentIndex = idx;
+                updateArrows();
+            }
+            leftArrow.onclick = () => scrollToIndex(currentIndex-1);
+            rightArrow.onclick = () => scrollToIndex(currentIndex+1);
+            imageRow.addEventListener('scroll', () => {
+                let minDist = Infinity, idx = 0;
+                for (let i=0; i<imageRow.children.length; ++i) {
+                    const rect = imageRow.children[i].getBoundingClientRect();
+                    const dist = Math.abs(rect.left - imageRow.getBoundingClientRect().left);
+                    if (dist < minDist) { minDist = dist; idx = i; }
+                }
+                currentIndex = idx;
+                updateArrows();
+            });
+            // Initial state
+            scrollToIndex(0);
+            // Sub-tabs logic
+            const tabContent = contentDiv.querySelector('#ratangarh-tab-content');
+            function setTab(tab) {
+                tabContent.innerHTML = tabData[tab];
+                contentDiv.querySelectorAll('.ratangarh-tab').forEach(btn => btn.classList.remove('active'));
+                contentDiv.querySelector(`.ratangarh-tab[data-tab="${tab}"]`).classList.add('active');
+            }
+            setTab('overview');
+            contentDiv.querySelectorAll('.ratangarh-tab').forEach(btn => {
+                btn.onclick = () => setTab(btn.getAttribute('data-tab'));
+            });
+        }
+
+        // Main tab logic
+        let currentMainTab = 'brahm';
+        renderBhinmalTab(currentMainTab);
+        villageInfo.querySelectorAll('.bhinmal-main-tab').forEach(btn => {
+            btn.onclick = () => {
+                villageInfo.querySelectorAll('.bhinmal-main-tab').forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                currentMainTab = btn.getAttribute('data-main-tab');
+                renderBhinmalTab(currentMainTab);
+            };
+        });
+    }, 0);
+}
+// ... existing code ...    
+
+else if (village.id === 'delwara') {
+    villageInfo.innerHTML = `
+        <div class="village-header">
+            <h3>${village.name}</h3>
+            <span class="village-district">${this.currentDistrict ? this.currentDistrict.name : ''} District</span>
+        </div>
+        <div class="delwara-main-tabs" style="display:flex;gap:12px;margin-bottom:18px;">
+            <button class="delwara-main-tab active" data-main-tab="palera">Palera Talab</button>
+            <button class="delwara-main-tab" data-main-tab="indra">Indra Kund</button>
+        </div>
+        <div class="delwara-section-content"></div>
+        <div class="village-actions">
+            <a href="${village.report}" class="view-report-btn">View Full Report</a>
+            <button class="close-popup-btn" onclick="this.closest('.village-info').remove(); document.querySelector('.district-info').style.display='block';">Close</button>
+        </div>
+    `;
+    setTimeout(() => {
+        // Images for Delwara
+        const paleraImages = [
+            {src: 'images/Delwara/1.jpg', caption: 'Palera Talab – heritage reservoir (1875 CE)'},
+            {src: 'images/Delwara/2.jpg', caption: 'Chhatris, steps and embankment architecture'},
+            {src: 'images/Delwara/3.jpg', caption: 'Tourism circuit potential near Devigarh', viewAll: true}
+        ];
+        const indraImages = [
+            {src: 'images/Delwara/2.jpg', caption: 'Indra Kund – Rajput-era stepwell (1856 CE)'},
+            {src: 'images/Delwara/1.jpg', caption: 'Restored stepwell showcasing carvings'},
+            {src: 'images/Delwara/3.jpg', caption: 'Community space and cultural site', viewAll: true}
+        ];
+
+        // Tab data for Palera Talab
+        const paleraTabData = {
+            overview: `
+                <b style='color:#2a5d9f;'>Overview</b><br/>
+                <table class='ratangarh-info-table' style='width:100%;margin:18px 0 18px 0;border-collapse:collapse;'>
+                    <tr><th>Location</th><td>Palera Talab, Delwara</td></tr>
+                    <tr><th>District</th><td>Jalore</td></tr>
+                    <tr><th>Latitude</th><td>24.774509</td></tr>
+                    <tr><th>Longitude</th><td>73.747508</td></tr>
+                </table>
+                Built in 1875 CE by Queen Sajjan Kumari in memory of Prince Jhala Mansinghji, Palera Talab was Delwara’s principal water source and remains a remarkable heritage reservoir.<br/><br/>
+            `,
+            history: `<b style='color:#2a5d9f;'>📜 History of the Waterbody</b><br/>Constructed in 1875 CE by Queen Sajjan Kumari; key source for Delwara village in the late 19th century.`,
+            uses: `<b style='color:#2a5d9f;'>💧 Current Uses</b><ul><li>Now a heritage landmark; occasional community gatherings.</li></ul>`,
+            religion: `<b style='color:#2a5d9f;'>🕉 Religious Significance</b><br/>Surrounded by temples (Vaikunth Nathji, Indra Kund, Jain temples); integrated with local rituals.`,
+            tourism: `<b style='color:#2a5d9f;'>🧭 Tourism Potential</b><ul><li>Very high—near RAAS Devigarh Palace and Jain temples; ideal for heritage circuits.</li></ul>`,
+            science: `<b style='color:#2a5d9f;'>🔬 Scientific Novelty</b><ul><li>19th-century water storage design with chhatris, steps, and rainwater management.</li></ul>`,
+            condition: `<b style='color:#2a5d9f;'>📊 Current Condition</b><ul><li>Relatively preserved; needs ongoing maintenance to prevent siltation/encroachment.</li></ul>`
+        };
+
+        // Tab data for Indra Kund
+        const indraTabData = {
+            overview: `
+                <b style='color:#2a5d9f;'>Overview</b><br/>
+                <table class='ratangarh-info-table' style='width:100%;margin:18px 0 18px 0;border-collapse:collapse;'>
+                    <tr><th>Location</th><td>Indra Kund, Delwara</td></tr>
+                    <tr><th>District</th><td>Jalore</td></tr>
+                    <tr><th>Latitude</th><td>24.774509</td></tr>
+                    <tr><th>Longitude</th><td>73.747508</td></tr>
+                </table>
+                Constructed in 1856 CE by Raj Rana Bairisalji, Indra Kund is a Rajput-era stepwell restored in recent years through collaborative efforts; now a vibrant heritage space.<br/><br/>
+            `,
+            history: `<b style='color:#2a5d9f;'>📜 History of the Waterbody</b><br/>Built in 1856 CE; showcases classical stepwell architecture and royal patronage.`,
+            uses: `<b style='color:#2a5d9f;'>💧 Current Uses</b><ul><li>Community space; heritage site; limited ritual water use.</li></ul>`,
+            religion: `<b style='color:#2a5d9f;'>🕉 Religious Significance</b><br/>Close to local temples; retains role in small-scale religious events.`,
+            tourism: `<b style='color:#2a5d9f;'>🧭 Tourism Potential</b><ul><li>Extremely high—carvings, architecture, proximity to Devigarh Palace.</li></ul>`,
+            science: `<b style='color:#2a5d9f;'>🔬 Scientific Novelty</b><ul><li>Historic Persian wheel system; stepwell geometry enabling recharge.</li></ul>`,
+            condition: `<b style='color:#2a5d9f;'>📊 Current Condition</b><ul><li>Well maintained after restoration; model of public–private heritage revival.</li></ul>`
+        };
+
+        function renderDelwaraTab(mainTab) {
+            const contentDiv = villageInfo.querySelector('.delwara-section-content');
+            const imgs = mainTab === 'palera' ? paleraImages : indraImages;
+            const tabData = mainTab === 'palera' ? paleraTabData : indraTabData;
+            contentDiv.innerHTML = `
+                <div class="ratangarh-image-row-wrapper" style="position:relative;width:100%;height:340px;">
+                    <button class="ratangarh-arrow ratangarh-arrow-left" style="position:absolute;left:8px;top:50%;transform:translateY(-50%);z-index:2;display:none;background:rgba(42,93,159,0.7);border:none;border-radius:50%;width:38px;height:38px;color:#fff;font-size:1.5em;cursor:pointer;align-items:center;justify-content:center;outline:none;transition:background 0.2s;">&#8592;</button>
+                    <div class="ratangarh-image-row" style="height:100%;"></div>
+                    <button class="ratangarh-arrow ratangarh-arrow-right" style="position:absolute;right:8px;top:50%;transform:translateY(-50%);z-index:2;display:none;background:rgba(42,93,159,0.7);border:none;border-radius:50%;width:38px;height:38px;color:#fff;font-size:1.5em;cursor:pointer;align-items:center;justify-content:center;outline:none;transition:background 0.2s;">&#8594;</button>
+                </div>
+                <div class="ratangarh-tabs">
+                    <button class="ratangarh-tab active" data-tab="overview">Overview</button>
+                    <button class="ratangarh-tab" data-tab="history">📜 History</button>
+                    <button class="ratangarh-tab" data-tab="uses">💧 Current Uses</button>
+                    <button class="ratangarh-tab" data-tab="religion">🕉 Religious Significance</button>
+                    <button class="ratangarh-tab" data-tab="tourism">🧭 Tourism Potential</button>
+                    <button class="ratangarh-tab" data-tab="science">🔬 Scientific Novelty</button>
+                    <button class="ratangarh-tab" data-tab="condition">📊 Current Condition</button>
+                </div>
+                <div class="ratangarh-tab-content" id="ratangarh-tab-content"></div>
+            `;
+            // Insert images
+            const imageRow = contentDiv.querySelector('.ratangarh-image-row');
+            imgs.forEach((img, i) => {
+                const box = document.createElement('div');
+                box.className = 'ratangarh-img-box';
+                box.innerHTML = `<img src='${img.src}' alt='Delwara Image ${i+1}'><div class='ratangarh-img-caption'>${img.caption}</div>`;
+                if (img.viewAll) {
+                    const btn = document.createElement('a');
+                    btn.href = 'delwara.html';
+                    btn.className = 'view-all-photos-btn';
+                    btn.textContent = 'View All Photos';
+                    box.appendChild(btn);
+                }
+                imageRow.appendChild(box);
+            });
+            // Arrow logic
+            let currentIndex = 0;
+            const leftArrow = contentDiv.querySelector('.ratangarh-arrow-left');
+            const rightArrow = contentDiv.querySelector('.ratangarh-arrow-right');
+            function updateArrows() {
+                leftArrow.style.display = currentIndex > 0 ? 'flex' : 'none';
+                rightArrow.style.display = currentIndex < imgs.length-1 ? 'flex' : 'none';
+            }
+            function scrollToIndex(idx) {
+                const box = imageRow.children[idx];
+                if (box) box.scrollIntoView({behavior:'smooth',inline:'start'});
+                currentIndex = idx;
+                updateArrows();
+            }
+            leftArrow.onclick = () => scrollToIndex(currentIndex-1);
+            rightArrow.onclick = () => scrollToIndex(currentIndex+1);
+            imageRow.addEventListener('scroll', () => {
+                let minDist = Infinity, idx = 0;
+                for (let i=0; i<imageRow.children.length; ++i) {
+                    const rect = imageRow.children[i].getBoundingClientRect();
+                    const dist = Math.abs(rect.left - imageRow.getBoundingClientRect().left);
+                    if (dist < minDist) { minDist = dist; idx = i; }
+                }
+                currentIndex = idx;
+                updateArrows();
+            });
+            // Initial state
+            scrollToIndex(0);
+            // Sub-tabs logic
+            const tabContent = contentDiv.querySelector('#ratangarh-tab-content');
+            function setTab(tab) {
+                tabContent.innerHTML = tabData[tab];
+                contentDiv.querySelectorAll('.ratangarh-tab').forEach(btn => btn.classList.remove('active'));
+                contentDiv.querySelector(`.ratangarh-tab[data-tab="${tab}"]`).classList.add('active');
+            }
+            setTab('overview');
+            contentDiv.querySelectorAll('.ratangarh-tab').forEach(btn => {
+                btn.onclick = () => setTab(btn.getAttribute('data-tab'));
+            });
+        }
+
+        // Main tab logic
+        let currentMainTab = 'palera';
+        renderDelwaraTab(currentMainTab);
+        villageInfo.querySelectorAll('.delwara-main-tab').forEach(btn => {
+            btn.onclick = () => {
+                villageInfo.querySelectorAll('.delwara-main-tab').forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                currentMainTab = btn.getAttribute('data-main-tab');
+                renderDelwaraTab(currentMainTab);
+            };
+        });
+    }, 0);
+}
+// ... existing code ...    
+
+else if (village.id === 'bharoori') {
+    villageInfo.innerHTML = `
+        <div class="village-header">
+            <h3>${village.name}</h3>
+            <span class="village-district">${this.currentDistrict ? this.currentDistrict.name : ''} District</span>
+        </div>
+        <div class="ratangarh-image-row-wrapper" style="position:relative;width:100%;height:340px;">
+            <button class="ratangarh-arrow ratangarh-arrow-left" style="position:absolute;left:8px;top:50%;transform:translateY(-50%);z-index:2;display:none;background:rgba(42,93,159,0.7);border:none;border-radius:50%;width:38px;height:38px;color:#fff;font-size:1.5em;cursor:pointer;align-items:center;justify-content:center;outline:none;transition:background 0.2s;">&#8592;</button>
+            <div class="ratangarh-image-row" style="height:100%;"></div>
+            <button class="ratangarh-arrow ratangarh-arrow-right" style="position:absolute;right:8px;top:50%;transform:translateY(-50%);z-index:2;display:none;background:rgba(42,93,159,0.7);border:none;border-radius:50%;width:38px;height:38px;color:#fff;font-size:1.5em;cursor:pointer;align-items:center;justify-content:center;outline:none;transition:background 0.2s;">&#8594;</button>
+        </div>
+        <div class="ratangarh-tabs">
+            <button class="ratangarh-tab active" data-tab="overview">Overview</button>
+            <button class="ratangarh-tab" data-tab="history">📜 History of Waterbody</button>
+            <button class="ratangarh-tab" data-tab="uses">💧 Current Uses</button>
+            <button class="ratangarh-tab" data-tab="religion">🕉 Religious Significance</button>
+            <button class="ratangarh-tab" data-tab="tourism">🧭 Tourism Potential</button>
+            <button class="ratangarh-tab" data-tab="science">🔬 Scientific Novelty</button>
+            <button class="ratangarh-tab" data-tab="condition">📊 Current Condition</button>
+        </div>
+        <div class="ratangarh-tab-content" id="ratangarh-tab-content"></div>
+        <div class="village-actions">
+            <a href="${village.report}" class="view-report-btn">View Full Report</a>
+            <button class="close-popup-btn" onclick="this.closest('.village-info').remove(); document.querySelector('.district-info').style.display='block';">Close</button>
+        </div>
+    `;
+    setTimeout(() => {
+        // Insert images
+        const images = [
+            {src: 'images/Bharoori/1.jpg', caption: 'Ancient Well – Bharoo ri Village'}
+        ];
+        const imageRow = villageInfo.querySelector('.ratangarh-image-row');
+        images.forEach((img, i) => {
+            const box = document.createElement('div');
+            box.className = 'ratangarh-img-box';
+            box.innerHTML = `<img src='${img.src}' alt='Bharoori Image ${i+1}'><div class='ratangarh-img-caption'>${img.caption}</div>`;
+            if (img.viewAll) {
+                const btn = document.createElement('a');
+                btn.href = 'bharoori.html';
+                btn.className = 'view-all-photos-btn';
+                btn.textContent = 'View All Photos';
+                box.appendChild(btn);
+            }
+            imageRow.appendChild(box);
+        });
+        // Arrow logic
+        let currentIndex = 0;
+        const leftArrow = villageInfo.querySelector('.ratangarh-arrow-left');
+        const rightArrow = villageInfo.querySelector('.ratangarh-arrow-right');
+        function updateArrows() {
+            leftArrow.style.display = currentIndex > 0 ? 'flex' : 'none';
+            rightArrow.style.display = currentIndex < images.length-1 ? 'flex' : 'none';
+        }
+        function scrollToIndex(idx) {
+            const box = imageRow.children[idx];
+            if (box) box.scrollIntoView({behavior:'smooth',inline:'start'});
+            currentIndex = idx;
+            updateArrows();
+        }
+        leftArrow.onclick = () => scrollToIndex(currentIndex-1);
+        rightArrow.onclick = () => scrollToIndex(currentIndex+1);
+        imageRow.addEventListener('scroll', () => {
+            let minDist = Infinity, idx = 0;
+            for (let i=0; i<imageRow.children.length; ++i) {
+                const rect = imageRow.children[i].getBoundingClientRect();
+                const dist = Math.abs(rect.left - imageRow.getBoundingClientRect().left);
+                if (dist < minDist) { minDist = dist; idx = i; }
+            }
+            currentIndex = idx;
+            updateArrows();
+        });
+        // Initial state
+        scrollToIndex(0);
+        // Tabs logic
+        const tabContent = villageInfo.querySelector('#ratangarh-tab-content');
+        const tabData = {
+            overview: `
+                <b style='color:#2a5d9f;'>Overview</b><br/>
+                <table class='ratangarh-info-table' style='width:100%;margin:18px 0 18px 0;border-collapse:collapse;'>
+                    <tr><th>Location</th><td>Ancient Well, Bharoori Village (Bhinmal)</td></tr>
+                    <tr><th>District</th><td>Jalore</td></tr>
+                    <tr><th>Latitude</th><td>25.190709</td></tr>
+                    <tr><th>Longitude</th><td>72.993743</td></tr>
+                </table>
+                This stone masonry well, built centuries ago, once sustained the entire village of Bharoori. It represents the rural tradition of communal wells.<br/><br/>
+            `,
+            history: `<b style='color:#2a5d9f;'>📜 History of the Waterbody</b><br/>Centuries-old communal well serving Bharoori’s households; a key village asset before modern pipelines.`,
+            uses: `<b style='color:#2a5d9f;'>💧 Current Uses</b><ul><li>Currently unused for drinking due to contamination; could be revived for irrigation.</li></ul>`,
+            religion: `<b style='color:#2a5d9f;'>🕉 Religious Significance</b><br/>Not directly ritual-linked, but preserved in local memory and identity.`,
+            tourism: `<b style='color:#2a5d9f;'>🧭 Tourism Potential</b><ul><li>Low; can serve as a heritage example if cleaned and conserved.</li></ul>`,
+            science: `<b style='color:#2a5d9f;'>🔬 Scientific Novelty</b><ul><li>Pulley + stone ring construction reflecting low-cost, sustainable storage.</li></ul>`,
+            condition: `<b style='color:#2a5d9f;'>📊 Current Condition</b><ul><li>Neglected; surrounded by garbage and weeds; indicates heritage loss.</li></ul>`
+        };
+        function setTab(tab) {
+            tabContent.innerHTML = tabData[tab];
+            villageInfo.querySelectorAll('.ratangarh-tab').forEach(btn => btn.classList.remove('active'));
+            villageInfo.querySelector(`.ratangarh-tab[data-tab="${tab}"]`).classList.add('active');
+        }
+        setTab('overview');
+        villageInfo.querySelectorAll('.ratangarh-tab').forEach(btn => {
+            btn.onclick = () => setTab(btn.getAttribute('data-tab'));
+        });
+    }, 0);
+}
+// ... existing code ...    
+
+else if (village.id === 'mandal') {
+    villageInfo.innerHTML = `
+        <div class="village-header">
+            <h3>${village.name}</h3>
+            <span class="village-district">${this.currentDistrict ? this.currentDistrict.name : ''} District</span>
+        </div>
+        <div class="ratangarh-image-row-wrapper" style="position:relative;width:100%;height:340px;">
+            <button class="ratangarh-arrow ratangarh-arrow-left" style="position:absolute;left:8px;top:50%;transform:translateY(-50%);z-index:2;display:none;background:rgba(42,93,159,0.7);border:none;border-radius:50%;width:38px;height:38px;color:#fff;font-size:1.5em;cursor:pointer;align-items:center;justify-content:center;outline:none;transition:background 0.2s;">&#8592;</button>
+            <div class="ratangarh-image-row" style="height:100%;"></div>
+            <button class="ratangarh-arrow ratangarh-arrow-right" style="position:absolute;right:8px;top:50%;transform:translateY(-50%);z-index:2;display:none;background:rgba(42,93,159,0.7);border:none;border-radius:50%;width:38px;height:38px;color:#fff;font-size:1.5em;cursor:pointer;align-items:center;justify-content:center;outline:none;transition:background 0.2s;">&#8594;</button>
+        </div>
+        <div class="ratangarh-tabs">
+            <button class="ratangarh-tab active" data-tab="overview">Overview</button>
+            <button class="ratangarh-tab" data-tab="history">📜 History of Waterbody</button>
+            <button class="ratangarh-tab" data-tab="uses">💧 Current Uses</button>
+            <button class="ratangarh-tab" data-tab="religion">🕉 Religious Significance</button>
+            <button class="ratangarh-tab" data-tab="tourism">🧭 Tourism Potential</button>
+            <button class="ratangarh-tab" data-tab="science">🔬 Scientific Novelty</button>
+            <button class="ratangarh-tab" data-tab="condition">📊 Current Condition</button>
+        </div>
+        <div class="ratangarh-tab-content" id="ratangarh-tab-content"></div>
+        <div class="village-actions">
+            <a href="${village.report}" class="view-report-btn">View Full Report</a>
+            <button class="close-popup-btn" onclick="this.closest('.village-info').remove(); document.querySelector('.district-info').style.display='block';">Close</button>
+        </div>
+    `;
+    setTimeout(() => {
+        // Insert images
+        const images = [
+            {src: 'images/Mandal/1.jpg', caption: 'Mandal Pond – heritage waterbody'},
+            {src: 'images/Mandal/2.jpg', caption: 'Traditional catchment-based pond'},
+            {src: 'images/Mandal/3.jpg', caption: 'Current state – partial siltation', viewAll: true}
+        ];
+        const imageRow = villageInfo.querySelector('.ratangarh-image-row');
+        images.forEach((img, i) => {
+            const box = document.createElement('div');
+            box.className = 'ratangarh-img-box';
+            box.innerHTML = `<img src='${img.src}' alt='Mandal Image ${i+1}'><div class='ratangarh-img-caption'>${img.caption}</div>`;
+            if (img.viewAll) {
+                const btn = document.createElement('a');
+                btn.href = 'mandal.html';
+                btn.className = 'view-all-photos-btn';
+                btn.textContent = 'View All Photos';
+                box.appendChild(btn);
+            }
+            imageRow.appendChild(box);
+        });
+        // Arrow logic
+        let currentIndex = 0;
+        const leftArrow = villageInfo.querySelector('.ratangarh-arrow-left');
+        const rightArrow = villageInfo.querySelector('.ratangarh-arrow-right');
+        function updateArrows() {
+            leftArrow.style.display = currentIndex > 0 ? 'flex' : 'none';
+            rightArrow.style.display = currentIndex < images.length-1 ? 'flex' : 'none';
+        }
+        function scrollToIndex(idx) {
+            const box = imageRow.children[idx];
+            if (box) box.scrollIntoView({behavior:'smooth',inline:'start'});
+            currentIndex = idx;
+            updateArrows();
+        }
+        leftArrow.onclick = () => scrollToIndex(currentIndex-1);
+        rightArrow.onclick = () => scrollToIndex(currentIndex+1);
+        imageRow.addEventListener('scroll', () => {
+            let minDist = Infinity, idx = 0;
+            for (let i=0; i<imageRow.children.length; ++i) {
+                const rect = imageRow.children[i].getBoundingClientRect();
+                const dist = Math.abs(rect.left - imageRow.getBoundingClientRect().left);
+                if (dist < minDist) { minDist = dist; idx = i; }
+            }
+            currentIndex = idx;
+            updateArrows();
+        });
+        // Initial state
+        scrollToIndex(0);
+        // Tabs logic
+        const tabContent = villageInfo.querySelector('#ratangarh-tab-content');
+        const tabData = {
+            overview: `
+                <b style='color:#2a5d9f;'>Overview</b><br/>
+                <table class='ratangarh-info-table' style='width:100%;margin:18px 0 18px 0;border-collapse:collapse;'>
+                    <tr><th>Location</th><td>Mandal Pond, Bhilwara</td></tr>
+                    <tr><th>Latitude</th><td>25.441607</td></tr>
+                    <tr><th>Longitude</th><td>74.571011</td></tr>
+                </table>
+                Located just 2.8 km from Mandal railway station, Mandal Pond is a historic water body linked to Mughal-era military camps. Earlier it served as a drinking water source, cattle spot, and community hub. With time, it lost importance but remains a peaceful heritage site valued by locals. The pond reflects Rajasthan’s tradition of integrating water with culture and settlement history.<br/><br/>
+            `,
+            history: `<b style='color:#2a5d9f;'>📜 History of the Waterbody</b><br/>Mughal-era linked pond serving settlements and military camps historically.`,
+            uses: `<b style='color:#2a5d9f;'>💧 Current Uses</b><ul><li>Irrigation, cattle, recreation.</li></ul>`,
+            religion: `<b style='color:#2a5d9f;'>🕉 Religious Significance</b><br/>Used in local fairs and rituals.`,
+            tourism: `<b style='color:#2a5d9f;'>🧭 Tourism Potential</b><ul><li>Heritage tourism potential.</li></ul>`,
+            science: `<b style='color:#2a5d9f;'>🔬 Scientific Novelty</b><ul><li>Traditional catchment pond.</li></ul>`,
+            condition: `<b style='color:#2a5d9f;'>📊 Current Condition</b><ul><li>Partial siltation; neglected.</li><li><b>Solutions:</b> Heritage-linked eco-tourism, cleaning, desilting.</li></ul>`
+        };
+        function setTab(tab) {
+            tabContent.innerHTML = tabData[tab];
+            villageInfo.querySelectorAll('.ratangarh-tab').forEach(btn => btn.classList.remove('active'));
+            villageInfo.querySelector(`.ratangarh-tab[data-tab="${tab}"]`).classList.add('active');
+        }
+        setTab('overview');
+        villageInfo.querySelectorAll('.ratangarh-tab').forEach(btn => {
+            btn.onclick = () => setTab(btn.getAttribute('data-tab'));
+        });
+    }, 0);
+}
+// ... existing code ...    
+
+else if (village.id === 'meja') {
+    villageInfo.innerHTML = `
+        <div class="village-header">
+            <h3>${village.name}</h3>
+            <span class="village-district">${this.currentDistrict ? this.currentDistrict.name : ''} District</span>
+        </div>
+        <div class="ratangarh-image-row-wrapper" style="position:relative;width:100%;height:340px;">
+            <button class="ratangarh-arrow ratangarh-arrow-left" style="position:absolute;left:8px;top:50%;transform:translateY(-50%);z-index:2;display:none;background:rgba(42,93,159,0.7);border:none;border-radius:50%;width:38px;height:38px;color:#fff;font-size:1.5em;cursor:pointer;align-items:center;justify-content:center;outline:none;transition:background 0.2s;">&#8592;</button>
+            <div class="ratangarh-image-row" style="height:100%;"></div>
+            <button class="ratangarh-arrow ratangarh-arrow-right" style="position:absolute;right:8px;top:50%;transform:translateY(-50%);z-index:2;display:none;background:rgba(42,93,159,0.7);border:none;border-radius:50%;width:38px;height:38px;color:#fff;font-size:1.5em;cursor:pointer;align-items:center;justify-content:center;outline:none;transition:background 0.2s;">&#8594;</button>
+        </div>
+        <div class="ratangarh-tabs">
+            <button class="ratangarh-tab active" data-tab="overview">Overview</button>
+            <button class="ratangarh-tab" data-tab="history">📜 History of Waterbody</button>
+            <button class="ratangarh-tab" data-tab="uses">💧 Current Uses</button>
+            <button class="ratangarh-tab" data-tab="religion">🕉 Religious Significance</button>
+            <button class="ratangarh-tab" data-tab="tourism">🧭 Tourism Potential</button>
+            <button class="ratangarh-tab" data-tab="science">🔬 Scientific Novelty</button>
+            <button class="ratangarh-tab" data-tab="condition">📊 Current Condition</button>
+        </div>
+        <div class="ratangarh-tab-content" id="ratangarh-tab-content"></div>
+        <div class="village-actions">
+            <a href="${village.report}" class="view-report-btn">View Full Report</a>
+            <button class="close-popup-btn" onclick="this.closest('.village-info').remove(); document.querySelector('.district-info').style.display='block';">Close</button>
+        </div>
+    `;
+    setTimeout(() => {
+        // Insert images
+        const images = [
+            {src: 'images/Meja/1.jpg', caption: 'Meja Dam – modern reservoir'},
+            {src: 'images/Meja/3.jpg', caption: 'Spillways and engineered embankments'},
+            {src: 'images/Meja/2.png', caption: 'Functional storage; fisheries and pipelines', viewAll: true}
+        ];
+        const imageRow = villageInfo.querySelector('.ratangarh-image-row');
+        images.forEach((img, i) => {
+            const box = document.createElement('div');
+            box.className = 'ratangarh-img-box';
+            box.innerHTML = `<img src='${img.src}' alt='Meja Image ${i+1}'><div class='ratangarh-img-caption'>${img.caption}</div>`;
+            if (img.viewAll) {
+                const btn = document.createElement('a');
+                btn.href = 'meja.html';
+                btn.className = 'view-all-photos-btn';
+                btn.textContent = 'View All Photos';
+                box.appendChild(btn);
+            }
+            imageRow.appendChild(box);
+        });
+        // Arrow logic
+        let currentIndex = 0;
+        const leftArrow = villageInfo.querySelector('.ratangarh-arrow-left');
+        const rightArrow = villageInfo.querySelector('.ratangarh-arrow-right');
+        function updateArrows() {
+            leftArrow.style.display = currentIndex > 0 ? 'flex' : 'none';
+            rightArrow.style.display = currentIndex < images.length-1 ? 'flex' : 'none';
+        }
+        function scrollToIndex(idx) {
+            const box = imageRow.children[idx];
+            if (box) box.scrollIntoView({behavior:'smooth',inline:'start'});
+            currentIndex = idx;
+            updateArrows();
+        }
+        leftArrow.onclick = () => scrollToIndex(currentIndex-1);
+        rightArrow.onclick = () => scrollToIndex(currentIndex+1);
+        imageRow.addEventListener('scroll', () => {
+            let minDist = Infinity, idx = 0;
+            for (let i=0; i<imageRow.children.length; ++i) {
+                const rect = imageRow.children[i].getBoundingClientRect();
+                const dist = Math.abs(rect.left - imageRow.getBoundingClientRect().left);
+                if (dist < minDist) { minDist = dist; idx = i; }
+            }
+            currentIndex = idx;
+            updateArrows();
+        });
+        // Initial state
+        scrollToIndex(0);
+        // Tabs logic
+        const tabContent = villageInfo.querySelector('#ratangarh-tab-content');
+        const tabData = {
+            overview: `
+                <b style='color:#2a5d9f;'>Overview</b><br/>
+                <table class='ratangarh-info-table' style='width:100%;margin:18px 0 18px 0;border-collapse:collapse;'>
+                    <tr><th>Location</th><td>Meja Dam, Bhilwara</td></tr>
+                    <tr><th>Latitude</th><td>25.393323</td></tr>
+                    <tr><th>Longitude</th><td>74.540524</td></tr>
+                </table>
+                Meja Dam is one of the most important modern reservoirs in Bhilwara, supplying drinking and irrigation water to Mandal and nearby regions. With spillways, sluice gates, and engineered embankments, it provides year-round water security and reduces dependence on traditional sources. Siltation and rising demand remain challenges; watershed management can ensure long-term reliability.<br/><br/>
+            `,
+            history: `<b style='color:#2a5d9f;'>📜 History of the Waterbody</b><br/>Modern dam built for irrigation and drinking water supply.`,
+            uses: `<b style='color:#2a5d9f;'>💧 Current Uses</b><ul><li>Pipeline supply, irrigation, fisheries.</li></ul>`,
+            religion: `<b style='color:#2a5d9f;'>🕉 Religious Significance</b><br/>No direct ritual significance; culturally valued by locals.`,
+            tourism: `<b style='color:#2a5d9f;'>🧭 Tourism Potential</b><ul><li>Boating and eco-tourism scope.</li></ul>`,
+            science: `<b style='color:#2a5d9f;'>🔬 Scientific Novelty</b><ul><li>Engineered spillways and storage system.</li></ul>`,
+            condition: `<b style='color:#2a5d9f;'>📊 Current Condition</b><ul><li>Functional but facing siltation.</li><li><b>Solutions:</b> Watershed management, dam safety checks, controlled use.</li></ul>`
+        };
+        function setTab(tab) {
+            tabContent.innerHTML = tabData[tab];
+            villageInfo.querySelectorAll('.ratangarh-tab').forEach(btn => btn.classList.remove('active'));
+            villageInfo.querySelector(`.ratangarh-tab[data-tab="${tab}"]`).classList.add('active');
+        }
+        setTab('overview');
+        villageInfo.querySelectorAll('.ratangarh-tab').forEach(btn => {
+            btn.onclick = () => setTab(btn.getAttribute('data-tab'));
+        });
+    }, 0);
+}
+// ... existing code ...    
+
+else if (village.id === 'keerkhera') {
+    villageInfo.innerHTML = `
+        <div class="village-header">
+            <h3>${village.name}</h3>
+            <span class="village-district">${this.currentDistrict ? this.currentDistrict.name : ''} District</span>
+        </div>
+        <div class="ratangarh-image-row-wrapper" style="position:relative;width:100%;height:340px;">
+            <button class="ratangarh-arrow ratangarh-arrow-left" style="position:absolute;left:8px;top:50%;transform:translateY(-50%);z-index:2;display:none;background:rgba(42,93,159,0.7);border:none;border-radius:50%;width:38px;height:38px;color:#fff;font-size:1.5em;cursor:pointer;align-items:center;justify-content:center;outline:none;transition:background 0.2s;">&#8592;</button>
+            <div class="ratangarh-image-row" style="height:100%;"></div>
+            <button class="ratangarh-arrow ratangarh-arrow-right" style="position:absolute;right:8px;top:50%;transform:translateY(-50%);z-index:2;display:none;background:rgba(42,93,159,0.7);border:none;border-radius:50%;width:38px;height:38px;color:#fff;font-size:1.5em;cursor:pointer;align-items:center;justify-content:center;outline:none;transition:background 0.2s;">&#8594;</button>
+        </div>
+        <div class="ratangarh-tabs">
+            <button class="ratangarh-tab active" data-tab="overview">Overview</button>
+            <button class="ratangarh-tab" data-tab="history">📜 History of Waterbody</button>
+            <button class="ratangarh-tab" data-tab="uses">💧 Current Uses</button>
+            <button class="ratangarh-tab" data-tab="religion">🕉 Religious Significance</button>
+            <button class="ratangarh-tab" data-tab="tourism">🧭 Tourism Potential</button>
+            <button class="ratangarh-tab" data-tab="science">🔬 Scientific Novelty</button>
+            <button class="ratangarh-tab" data-tab="condition">📊 Current Condition</button>
+        </div>
+        <div class="ratangarh-tab-content" id="ratangarh-tab-content"></div>
+        <div class="village-actions">
+            <a href="${village.report}" class="view-report-btn">View Full Report</a>
+            <button class="close-popup-btn" onclick="this.closest('.village-info').remove(); document.querySelector('.district-info').style.display='block';">Close</button>
+        </div>
+    `;
+    setTimeout(() => {
+        // Insert images into the image row
+        const images = [
+            {src: 'images/Keerkhera/1.jpg', caption: 'Keerkhara Pond – traditional community waterbody'},
+            {src: 'images/Keerkhera/2.jpg', caption: 'Earthen embankments and catchment layout'},
+            {src: 'images/Keerkhera/3.jpg', caption: 'Drought-affected; low storage today', viewAll: true}
+        ];
+        const imageRow = villageInfo.querySelector('.ratangarh-image-row');
+        images.forEach((img, i) => {
+            const box = document.createElement('div');
+            box.className = 'ratangarh-img-box';
+            box.innerHTML = `<img src='${img.src}' alt='Keerkhara Image ${i+1}'><div class='ratangarh-img-caption'>${img.caption}</div>`;
+            if (img.viewAll) {
+                const btn = document.createElement('a');
+                btn.href = 'keerkhera.html';
+                btn.className = 'view-all-photos-btn';
+                btn.textContent = 'View All Photos';
+                box.appendChild(btn);
+            }
+            imageRow.appendChild(box);
+        });
+        // Arrow logic
+        let currentIndex = 0;
+        const leftArrow = villageInfo.querySelector('.ratangarh-arrow-left');
+        const rightArrow = villageInfo.querySelector('.ratangarh-arrow-right');
+        function updateArrows() {
+            leftArrow.style.display = currentIndex > 0 ? 'flex' : 'none';
+            rightArrow.style.display = currentIndex < images.length-1 ? 'flex' : 'none';
+        }
+        function scrollToIndex(idx) {
+            const box = imageRow.children[idx];
+            if (box) box.scrollIntoView({behavior:'smooth',inline:'start'});
+            currentIndex = idx;
+            updateArrows();
+        }
+        leftArrow.onclick = () => scrollToIndex(currentIndex-1);
+        rightArrow.onclick = () => scrollToIndex(currentIndex+1);
+        imageRow.addEventListener('scroll', () => {
+            let minDist = Infinity, idx = 0;
+            for (let i=0; i<imageRow.children.length; ++i) {
+                const rect = imageRow.children[i].getBoundingClientRect();
+                const dist = Math.abs(rect.left - imageRow.getBoundingClientRect().left);
+                if (dist < minDist) { minDist = dist; idx = i; }
+            }
+            currentIndex = idx;
+            updateArrows();
+        });
+        // Initial state
+        scrollToIndex(0);
+        // Tabs logic
+        const tabContent = villageInfo.querySelector('#ratangarh-tab-content');
+        const tabData = {
+            overview: `
+                <b style='color:#2a5d9f;'>Overview</b><br/>
+                <table class='ratangarh-info-table' style='width:100%;margin:18px 0 18px 0;border-collapse:collapse;'>
+                    <tr><th>Location</th><td>Keerkhara Pond, Bhilwara</td></tr>
+                    <tr><th>Latitude</th><td>25.421150</td></tr>
+                    <tr><th>Longitude</th><td>74.566471</td></tr>
+                </table>
+                Keerkhara Pond once spread over 5–6 bighas, serving irrigation, livestock, and community needs. Today, recurrent droughts and climate variability have reduced its capacity, but it remains part of the village identity and supports livestock watering.<br/><br/>
+            `,
+            history: `
+                <b style='color:#2a5d9f;'>📜 History of the Waterbody</b><br/>
+                Community pond of centuries-old origin, central to rural livelihoods.
+            `,
+            uses: `
+                <b style='color:#2a5d9f;'>💧 Current Uses</b>
+                <ul>
+                    <li>Livestock water support.</li>
+                    <li>Minimal irrigation during good rains.</li>
+                </ul>
+            `,
+            religion: `
+                <b style='color:#2a5d9f;'>🕉 Religious Significance</b><br/>
+                Historically used in village rituals and gatherings.
+            `,
+            tourism: `
+                <b style='color:#2a5d9f;'>🧭 Tourism Potential</b>
+                <ul>
+                    <li>Low unless revived as an eco-park with trails.</li>
+                </ul>
+            `,
+            science: `
+                <b style='color:#2a5d9f;'>🔬 Scientific Novelty</b>
+                <ul>
+                    <li>Earthen embankments to capture monsoon runoff.</li>
+                    <li>Supports groundwater recharge.</li>
+                </ul>
+            `,
+            condition: `
+                <b style='color:#2a5d9f;'>📊 Current Condition</b>
+                <ul>
+                    <li>Drought-affected; blocked catchments; silted bed.</li>
+                    <li><b>Solutions:</b> Check dams upstream, recharge wells, watershed treatment, plantation, desilting.</li>
+                </ul>
+            `
+        };
+        function setTab(tab) {
+            tabContent.innerHTML = tabData[tab];
+            villageInfo.querySelectorAll('.ratangarh-tab').forEach(btn => btn.classList.remove('active'));
+            villageInfo.querySelector(`.ratangarh-tab[data-tab="${tab}"]`).classList.add('active');
+        }
+        setTab('overview');
+        villageInfo.querySelectorAll('.ratangarh-tab').forEach(btn => {
+            btn.onclick = () => setTab(btn.getAttribute('data-tab'));
+        });
+    }, 0);
+}
+// ... existing code ...    
+
 else if (village.id === 'ramderiya') {
     villageInfo.innerHTML = `
         <div class="village-header">
@@ -3057,9 +4825,9 @@ else if (village.id === 'rajasmand_village') {
     setTimeout(() => {
         // Insert images into the image row
         const images = [
-            {src: 'images/Rajsamand/1.jpg', caption: 'Rajsamand Lake - largest artificial lake'},
-            {src: 'images/Rajsamand/2.jpg', caption: 'Raj Prashasti inscription on marble'},
-            {src: 'images/Rajsamand/3.jpg', caption: 'Marble embankments and pavilions', viewAll: true}
+            {src: 'images/Rajasmand/1.jpg', caption: 'Rajsamand Lake - largest artificial lake'},
+            {src: 'images/Rajasmand/2.jpg', caption: 'Raj Prashasti inscription on marble'},
+            {src: 'images/Rajasmand/3.jpg', caption: 'Marble embankments and pavilions', viewAll: true}
         ];
         const imageRow = villageInfo.querySelector('.ratangarh-image-row');
         images.forEach((img, i) => {
@@ -3327,6 +5095,50 @@ else if (village.id === 'gajsar') {
     }, 0);
 }
 
+else if (village.id === 'pansal') {
+    villageInfo.innerHTML = `
+        <div class="village-header">
+            <h3>${village.name}</h3>
+            <span class="village-district">${this.currentDistrict ? this.currentDistrict.name : ''} District</span>
+        </div>
+        <div class="pansal-main-tabs">
+            <button class="pansal-main-tab active" onclick="showPansalSection('bhuto')">Bhuto Ki Nadi</button>
+            <button class="pansal-main-tab" onclick="showPansalSection('well')">Ancient Well</button>
+            <button class="pansal-main-tab" onclick="showPansalSection('talab')">Bada Talab</button>
+            <button class="pansal-main-tab" onclick="showPansalSection('bawadi')">Khari Ki Bawadi</button>
+        </div>
+        <div class="pansal-section-content" id="pansal-section-content"></div>
+        <div class="village-actions">
+            <a href="${village.report}" class="view-report-btn">View Full Report</a>
+            <button class="close-popup-btn" onclick="this.closest('.village-info').remove(); document.querySelector('.district-info').style.display='block';">Close</button>
+        </div>
+    `;
+    setTimeout(() => {
+        loadPansalSectionContent('bhuto');
+    }, 0);
+}
+
+else if (village.id === 'atoon') {
+    villageInfo.innerHTML = `
+        <div class="village-header">
+            <h3>${village.name}</h3>
+            <span class="village-district">${this.currentDistrict ? this.currentDistrict.name : ''} District</span>
+        </div>
+        <div class="atoon-main-tabs">
+            <button class="atoon-main-tab active" onclick="showAtoonSection('dharam')">Dharam Talai</button>
+            <button class="atoon-main-tab" onclick="showAtoonSection('charbhuja')">Charbhuja Ki Bawadi</button>
+        </div>
+        <div class="atoon-section-content" id="atoon-section-content"></div>
+        <div class="village-actions">
+            <a href="${village.report}" class="view-report-btn">View Full Report</a>
+            <button class="close-popup-btn" onclick="this.closest('.village-info').remove(); document.querySelector('.district-info').style.display='block';">Close</button>
+        </div>
+    `;
+    setTimeout(() => {
+        loadAtoonSectionContent('dharam');
+    }, 0);
+}
+
 else {
             // Default for other villages
             villageInfo.innerHTML = `
@@ -3414,6 +5226,82 @@ else {
                 </div>
             </div>
         `).join('');
+
+        // Remove any existing district analysis block
+        const existingAnalysis = this.infoPanel.querySelector('.district-analysis');
+        if (existingAnalysis) existingAnalysis.remove();
+
+        // Add Nagaur-specific overall analysis below the village list
+        if (district.id === 'nagaur') {
+            const analysis = document.createElement('div');
+            analysis.className = 'district-analysis';
+            analysis.style.marginTop = '14px';
+            analysis.innerHTML = `
+                <h4 style="margin:8px 0;color:#2a5d9f;">Overall Analysis of Nagaur Water Bodies</h4>
+                <b>Observations</b>
+                <ul style="margin-top:6px;">
+                    <li>Nagaur district shows a blend of ancient (johads, talaabs) and modern (cement tanks, culverts) systems.</li>
+                    <li>Religious association (Gogaji Talab) keeps cultural memory alive.</li>
+                    <li>New MGNREGA works (Barani, Alai) prove schemes are reviving heritage.</li>
+                </ul>
+                <b>Challenges</b>
+                <ul style="margin-top:6px;">
+                    <li>Dependency on monsoon → seasonal shortage.</li>
+                    <li>Siltation & pollution → reduces storage & quality.</li>
+                    <li>Groundwater depletion.</li>
+                </ul>
+                <b>Solutions</b>
+                <ol style="margin-top:6px; padding-left:20px;">
+                    <li>Revival & Renovation of old johads and nadis.</li>
+                    <li>Community Involvement → water user committees.</li>
+                    <li>Scientific Additions → soak pits, recharge wells, culverts.</li>
+                    <li>Awareness Programs linking heritage, culture, and sustainability.</li>
+                    <li>Tourism Linkage → promote Gogaji Talab and Adarsh Talaab as cultural eco-sites.</li>
+                </ol>
+                <b>Conclusion</b>
+                <p style="margin-top:6px;">
+                    Nagaur’s water bodies are a living testimony of Rajasthan’s desert wisdom. From ancient johads that sustained communities for centuries to modern MGNREGA-built nadis and cement tanks, they remain the lifeline of this arid region. To secure Nagaur’s future, a combined approach of reviving old heritage, maintaining modern structures, and empowering local communities is essential.
+                </p>
+            `;
+            districtInfo.appendChild(analysis);
+        }
+
+        // Add Ajmer-specific conclusion below the village list
+        if (district.id === 'ajmer') {
+            const analysis = document.createElement('div');
+            analysis.className = 'district-analysis';
+            analysis.style.marginTop = '14px';
+            analysis.innerHTML = `
+                <h4 style="margin:8px 0;color:#2a5d9f;">Conclusion (Ajmer District)</h4>
+                <p>Ajmer’s Beer, Bhawanta, and Banseli villages show the rich diversity of Rajasthan’s water heritage—from ancient wells and bawdis to large talabs and reservoirs. Most of these structures are now neglected or polluted, despite their historical importance and scientific brilliance. Reviving them requires:</p>
+                <ul style="margin-top:6px;">
+                    <li>Cleaning & Desilting under schemes like MGNREGA.</li>
+                    <li>Community awareness campaigns for heritage preservation.</li>
+                    <li>Integration with rainwater harvesting and recharge systems.</li>
+                    <li>Tourism promotion (stepwell heritage trails, eco-tourism).</li>
+                </ul>
+                <p>These efforts can transform neglected ruins into functional, cultural, and ecological assets.</p>
+            `;
+            districtInfo.appendChild(analysis);
+        }
+
+        // Add Bhilwara-specific conclusion below the village list
+        if (district.id === 'bhilwara') {
+            const analysis = document.createElement('div');
+            analysis.className = 'district-analysis';
+            analysis.style.marginTop = '14px';
+            analysis.innerHTML = `
+                <h4 style="margin:8px 0;color:#2a5d9f;">Overall Conclusion – Bhilwara</h4>
+                <p>Bhilwara represents a mix of ancient and modern water bodies. From 1000-year-old Bada Talab to modern Meja Dam, the district shows Rajasthan's evolution of water management. Most traditional structures still exist but are neglected due to pipelines and urbanization.</p>
+                <p><strong>Solutions:</strong></p>
+                <ul style="margin-top:6px;">
+                    <li>Heritage revival + eco-tourism.</li>
+                    <li>Watershed & catchment management.</li>
+                    <li>Community ownership revival.</li>
+                </ul>
+            `;
+            districtInfo.appendChild(analysis);
+        }
 
         districtInfo.style.display = 'block';
         this.infoPanel.style.display = 'block';
@@ -3549,6 +5437,655 @@ else {
             done();
         }, duration + 500);
     }
+}
+
+// Pansal section functions
+function showPansalSection(section) {
+    // Update active tab
+    document.querySelectorAll('.pansal-main-tab').forEach(tab => tab.classList.remove('active'));
+    event.target.classList.add('active');
+    
+    // Load section content
+    loadPansalSectionContent(section);
+}
+
+function loadPansalSectionContent(section) {
+    const contentContainer = document.getElementById('pansal-section-content');
+    
+    const sectionData = {
+        bhuto: {
+            title: 'Bhuto Ki Nadi',
+            images: [
+                {src: 'images/Pansal/1.jpg', caption: 'Bhuto Ki Nadi - Small pond, 2–3 bighas'},
+                {src: 'images/Pansal/2.jpg', caption: 'Community lifeline revived under MGNREGA'},
+                {src: 'images/Pansal/3.jpg', caption: 'Supports local use and irrigation'}
+            ],
+            tabs: {
+                overview: `
+                    <b style='color:#2a5d9f;'>Overview</b><br/>
+                    <table class='ratangarh-info-table' style='width:100%;margin:18px 0 18px 0;border-collapse:collapse;'>
+                        <tr><th>Location</th><td>Bhuto Ki Nadi, Pansal</td></tr>
+                        <tr><th>District</th><td>Bhilwara</td></tr>
+                        <tr><th>Size</th><td>2–3 bighas</td></tr>
+                    </table>
+                    Bhuto Ki Nadi is a small community pond that has been revived under MGNREGA. It serves as a lifeline for the local community and demonstrates micro-catchment harvesting techniques.<br/><br/>
+                `,
+                history: `
+                    <b style='color:#2a5d9f;'>📜 History</b><br/>
+                    <ul>
+                        <li>Small pond spanning 2–3 bighas, historically serving as a community lifeline.</li>
+                        <li>Recently revived under MGNREGA scheme, showcasing government support for traditional water systems.</li>
+                        <li>Represents the continuation of traditional water harvesting practices in modern times.</li>
+                    </ul>
+                `,
+                uses: `
+                    <b style='color:#2a5d9f;'>💧 Current Uses</b>
+                    <ul>
+                        <li>Revived under MGNREGA to support local community needs.</li>
+                        <li>Provides water for livestock and limited irrigation.</li>
+                        <li>Serves as a demonstration model for micro-catchment harvesting.</li>
+                        <li>Supports local agricultural activities during monsoon season.</li>
+                    </ul>
+                `,
+                religion: `
+                    <b style='color:#2a5d9f;'>🕉 Religious Significance</b><br/>
+                    <ul>
+                        <li>Small rituals are linked to the water body during local festivals.</li>
+                        <li>Represents community cooperation and traditional water wisdom.</li>
+                        <li>Though not directly sacred, it holds cultural value for the village.</li>
+                    </ul>
+                `,
+                tourism: `
+                    <b style='color:#2a5d9f;'>🧭 Tourism Potential</b>
+                    <ul>
+                        <li>Limited direct tourism value due to its small size.</li>
+                        <li>Could be included in educational tours about MGNREGA water projects.</li>
+                        <li>Demonstrates successful revival of traditional water systems.</li>
+                    </ul>
+                `,
+                science: `
+                    <b style='color:#2a5d9f;'>🔬 Scientific Novelty</b>
+                    <ul>
+                        <li>Demonstrates micro-catchment harvesting techniques.</li>
+                        <li>Shows how traditional knowledge can be integrated with modern schemes.</li>
+                        <li>Efficient use of limited space for water storage.</li>
+                    </ul>
+                `,
+                condition: `
+                    <b style='color:#2a5d9f;'>📊 Current Condition</b>
+                    <ul>
+                        <li>Successfully revived under MGNREGA.</li>
+                        <li>Functional but requires regular maintenance.</li>
+                        <li>Vulnerable to siltation and needs fencing for protection.</li>
+                        <li>Solution: Regular maintenance, fencing, and plantation around the pond.</li>
+                    </ul>
+                `
+            }
+        },
+        well: {
+            title: 'Ancient Well (Near Fort)',
+            images: [
+                {src: 'images/Pansal/4.jpg', caption: 'Ancient Well built by King of Pansal'},
+                {src: 'images/Pansal/5.jpg', caption: 'Located near fort & sacred tree'},
+                {src: 'images/Pansal/6.jpg', caption: 'Heritage spot with historical significance'}
+            ],
+            tabs: {
+                overview: `
+                    <b style='color:#2a5d9f;'>Overview</b><br/>
+                    <table class='ratangarh-info-table' style='width:100%;margin:18px 0 18px 0;border-collapse:collapse;'>
+                        <tr><th>Location</th><td>Ancient Well, Pansal</td></tr>
+                        <tr><th>District</th><td>Bhilwara</td></tr>
+                        <tr><th>Builder</th><td>King of Pansal</td></tr>
+                    </table>
+                    The Ancient Well near the fort was built centuries ago by the King of Pansal. It represents the royal water infrastructure and traditional engineering of the region.<br/><br/>
+                `,
+                history: `
+                    <b style='color:#2a5d9f;'>📜 History</b><br/>
+                    <ul>
+                        <li>Built by the King of Pansal centuries ago as part of royal water infrastructure.</li>
+                        <li>Located strategically near the fort for easy access by the royal family and guards.</li>
+                        <li>Represents the traditional water engineering of the Rajput era.</li>
+                        <li>Once served as the primary drinking water source for the fort and nearby settlements.</li>
+                    </ul>
+                `,
+                uses: `
+                    <b style='color:#2a5d9f;'>💧 Current Uses</b>
+                    <ul>
+                        <li>Previously used for drinking water supply to the fort and village.</li>
+                        <li>Currently used mainly for irrigation purposes.</li>
+                        <li>No longer serves as primary drinking water source due to modern alternatives.</li>
+                        <li>Maintains historical and cultural significance.</li>
+                    </ul>
+                `,
+                religion: `
+                    <b style='color:#2a5d9f;'>🕉 Religious Significance</b><br/>
+                    <ul>
+                        <li>Located near the fort and a sacred tree, adding to its spiritual importance.</li>
+                        <li>Associated with royal rituals and ceremonies of the past.</li>
+                        <li>Represents the connection between water, royalty, and spirituality.</li>
+                    </ul>
+                `,
+                tourism: `
+                    <b style='color:#2a5d9f;'>🧭 Tourism Potential</b>
+                    <ul>
+                        <li>High heritage tourism potential if properly restored.</li>
+                        <li>Can be promoted as part of fort heritage tours.</li>
+                        <li>Represents royal water engineering and historical significance.</li>
+                        <li>Could be included in cultural heritage circuits.</li>
+                    </ul>
+                `,
+                science: `
+                    <b style='color:#2a5d9f;'>🔬 Scientific Novelty</b>
+                    <ul>
+                        <li>Traditional well construction techniques using local materials.</li>
+                        <li>Strategic placement for optimal water access and security.</li>
+                        <li>Durable construction that has survived centuries.</li>
+                    </ul>
+                `,
+                condition: `
+                    <b style='color:#2a5d9f;'>📊 Current Condition</b>
+                    <ul>
+                        <li>Structurally intact but currently unused for drinking.</li>
+                        <li>Requires minor restoration and maintenance.</li>
+                        <li>Solution: Declare as heritage site and undertake minor restoration.</li>
+                    </ul>
+                `
+            }
+        },
+        talab: {
+            title: 'Bada Talab',
+            images: [
+                {src: 'images/Pansal/7.jpg', caption: 'Bada Talab - 1000 years old'},
+                {src: 'images/Pansal/8.jpg', caption: 'Spread over 20–22 bighas'},
+                {src: 'images/Pansal/9.jpg', caption: 'Large-scale community pond'}
+            ],
+            tabs: {
+                overview: `
+                    <b style='color:#2a5d9f;'>Overview</b><br/>
+                    <table class='ratangarh-info-table' style='width:100%;margin:18px 0 18px 0;border-collapse:collapse;'>
+                        <tr><th>Location</th><td>Bada Talab, Pansal</td></tr>
+                        <tr><th>District</th><td>Bhilwara</td></tr>
+                        <tr><th>Age</th><td>1000 years old</td></tr>
+                        <tr><th>Size</th><td>20–22 bighas</td></tr>
+                    </table>
+                    Bada Talab is one of the oldest water bodies in the region, spanning 20–22 bighas. It represents large-scale community water management and has been maintained under MGNREGA.<br/><br/>
+                `,
+                history: `
+                    <b style='color:#2a5d9f;'>📜 History</b><br/>
+                    <ul>
+                        <li>One of the oldest water bodies in the region, approximately 1000 years old.</li>
+                        <li>Spans over 20–22 bighas, making it a large-scale community water project.</li>
+                        <li>Represents the traditional wisdom of large-scale water harvesting.</li>
+                        <li>Has sustained the community for centuries through various climatic conditions.</li>
+                    </ul>
+                `,
+                uses: `
+                    <b style='color:#2a5d9f;'>💧 Current Uses</b>
+                    <ul>
+                        <li>Primary function is groundwater recharge for the region.</li>
+                        <li>Provides irrigation water for agricultural activities.</li>
+                        <li>Supports livestock during dry seasons.</li>
+                        <li>Maintained and functional under MGNREGA scheme.</li>
+                    </ul>
+                `,
+                religion: `
+                    <b style='color:#2a5d9f;'>🕉 Religious Significance</b><br/>
+                    <ul>
+                        <li>Represents community cooperation and traditional water wisdom.</li>
+                        <li>Associated with local festivals and community gatherings.</li>
+                        <li>Symbolizes the sustainable relationship between humans and water.</li>
+                    </ul>
+                `,
+                tourism: `
+                    <b style='color:#2a5d9f;'>🧭 Tourism Potential</b>
+                    <ul>
+                        <li>High heritage tourism potential due to its age and size.</li>
+                        <li>Can be promoted as a heritage water body.</li>
+                        <li>Represents traditional large-scale water management.</li>
+                        <li>Could be included in eco-tourism circuits.</li>
+                    </ul>
+                `,
+                science: `
+                    <b style='color:#2a5d9f;'>🔬 Scientific Novelty</b>
+                    <ul>
+                        <li>Large-scale community pond design for maximum water storage.</li>
+                        <li>Traditional engineering that has survived for 1000 years.</li>
+                        <li>Efficient groundwater recharge system.</li>
+                        <li>Demonstrates sustainable water management practices.</li>
+                    </ul>
+                `,
+                condition: `
+                    <b style='color:#2a5d9f;'>📊 Current Condition</b>
+                    <ul>
+                        <li>Still functional and maintained under MGNREGA.</li>
+                        <li>Requires protection from encroachment.</li>
+                        <li>Needs committee-based maintenance for long-term sustainability.</li>
+                        <li>Solution: Protection from encroachment and committee maintenance.</li>
+                    </ul>
+                `
+            }
+        },
+        bawadi: {
+            title: 'Khari Ki Bawadi',
+            images: [
+                {src: 'images/Pansal/10.jpg', caption: 'Khari Ki Bawadi - One of the oldest bawadis'},
+                {src: 'images/Pansal/11.jpg', caption: 'Major source once, now abandoned'},
+                {src: 'images/Pansal/12.jpg', caption: 'Stepwell style, groundwater access'}
+            ],
+            tabs: {
+                overview: `
+                    <b style='color:#2a5d9f;'>Overview</b><br/>
+                    <table class='ratangarh-info-table' style='width:100%;margin:18px 0 18px 0;border-collapse:collapse;'>
+                        <tr><th>Location</th><td>Khari Ki Bawadi, Pansal</td></tr>
+                        <tr><th>District</th><td>Bhilwara</td></tr>
+                        <tr><th>Type</th><td>Stepwell</td></tr>
+                    </table>
+                    Khari Ki Bawadi is one of the oldest stepwells in the region, once serving as a major water source. It represents traditional stepwell architecture and groundwater access techniques.<br/><br/>
+                `,
+                history: `
+                    <b style='color:#2a5d9f;'>📜 History</b><br/>
+                    <ul>
+                        <li>One of the oldest bawadis (stepwells) in the region.</li>
+                        <li>Once served as a major water source for the entire community.</li>
+                        <li>Represents traditional stepwell architecture of Rajasthan.</li>
+                        <li>Built to provide year-round access to groundwater.</li>
+                    </ul>
+                `,
+                uses: `
+                    <b style='color:#2a5d9f;'>💧 Current Uses</b>
+                    <ul>
+                        <li>Currently abandoned as a primary water source.</li>
+                        <li>Used only for irrigation purposes.</li>
+                        <li>No longer serves drinking water needs.</li>
+                        <li>Maintains historical and architectural significance.</li>
+                    </ul>
+                `,
+                religion: `
+                    <b style='color:#2a5d9f;'>🕉 Religious Significance</b><br/>
+                    <ul>
+                        <li>Represents traditional water wisdom and community cooperation.</li>
+                        <li>Associated with local cultural practices and rituals.</li>
+                        <li>Symbolizes the historical importance of water in desert communities.</li>
+                    </ul>
+                `,
+                tourism: `
+                    <b style='color:#2a5d9f;'>🧭 Tourism Potential</b>
+                    <ul>
+                        <li>High heritage tourism potential due to its age and architecture.</li>
+                        <li>Can be promoted as part of stepwell heritage tours.</li>
+                        <li>Represents traditional Rajasthani stepwell design.</li>
+                        <li>Could be included in architectural heritage circuits.</li>
+                    </ul>
+                `,
+                science: `
+                    <b style='color:#2a5d9f;'>🔬 Scientific Novelty</b>
+                    <ul>
+                        <li>Stepwell style design for optimal groundwater access.</li>
+                        <li>Traditional engineering that ensures year-round water availability.</li>
+                        <li>Demonstrates sustainable groundwater management.</li>
+                        <li>Shows traditional water harvesting techniques.</li>
+                    </ul>
+                `,
+                condition: `
+                    <b style='color:#2a5d9f;'>📊 Current Condition</b>
+                    <ul>
+                        <li>Deteriorated due to long-term neglect.</li>
+                        <li>Structurally compromised but still standing.</li>
+                        <li>Requires significant restoration work.</li>
+                        <li>Solution: Partial revival as recharge bawadi.</li>
+                    </ul>
+                `
+            }
+        }
+    };
+    
+    const currentSection = sectionData[section];
+    if (!currentSection) return;
+    
+    // Create image carousel
+    let imageHTML = `
+        <div class="ratangarh-image-row-wrapper" style="position:relative;width:100%;height:340px;">
+            <button class="ratangarh-arrow ratangarh-arrow-left" style="position:absolute;left:8px;top:50%;transform:translateY(-50%);z-index:2;display:none;background:rgba(42,93,159,0.7);border:none;border-radius:50%;width:38px;height:38px;color:#fff;font-size:1.5em;cursor:pointer;align-items:center;justify-content:center;outline:none;transition:background 0.2s;">&#8592;</button>
+            <div class="ratangarh-image-row" style="height:100%;">
+    `;
+    
+    currentSection.images.forEach((img, i) => {
+        imageHTML += `
+            <div class="ratangarh-img-box">
+                <img src='${img.src}' alt='${currentSection.title} Image ${i+1}'>
+                <div class='ratangarh-img-caption'>${img.caption}</div>
+            </div>
+        `;
+    });
+    
+    imageHTML += `
+            </div>
+            <button class="ratangarh-arrow ratangarh-arrow-right" style="position:absolute;right:8px;top:50%;transform:translateY(-50%);z-index:2;display:none;background:rgba(42,93,159,0.7);border:none;border-radius:50%;width:38px;height:38px;color:#fff;font-size:1.5em;cursor:pointer;align-items:center;justify-content:center;outline:none;transition:background 0.2s;">&#8594;</button>
+        </div>
+    `;
+    
+    // Create tabs
+    let tabsHTML = `
+        <div class="ratangarh-tabs">
+            <button class="ratangarh-tab active" data-tab="overview">Overview</button>
+            <button class="ratangarh-tab" data-tab="history">📜 History</button>
+            <button class="ratangarh-tab" data-tab="uses">💧 Current Uses</button>
+            <button class="ratangarh-tab" data-tab="religion">🕉 Religious Significance</button>
+            <button class="ratangarh-tab" data-tab="tourism">🧭 Tourism Potential</button>
+            <button class="ratangarh-tab" data-tab="science">🔬 Scientific Novelty</button>
+            <button class="ratangarh-tab" data-tab="condition">📊 Current Condition</button>
+        </div>
+        <div class="ratangarh-tab-content" id="pansal-tab-content"></div>
+    `;
+    
+    contentContainer.innerHTML = imageHTML + tabsHTML;
+    
+    // Initialize tab functionality
+    const tabContent = document.getElementById('pansal-tab-content');
+    const tabData = currentSection.tabs;
+    
+    function setTab(tab) {
+        tabContent.innerHTML = tabData[tab];
+        document.querySelectorAll('.ratangarh-tab').forEach(btn => btn.classList.remove('active'));
+        document.querySelector(`.ratangarh-tab[data-tab="${tab}"]`).classList.add('active');
+    }
+    
+    setTab('overview');
+    document.querySelectorAll('.ratangarh-tab').forEach(btn => {
+        btn.onclick = () => setTab(btn.getAttribute('data-tab'));
+    });
+    
+    // Initialize image carousel functionality
+    const imageRow = contentContainer.querySelector('.ratangarh-image-row');
+    const leftArrow = contentContainer.querySelector('.ratangarh-arrow-left');
+    const rightArrow = contentContainer.querySelector('.ratangarh-arrow-right');
+    
+    let currentIndex = 0;
+    const images = currentSection.images;
+    
+    function updateArrows() {
+        leftArrow.style.display = currentIndex > 0 ? 'flex' : 'none';
+        rightArrow.style.display = currentIndex < images.length-1 ? 'flex' : 'none';
+    }
+    
+    function scrollToIndex(idx) {
+        const box = imageRow.children[idx];
+        if (box) box.scrollIntoView({behavior:'smooth',inline:'start'});
+        currentIndex = idx;
+        updateArrows();
+    }
+    
+    leftArrow.onclick = () => scrollToIndex(currentIndex-1);
+    rightArrow.onclick = () => scrollToIndex(currentIndex+1);
+    
+    imageRow.addEventListener('scroll', () => {
+        let minDist = Infinity, idx = 0;
+        for (let i=0; i<imageRow.children.length; ++i) {
+            const rect = imageRow.children[i].getBoundingClientRect();
+            const dist = Math.abs(rect.left - imageRow.getBoundingClientRect().left);
+            if (dist < minDist) { minDist = dist; idx = i; }
+        }
+        currentIndex = idx;
+        updateArrows();
+    });
+    
+    scrollToIndex(0);
+}
+
+// Atoon section functions
+function showAtoonSection(section) {
+    // Update active tab
+    document.querySelectorAll('.atoon-main-tab').forEach(tab => tab.classList.remove('active'));
+    event.target.classList.add('active');
+    
+    // Load section content
+    loadAtoonSectionContent(section);
+}
+
+function loadAtoonSectionContent(section) {
+    const contentContainer = document.getElementById('atoon-section-content');
+    
+    const sectionData = {
+        dharam: {
+            title: 'Dharam Talai (Ancient Pond)',
+            images: [
+                {src: 'images/Atoon/1.jpg', caption: 'Dharam Talai - 400–500 years old ancient pond'},
+                {src: 'images/Atoon/2.jpg', caption: 'One of the oldest water bodies in Bhilwara'},
+                {src: 'images/Atoon/3.jpg', caption: 'Traditional community-based water harvesting'}
+            ],
+            tabs: {
+                overview: `
+                    <b style='color:#2a5d9f;'>Overview</b><br/>
+                    <table class='ratangarh-info-table' style='width:100%;margin:18px 0 18px 0;border-collapse:collapse;'>
+                        <tr><th>Location</th><td>Dharam Talai, Atoon</td></tr>
+                        <tr><th>District</th><td>Bhilwara</td></tr>
+                        <tr><th>Age</th><td>400–500 years old</td></tr>
+                    </table>
+                    Dharam Talai is one of the oldest water bodies in Bhilwara, believed to be 400–500 years old, predating even the establishment of the nearby village. It has served as a lifeline for irrigation, drinking, and daily domestic use for centuries.<br/><br/>
+                `,
+                history: `
+                    <b style='color:#2a5d9f;'>📜 History</b><br/>
+                    <ul>
+                        <li>One of the oldest water bodies in Bhilwara, believed to be 400–500 years old.</li>
+                        <li>Predates the establishment of the nearby village settlement.</li>
+                        <li>Has served as a lifeline for irrigation, drinking, and daily domestic use for centuries.</li>
+                        <li>Represents the ancient community-based water harvesting tradition of Rajasthan.</li>
+                    </ul>
+                `,
+                uses: `
+                    <b style='color:#2a5d9f;'>💧 Current Uses</b>
+                    <ul>
+                        <li>Currently used for cattle watering and occasional irrigation.</li>
+                        <li>Role has diminished with the introduction of piped water supply.</li>
+                        <li>Still supports local agricultural activities during monsoon season.</li>
+                        <li>Used for occasional rituals and community gatherings.</li>
+                    </ul>
+                `,
+                religion: `
+                    <b style='color:#2a5d9f;'>🕉 Religious Significance</b><br/>
+                    <ul>
+                        <li>Used for rituals and is believed to bring prosperity to the community.</li>
+                        <li>Religious and cultural importance has remained intact over centuries.</li>
+                        <li>Associated with local festivals and community ceremonies.</li>
+                        <li>Represents the spiritual connection between water and community well-being.</li>
+                    </ul>
+                `,
+                tourism: `
+                    <b style='color:#2a5d9f;'>🧭 Tourism Potential</b>
+                    <ul>
+                        <li>Can be developed as a heritage eco-site.</li>
+                        <li>High potential for heritage tourism due to its age and historical significance.</li>
+                        <li>Could be included in cultural heritage circuits.</li>
+                        <li>Potential for eco-tourism and educational tours.</li>
+                    </ul>
+                `,
+                science: `
+                    <b style='color:#2a5d9f;'>🔬 Scientific Novelty</b>
+                    <ul>
+                        <li>Traditional pond design with natural catchment area.</li>
+                        <li>Efficient groundwater recharge system.</li>
+                        <li>Demonstrates sustainable water management practices.</li>
+                        <li>Shows traditional engineering wisdom for water storage.</li>
+                    </ul>
+                `,
+                condition: `
+                    <b style='color:#2a5d9f;'>📊 Current Condition</b>
+                    <ul>
+                        <li>Heavy siltation has reduced its water storage capacity.</li>
+                        <li>Seasonal drying due to reduced rainfall and maintenance.</li>
+                        <li>Faces encroachment from nearby settlements.</li>
+                        <li>Solution: Desilting, catchment restoration, fencing, heritage eco-park development.</li>
+                    </ul>
+                `
+            }
+        },
+        charbhuja: {
+            title: 'Charbhuja Ki Bawadi',
+            images: [
+                {src: 'images/Atoon/4.jpg', caption: 'Charbhuja Ki Bawadi - Centuries old stepwell'},
+                {src: 'images/Atoon/5.jpg', caption: 'Built near Charbhuja Temple'},
+                {src: 'images/Atoon/6.jpg', caption: 'Rectangular stepwell design'}
+            ],
+            tabs: {
+                overview: `
+                    <b style='color:#2a5d9f;'>Overview</b><br/>
+                    <table class='ratangarh-info-table' style='width:100%;margin:18px 0 18px 0;border-collapse:collapse;'>
+                        <tr><th>Location</th><td>Charbhuja Ki Bawadi, Atoon</td></tr>
+                        <tr><th>District</th><td>Bhilwara</td></tr>
+                        <tr><th>Type</th><td>Rectangular Stepwell</td></tr>
+                        <tr><th>Size</th><td>3m × 10m</td></tr>
+                    </table>
+                    Charbhuja Ki Bawadi was built centuries ago near the Charbhuja Temple in Bhilwara. This rectangular stepwell was once central to the daily water needs of the community and carried religious significance.<br/><br/>
+                `,
+                history: `
+                    <b style='color:#2a5d9f;'>📜 History</b><br/>
+                    <ul>
+                        <li>Built centuries ago alongside the Charbhuja Temple.</li>
+                        <li>Once central to the daily water needs of the entire community.</li>
+                        <li>Represents traditional stepwell architecture of Rajasthan.</li>
+                        <li>Stepwells like this were not only water sources but also community gathering spaces.</li>
+                    </ul>
+                `,
+                uses: `
+                    <b style='color:#2a5d9f;'>💧 Current Uses</b>
+                    <ul>
+                        <li>Currently rarely used and mostly abandoned.</li>
+                        <li>Practical use has diminished with the arrival of Jal Jeevan Mission pipelines.</li>
+                        <li>No longer serves as primary drinking water source.</li>
+                        <li>Maintains historical and architectural significance.</li>
+                    </ul>
+                `,
+                religion: `
+                    <b style='color:#2a5d9f;'>🕉 Religious Significance</b><br/>
+                    <ul>
+                        <li>Linked to Charbhuja deity rituals and temple ceremonies.</li>
+                        <li>Water from the bawadi was used for temple rituals and pilgrim offerings.</li>
+                        <li>Associated with local religious practices and community faith.</li>
+                        <li>Represents the connection between water and spirituality.</li>
+                    </ul>
+                `,
+                tourism: `
+                    <b style='color:#2a5d9f;'>🧭 Tourism Potential</b>
+                    <ul>
+                        <li>High temple tourism circuit potential.</li>
+                        <li>Can be promoted as part of heritage stepwell tours.</li>
+                        <li>Represents traditional Rajasthani stepwell architecture.</li>
+                        <li>Could be included in cultural heritage circuits.</li>
+                    </ul>
+                `,
+                science: `
+                    <b style='color:#2a5d9f;'>🔬 Scientific Novelty</b>
+                    <ul>
+                        <li>Underground structure design minimized water evaporation.</li>
+                        <li>Rectangular stepwell design for optimal water access.</li>
+                        <li>Traditional engineering that ensures year-round water availability.</li>
+                        <li>Demonstrates sustainable groundwater management.</li>
+                    </ul>
+                `,
+                condition: `
+                    <b style='color:#2a5d9f;'>📊 Current Condition</b>
+                    <ul>
+                        <li>Structure lies neglected with collapsed walls.</li>
+                        <li>Partially filled with debris and garbage accumulation.</li>
+                        <li>Retains immense cultural and architectural value despite deterioration.</li>
+                        <li>Solution: Structural restoration, connect with rainwater recharge, awareness campaigns.</li>
+                    </ul>
+                `
+            }
+        }
+    };
+    
+    const currentSection = sectionData[section];
+    if (!currentSection) return;
+    
+    // Create image carousel
+    let imageHTML = `
+        <div class="ratangarh-image-row-wrapper" style="position:relative;width:100%;height:340px;">
+            <button class="ratangarh-arrow ratangarh-arrow-left" style="position:absolute;left:8px;top:50%;transform:translateY(-50%);z-index:2;display:none;background:rgba(42,93,159,0.7);border:none;border-radius:50%;width:38px;height:38px;color:#fff;font-size:1.5em;cursor:pointer;align-items:center;justify-content:center;outline:none;transition:background 0.2s;">&#8592;</button>
+            <div class="ratangarh-image-row" style="height:100%;">
+    `;
+    
+    currentSection.images.forEach((img, i) => {
+        imageHTML += `
+            <div class="ratangarh-img-box">
+                <img src='${img.src}' alt='${currentSection.title} Image ${i+1}'>
+                <div class='ratangarh-img-caption'>${img.caption}</div>
+            </div>
+        `;
+    });
+    
+    imageHTML += `
+            </div>
+            <button class="ratangarh-arrow ratangarh-arrow-right" style="position:absolute;right:8px;top:50%;transform:translateY(-50%);z-index:2;display:none;background:rgba(42,93,159,0.7);border:none;border-radius:50%;width:38px;height:38px;color:#fff;font-size:1.5em;cursor:pointer;align-items:center;justify-content:center;outline:none;transition:background 0.2s;">&#8594;</button>
+        </div>
+    `;
+    
+    // Create tabs
+    let tabsHTML = `
+        <div class="ratangarh-tabs">
+            <button class="ratangarh-tab active" data-tab="overview">Overview</button>
+            <button class="ratangarh-tab" data-tab="history">📜 History</button>
+            <button class="ratangarh-tab" data-tab="uses">💧 Current Uses</button>
+            <button class="ratangarh-tab" data-tab="religion">🕉 Religious Significance</button>
+            <button class="ratangarh-tab" data-tab="tourism">🧭 Tourism Potential</button>
+            <button class="ratangarh-tab" data-tab="science">🔬 Scientific Novelty</button>
+            <button class="ratangarh-tab" data-tab="condition">📊 Current Condition</button>
+        </div>
+        <div class="ratangarh-tab-content" id="atoon-tab-content"></div>
+    `;
+    
+    contentContainer.innerHTML = imageHTML + tabsHTML;
+    
+    // Initialize tab functionality
+    const tabContent = document.getElementById('atoon-tab-content');
+    const tabData = currentSection.tabs;
+    
+    function setTab(tab) {
+        tabContent.innerHTML = tabData[tab];
+        document.querySelectorAll('.ratangarh-tab').forEach(btn => btn.classList.remove('active'));
+        document.querySelector(`.ratangarh-tab[data-tab="${tab}"]`).classList.add('active');
+    }
+    
+    setTab('overview');
+    document.querySelectorAll('.ratangarh-tab').forEach(btn => {
+        btn.onclick = () => setTab(btn.getAttribute('data-tab'));
+    });
+    
+    // Initialize image carousel functionality
+    const imageRow = contentContainer.querySelector('.ratangarh-image-row');
+    const leftArrow = contentContainer.querySelector('.ratangarh-arrow-left');
+    const rightArrow = contentContainer.querySelector('.ratangarh-arrow-right');
+    
+    let currentIndex = 0;
+    const images = currentSection.images;
+    
+    function updateArrows() {
+        leftArrow.style.display = currentIndex > 0 ? 'flex' : 'none';
+        rightArrow.style.display = currentIndex < images.length-1 ? 'flex' : 'none';
+    }
+    
+    function scrollToIndex(idx) {
+        const box = imageRow.children[idx];
+        if (box) box.scrollIntoView({behavior:'smooth',inline:'start'});
+        currentIndex = idx;
+        updateArrows();
+    }
+    
+    leftArrow.onclick = () => scrollToIndex(currentIndex-1);
+    rightArrow.onclick = () => scrollToIndex(currentIndex+1);
+    
+    imageRow.addEventListener('scroll', () => {
+        let minDist = Infinity, idx = 0;
+        for (let i=0; i<imageRow.children.length; ++i) {
+            const rect = imageRow.children[i].getBoundingClientRect();
+            const dist = Math.abs(rect.left - imageRow.getBoundingClientRect().left);
+            if (dist < minDist) { minDist = dist; idx = i; }
+        }
+        currentIndex = idx;
+        updateArrows();
+    });
+    
+    scrollToIndex(0);
 }
 
 // Initialize map when DOM is loaded

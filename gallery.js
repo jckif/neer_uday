@@ -2,9 +2,11 @@
 const titleParts = document.title.split(' ');
 let currentLocation = '';
 if (titleParts.length >= 4 && titleParts[1] === '-') {
-    // Handle multi-word location names like "Sardar Samand"
+    // Handle multi-word location names like "Sardar Samand" and "Shri Balaji"
     if (titleParts[2] === 'Sardar' && titleParts[3] === 'Samand') {
         currentLocation = 'sardar_samand';
+    } else if (titleParts[2] === 'Shri' && titleParts[3] === 'Balaji') {
+        currentLocation = 'shribalaji';
     } else {
         currentLocation = titleParts[2].toLowerCase();
     }
@@ -497,12 +499,180 @@ async function loadGalleryItems() {
                 break
                 case 'rajasmand':
                 mediaFiles = [
-                    { type: 'image', src: 'images/Rajsamand/1.jpg', size: 'big', caption: 'Rajasmand Lake - Scenic View' },
-                    { type: 'image', src: 'images/Rajsamand/2.jpg', size: 'big', caption: 'Rajasmand Lake - Tranquil Waters' },
-                    { type: 'image', src: 'images/Rajsamand/3.jpg', size: 'normal', caption: 'Rajasmand Lake - Sunset' },
-                    { type: 'image', src: 'images/Rajsamand/4.jpg', size: 'normal', caption: 'Rajasmand Lake - Heritage Site' }
+                    { type: 'image', src: 'images/Rajasmand/1.jpg', size: 'big', caption: 'Rajasmand Lake - Scenic View' },
+                    { type: 'image', src: 'images/Rajasmand/2.jpg', size: 'big', caption: 'Rajasmand Lake - Tranquil Waters' },
+                    { type: 'image', src: 'images/Rajasmand/3.jpg', size: 'normal', caption: 'Rajasmand Lake - Sunset' },
+                    { type: 'image', src: 'images/Rajasmand/4.jpg', size: 'normal', caption: 'Rajasmand Lake - Heritage Site' }
                 ];
-                break
+                break;
+            case 'gogelaw':
+                mediaFiles = [
+                    { type: 'image', src: 'images/Gogelaw/1.jpg', size: 'big', caption: 'Gogelaw - Traditional Water Conservation Site' },
+                    { type: 'image', src: 'images/Gogelaw/2.jpg', size: 'big', caption: 'Here, the JCKIC team, RetroFlow member (Adarsh Singh), is discussing the Nadi with a local person and observing the arid region of Gogelaw.' },
+                    { type: 'image', src: 'images/Gogelaw/4.jpg', size: 'big', caption: 'Nadi’s or johads are traditional, community-built rainwater ponds found across western Rajasthan. They recharge groundwater and support drinking and livestock needs. Many in Nagaur, including the Gogelaw region, are estimated to be 300–600 years old, with some in the area dating back up to 1,000 years.' },
+                    { type: 'image', src: 'images/Gogelaw/9.jpg', size: 'big', caption: 'A Nadi (river) is a natural watercourse that plays a crucial role in sustaining life and supporting ecosystems. It provides water for drinking, irrigation, and industrial use. Rivers enrich agricultural lands by supplying water and depositing fertile silt. They also support hydropower generation and serve as transportation routes in certain regions. Overall, rivers are essential for environmental balance, human livelihood, and economic activities.' },
+                    { type: 'image', src: 'images/Gogelaw/12.jpg', size: 'big', caption: 'This is a dual-pipe culvert in Gogelaw, Ajmer Division, Rajasthan, built for rainwater drainage and runoff management. It helps prevent soil erosion and flooding by channelling excess water, likely supporting nearby Nadi’s or traditional water bodies.' },
+                    { type: 'image', src: 'images/Gogelaw/13.jpg', size: 'big', caption: 'Located in Gogelaw, this Adarsh Talaab spans 2000 bighas, storing rainwater and supporting cattle grazing. A nearby Tanka stores drinking water, while Talaab serves as a water source for animals. The lush plains, called Angor in Marwar, reflect smart water use. Goga Talab adds to the village’s eco-friendly water heritage.' },
+                    { type: 'image', src: 'images/Gogelaw/17.jpg', size: 'big', caption: 'A traditional circular well located in Gogelaw, Nagaur, Rajasthan, built with red sandstone bricks. It is likely 10 to 30 years old and measures approximately 1.5 to 1.7 meters in height and 4.5 to 5.5 meters in diameter, with a typical depth of 10 to 30 meters. The well is used for groundwater storage and rainwater harvesting, serving local needs for drinking, livestock, and domestic use in the arid climate of the region.' },
+                    { type: 'image', src: 'images/Gogelaw/20.jpg', size: 'big', caption: 'This is a circular Nadi (pond) structure located in Gogelaw, Ajmer Division, Rajasthan, used for rainwater harvesting. As per the stone inscription visible, it was constructed under the MGNREGA scheme, likely around 2014-15. The pond has a diameter of 30 meters, a depth of 1.5 meters, and a storage capacity of approximately. 1050 cubic meters. It helps recharge groundwater and supports local agriculture and livestock during dry seasons.' },
+                    { type: 'image', src: 'images/Gogelaw/3.jpg', size: 'normal' },
+                    { type: 'image', src: 'images/Gogelaw/5.jpg', size: 'normal' },
+                    { type: 'image', src: 'images/Gogelaw/6.jpg', size: 'normal' },
+                    { type: 'image', src: 'images/Gogelaw/7.jpg', size: 'normal' },
+                    { type: 'image', src: 'images/Gogelaw/8.jpg', size: 'normal' },
+                    { type: 'image', src: 'images/Gogelaw/10.jpg', size: 'normal' },
+                    { type: 'image', src: 'images/Gogelaw/11.jpg', size: 'normal' },
+                    { type: 'image', src: 'images/Gogelaw/14.png', size: 'normal' },
+                    { type: 'image', src: 'images/Gogelaw/15.jpg', size: 'normal' },
+                    { type: 'image', src: 'images/Gogelaw/16.jpg', size: 'normal' },
+                    { type: 'image', src: 'images/Gogelaw/18.jpg', size: 'normal' },
+                    { type: 'image', src: 'images/Gogelaw/19.jpg', size: 'normal' },
+                    { type: 'image', src: 'images/Gogelaw/21.jpg', size: 'normal' }
+                ];
+                break;
+            case 'barani':
+                mediaFiles = [
+                    { type: 'image', src: 'images/Barani/1.jpg', size: 'big', caption: 'Barani (Nagaur)' },
+                    { type: 'image', src: 'images/Barani/2.jpg', size: 'big', caption: 'Kachauliya Nadi' },
+                    { type: 'image', src: 'images/Barani/3.jpg', size: 'big', caption: 'A cemented and stone masonry Nadi structure. It is a traditional open circular water reservoir, constructed to collect and store rainwater for local use, primarily domestic use, livestock, and sometimes irrigation in rural arid areas. The solid boundary shows modern reinforcement, likely to reduce seepage and erosion.' },
+                    { type: 'image', src: 'images/Barani/4.jpg', size: 'big', caption: 'This is a government-built rainwater harvesting structure (Nadi) under MGNREGA in Nagaur district, Rajasthan, built around 2020–2021. It serves to collect monsoon rainwater, critical for water security in arid regions like Nagaur.' },
+                    { type: 'image', src: 'images/Barani/5.jpg', size: 'normal' },
+                    { type: 'image', src: 'images/Barani/6.jpg', size: 'normal' },
+                    { type: 'image', src: 'images/Barani/7.jpg', size: 'normal' },
+                    { type: 'image', src: 'images/Barani/8.jpg', size: 'normal' },
+                    { type: 'image', src: 'images/Barani/9.jpg', size: 'normal' }
+                ];
+                break;
+            case 'alai':
+                mediaFiles = [
+                    { type: 'image', src: 'images/Alai/1.jpg', size: 'big', caption: 'This Nadi in Alai village, Ajmer (Rajasthan) was built under MGNREGA in January 2022 at a cost of ₹2.84 lakh. Spread over 25×32 meters, it stores rainwater for agriculture, cattle use, and groundwater recharge. The area is semi-arid, and the Nadi supports local water needs sustainably.' },
+                    { type: 'image', src: 'images/Alai/2.jpg', size: 'normal' },
+                    { type: 'image', src: 'images/Alai/3.jpg', size: 'normal' },
+                    { type: 'image', src: 'images/Alai/4.jpg', size: 'normal' },
+                    { type: 'image', src: 'images/Alai/5.jpg', size: 'normal' }
+                ];
+                break;
+            case 'shribalaji':
+                mediaFiles = [
+                    { type: 'image', src: 'images/Shribalaji/1.jpg', size: 'big', caption: 'Shree Bala ji (Nagaur)' },
+                    { type: 'image', src: 'images/Shribalaji/2.jpg', size: 'big', caption: 'This is a cemented rectangular tank used to collect and store rainwater for domestic use in arid regions like Rajasthan. Typically built at the household or community level, it aids water availability during dry months. Based on its cement construction and PVC fittings, it appears to be less than 10 years old. Its estimated dimensions are 3–4 m in width and 1.2–1.5 m in height. The attached pipes suggest rooftop or surface runoff water collection.' },
+                    { type: 'image', src: 'images/Shribalaji/3.jpg', size: 'normal' },
+                    { type: 'image', src: 'images/Shribalaji/4.jpg', size: 'normal' },
+                    { type: 'image', src: 'images/Shribalaji/5.jpg', size: 'normal' },
+                    { type: 'image', src: 'images/Shribalaji/6.jpg', size: 'normal' },
+                    { type: 'image', src: 'images/Shribalaji/7.jpg', size: 'normal' },
+                    { type: 'image', src: 'images/Shribalaji/8.jpg', size: 'normal' }
+                ];
+                break;
+            case 'beer':
+                mediaFiles = [
+                    { type: 'image', src: 'images/Beer/1.jpg', size: 'big', caption: 'Beer (Ajmer) \n An old(200-500yr) neglected well ( a traditional water structure,  a bawdi or kuan) located in a rural or semi-urban area OF BEER panchayat (Ajmer) this well  is oldest well in entire beer village  its deep around 20-30feet. Well is  a part of the village’s water heritage, now being forgotten.'},
+                    { type: 'image', src: 'images/Beer/2.jpg', size: 'big', caption: 'Condition:- \n •  The ground around the well is littered with garbage, plastic waste, cloth, and other debris. \n •  Vegetation is overgrown, with thorny bushes and wild plants encroaching on the structure. \n • cultural Loss – The well is likely a part of the village’s water heritage, now being forgotten. \n •  Health Hazard – Garbage accumulation can cause water contamination, spread of diseases, and pest issues. \n Structure:-Cracks between walls of well ' },
+                    { type: 'image', src: 'images/Beer/4.jpg', size: 'big', caption: 'The people of Beer village used to rely entirely on this well for drinking water and daily needs. According to the village elders, they were completely dependent on this well. But ever since the water level started to drop, the well dried up, and now they rely on supplied water. In this area, groundwater is found only after digging 80 to 100 feet deep, and in some places, even deeper. Even if water is found, it is often saline and contains high levels of nitrate and fluoride' },
+                    { type: 'image', src: 'images/Beer/5.jpg', size: 'big', caption: '2.Bawdi Beer village in Ajmer, Rajasthan, stands a 400-year-old stepwell — a forgotten lifeline of the past. \n According to village elders, this stepwell once fulfilled all the water needs of the community — farom drinking water to irrigation and even for animals during scorching summers. \n Where now there’s garbage, overgrown weeds, and silence… there once echoed the laughter of children, the sounds of women drawing water, and the rhythm of daily life.' },
+                    { type: 'image', src: 'images/Beer/6.jpg', size: 'big', caption: 'the people of Beer say: \n ‘This stepwell is our identity… Saving it is no longer just a need — it’s our responsibility.  ’ \n This ancient structure is a living testimony of how our ancestors preserved water with wisdom and care — and how today, that wisdom lies buried in neglect.' },
+                    { type: 'image', src: 'images/Beer/7.jpg', size: 'big' , caption: 'Now is the time — to clean it, restore it, and bring back its pride as a symbol of our heritage.' },
+                    { type: 'image', src: 'images/Beer/10.jpg', size: 'big' , caption : '2.Phool Sagar-is a historic water reservoir located about 1–2 km from the Panchayat Bhawan of Beer village in Ajmer district, Rajasthan. Locals estimate that this reservoir is more than 500 years old, possibly built by the local royal or administrative systems of the time to meet drinking and irrigation needs of the surrounding region.'},
+                    { type: 'image', src: 'images/Beer/12.jpg', size: 'big' , caption: 'Current Water Condition Though the water looks clean, it contains high levels of salinity, fluoride, and nitrates. Its unsafe for drinking, can cause health issues, and affects agriculture and livestock. Groundwater recharge happens, but the water quality remains poor.' },
+                    { type: 'image', src: 'images/Beer/14.jpg', size: 'big' , caption: 'Road to phool sagar'},
+                    { type: 'image', src: 'images/Beer/15.jpg', size: 'big' , caption: 'BHAWANTA (Ajmer)' },
+                    { type: 'image', src: 'images/Beer/3.jpg', size: 'normal' },
+                    { type: 'image', src: 'images/Beer/8.jpg', size: 'normal' },
+                    { type: 'image', src: 'images/Beer/9.jpg', size: 'normal' },
+                    { type: 'image', src: 'images/Beer/11.jpg', size: 'normal' },
+                    { type: 'image', src: 'images/Beer/13.jpg', size: 'normal' },
+                    { type: 'image', src: 'images/Beer/16.jpg', size: 'normal' },
+                    { type: 'image', src: 'images/Beer/17.jpg', size: 'normal' },
+                    { type: 'image', src: 'images/Beer/18.jpg', size: 'normal' },
+                    { type: 'image', src: 'images/Beer/19.jpg', size: 'normal' }
+                ];
+                break;
+            case 'banseli':
+                mediaFiles = [
+                    { type: 'image', src: 'images/Banseli/1.jpg', size: 'big', caption: 'Banseli (Ajmer)' },
+                    { type: 'image', src: 'images/Banseli/2.jpg', size: 'big', caption: 'Traditional water heritage of Banseli' },
+                    { type: 'image', src: 'images/Banseli/3.jpg', size: 'big', caption: 'Local water conservation practices' }
+                ];
+                break;
+            case 'atoon':
+                mediaFiles = [
+                    { type: 'image', src: 'images/Atoon/1.jpg', size: 'big', caption: 'Atoon (Bhilwara)' },
+                    { type: 'image', src: 'images/Atoon/2.jpg', size: 'big', caption: 'Traditional water heritage of Atoon' },
+                    { type: 'image', src: 'images/Atoon/3.jpg', size: 'big', caption: 'Local water conservation practices' },
+                    { type: 'image', src: 'images/Atoon/4.jpg', size: 'normal' },
+                    { type: 'image', src: 'images/Atoon/5.jpg', size: 'normal' },
+                    { type: 'image', src: 'images/Atoon/6.jpg', size: 'normal' },
+                    { type: 'image', src: 'images/Atoon/7.jpg', size: 'normal' },
+                    { type: 'image', src: 'images/Atoon/8.jpg', size: 'normal' },
+                    { type: 'image', src: 'images/Atoon/9.jpg', size: 'normal' },
+                    { type: 'image', src: 'images/Atoon/10.jpg', size: 'normal' },
+                    { type: 'image', src: 'images/Atoon/11.jpg', size: 'normal' }
+                ];
+                break;
+            case 'pansal':
+                mediaFiles = [
+                    { type: 'image', src: 'images/Pansal/1.jpg', size: 'big', caption: 'Pansal (Bhilwara)' },
+                    { type: 'image', src: 'images/Pansal/2.jpg', size: 'big', caption: 'Traditional water heritage of Pansal' },
+                    { type: 'image', src: 'images/Pansal/3.jpg', size: 'big', caption: 'Local water conservation practices' },
+                    { type: 'image', src: 'images/Pansal/4.jpg', size: 'normal' },
+                    { type: 'image', src: 'images/Pansal/5.jpg', size: 'normal' },
+                    { type: 'image', src: 'images/Pansal/6.jpg', size: 'normal' },
+                    { type: 'image', src: 'images/Pansal/7.jpg', size: 'normal' },
+                    { type: 'image', src: 'images/Pansal/8.jpg', size: 'normal' },
+                    { type: 'image', src: 'images/Pansal/9.jpg', size: 'normal' },
+                    { type: 'image', src: 'images/Pansal/10.jpg', size: 'normal' },
+                    { type: 'image', src: 'images/Pansal/11.jpg', size: 'normal' },
+                    { type: 'image', src: 'images/Pansal/12.jpg', size: 'normal' }
+                ];
+                break;
+            case 'mandal':
+                mediaFiles = [
+                    { type: 'image', src: 'images/Mandal/1.jpg', size: 'big', caption: 'Mandal (Bhilwara)' },
+                    { type: 'image', src: 'images/Mandal/2.jpg', size: 'big', caption: 'Traditional water heritage of Mandal' },
+                    { type: 'image', src: 'images/Mandal/3.png', size: 'big', caption: 'Local water conservation practices' },
+                    { type: 'image', src: 'images/Mandal/4.png', size: 'normal' },
+                    { type: 'image', src: 'images/Mandal/5.png', size: 'normal' },
+                    { type: 'image', src: 'images/Mandal/6.png', size: 'normal' },
+                    { type: 'image', src: 'images/Mandal/7.png', size: 'normal' },
+                    { type: 'image', src: 'images/Mandal/8.png', size: 'normal' },
+                    { type: 'image', src: 'images/Mandal/9.png', size: 'normal' },
+                    { type: 'image', src: 'images/Mandal/10.png', size: 'normal' }
+                ];
+                break;
+            case 'keerkhera':
+                mediaFiles = [
+                    { type: 'image', src: 'images/Keerkhera/1.jpg', size: 'big', caption: 'Keerkhera (Bhilwara)' },
+                    { type: 'image', src: 'images/Keerkhera/2.jpg', size: 'big', caption: 'Traditional water heritage of Keerkhera' },
+                    { type: 'image', src: 'images/Keerkhera/3.jpg', size: 'big', caption: 'Local water conservation practices' }
+                ];
+                break;
+            case 'meja':
+                mediaFiles = [
+                    { type: 'image', src: 'images/Meja/1.jpg', size: 'big', caption: 'Meja Dam (Bhilwara)' },
+                    { type: 'image', src: 'images/Meja/2.png', size: 'big', caption: 'Traditional water heritage of Meja Dam' },
+                    { type: 'image', src: 'images/Meja/3.jpg', size: 'big', caption: 'Local water conservation practices' }
+                ];
+                break;
+            case 'delwara':
+                mediaFiles = [
+                    { type: 'image', src: 'images/Delwara/1.jpg', size: 'big', caption: 'Delwara (Jalore)' },
+                    { type: 'image', src: 'images/Delwara/2.jpg', size: 'big', caption: 'Traditional water heritage of Delwara' },
+                    { type: 'image', src: 'images/Delwara/3.jpg', size: 'big', caption: 'Local water conservation practices' }
+                ];
+                break;
+            case 'bhinmal':
+                mediaFiles = [
+                    { type: 'image', src: 'images/Bhinmal/1.jpg', size: 'big', caption: 'Bhinmal (Jalore)' },
+                    { type: 'image', src: 'images/Bhinmal/2.jpg', size: 'big', caption: 'Traditional water heritage of Bhinmal' },
+                    { type: 'image', src: 'images/Bhinmal/3.jpg', size: 'big', caption: 'Local water conservation practices' },
+                    { type: 'image', src: 'images/Bhinmal/4.jpg', size: 'normal' }
+                ];
+                break;
+            case 'bharoori':
+                mediaFiles = [
+                    { type: 'image', src: 'images/Bharoori/1.jpg', size: 'big', caption: 'Bharoori (Jalore) \n This well, located in Bharoori village of Bhinmal, Jalore district, was once a vital source of water for the local community. Built with strong stone masonry and reinforced with a concrete ring at the top, it reflects the traditional water architecture of rural Rajasthan. At the center, an iron shaft suggests it was earlier used with a pulley or hand pump system to draw water. Today, the well lies neglected, surrounded by garbage and signs of disuse. Despite its current condition, it stands as a symbol of the villages heritage and the sustainable water practices of the past. With proper cleaning and restoration, this well in Bharoori could once again serve the community and become part of local water conservation efforts.' }
+                ];
+                break;
             default:
                 // Handle unknown location or display a message
                 galleryGrid.innerHTML = '<p>Gallery not available for this location.</p>';

@@ -1902,15 +1902,7 @@ footer {
     background: var(--background);
 }
 
-.logo-dia-group {
-    /* This group is no longer needed with the new layout */
-    /* display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    position: relative;
-    top: -20px;
-    */
-}
+/* .logo-dia-group removed (legacy layout group) */
 
 .mylogo-dia-group {
     display: flex;
@@ -2007,9 +1999,7 @@ footer {
         gap: 1rem;
     }
 
-    .logo-dia-group {
-        /* top: 0; */
-    }
+    /* .logo-dia-group removed in responsive layout */
 
     .mylogo-dia-group {
         flex-direction: row;
@@ -2747,6 +2737,34 @@ nav ul li a.active {
   box-shadow: 0 4px 12px rgba(42,93,159,0.10);
 }
 
+/* 🟢 Beer (Ajmer) Tabs – match Mathania UI */
+.beer-main-tabs {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 18px;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+}
+.beer-main-tab {
+  background: #f2f2f2;
+  color: #333;
+  border: none;
+  border-radius: 8px 8px 0 0;
+  padding: 10px 28px;
+  font-size: 1.08rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s;
+  outline: none;
+  box-shadow: 0 2px 6px rgba(42,93,159,0.04);
+  letter-spacing: 0.5px;
+}
+.beer-main-tab.active {
+  background: #2a5d9f;
+  color: #fff;
+  box-shadow: 0 4px 12px rgba(42,93,159,0.10);
+}
+
 /* 🟢 Kelwa Tabs */
 .kelwa-main-tabs {
   display: flex;
@@ -2770,6 +2788,118 @@ nav ul li a.active {
   letter-spacing: 0.5px;
 }
 .kelwa-main-tab.active {
+  background: #2a5d9f;
+  color: #fff;
+  box-shadow: 0 4px 12px rgba(42,93,159,0.10);
+}
+
+/* 🟢 Bhinmal (Jalore) Tabs – match Mathania UI */
+.bhinmal-main-tabs {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 18px;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+}
+.bhinmal-main-tab {
+  background: #f2f2f2;
+  color: #333;
+  border: none;
+  border-radius: 8px 8px 0 0;
+  padding: 10px 28px;
+  font-size: 1.08rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s;
+  outline: none;
+  box-shadow: 0 2px 6px rgba(42,93,159,0.04);
+  letter-spacing: 0.5px;
+}
+.bhinmal-main-tab.active {
+  background: #2a5d9f;
+  color: #fff;
+  box-shadow: 0 4px 12px rgba(42,93,159,0.10);
+}
+
+/* 🟢 Delwara (Jalore) Tabs – match Mathania UI */
+.delwara-main-tabs {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 18px;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+}
+.delwara-main-tab {
+  background: #f2f2f2;
+  color: #333;
+  border: none;
+  border-radius: 8px 8px 0 0;
+  padding: 10px 28px;
+  font-size: 1.08rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s;
+  outline: none;
+  box-shadow: 0 2px 6px rgba(42,93,159,0.04);
+  letter-spacing: 0.5px;
+}
+.delwara-main-tab.active {
+  background: #2a5d9f;
+  color: #fff;
+  box-shadow: 0 4px 12px rgba(42,93,159,0.10);
+}
+
+/* 🟢 Pansal (Bhilwara) Tabs – match Mathania UI */
+.pansal-main-tabs {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 18px;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+}
+.pansal-main-tab {
+  background: #f2f2f2;
+  color: #333;
+  border: none;
+  border-radius: 8px 8px 0 0;
+  padding: 10px 28px;
+  font-size: 1.08rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s;
+  outline: none;
+  box-shadow: 0 2px 6px rgba(42,93,159,0.04);
+  letter-spacing: 0.5px;
+}
+.pansal-main-tab.active {
+  background: #2a5d9f;
+  color: #fff;
+  box-shadow: 0 4px 12px rgba(42,93,159,0.10);
+}
+
+/* 🟢 Atoon (Bhilwara) Tabs – match Mathania UI */
+.atoon-main-tabs {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 18px;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+}
+.atoon-main-tab {
+  background: #f2f2f2;
+  color: #333;
+  border: none;
+  border-radius: 8px 8px 0 0;
+  padding: 10px 28px;
+  font-size: 1.08rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s;
+  outline: none;
+  box-shadow: 0 2px 6px rgba(42,93,159,0.04);
+  letter-spacing: 0.5px;
+}
+.atoon-main-tab.active {
   background: #2a5d9f;
   color: #fff;
   box-shadow: 0 4px 12px rgba(42,93,159,0.10);

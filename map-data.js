@@ -112,6 +112,60 @@ const mapData = {
                 { id: "rajnagar", name: "Rajnagar", coordinates: [25.071369, 73.870447], description: "Rajnagar village.", image: "images/Rajnagar/1.jpg", report: "rajnagar.html" },
                 { id: "rajasmand_village", name: "Rajsamand Lake", coordinates: [25.077304, 73.884692], description: "Rajsamand Lake.", image: "images/Rajasmand/1.jpg", report: "rajasmand.html" }
             ]
+        },
+        {
+            id: "nagaur",
+            name: "Nagaur",
+            coordinates: [
+                (27.239266 + 27.290657 + 27.328257 + 27.398808) / 4,
+                (73.651575 + 73.618387 + 73.576669 + 73.532659) / 4
+            ],
+            villages: [
+                { id: "gogelaw", name: "Gogelaw", coordinates: [27.239266, 73.651575], description: "Gogelaw village.", image: "images/Gogelaw/1.jpg", report: "gogelaw.html" },
+                { id: "barani", name: "Barani", coordinates: [27.290657, 73.618387], description: "Barani village.", image: "images/Barani/1.jpg", report: "barani.html" },
+                { id: "alai", name: "Alai", coordinates: [27.328257, 73.576669], description: "Alai village.", image: "images/Alai/1.jpg", report: "alai.html" },
+                { id: "shribalaji", name: "Shri Balaji", coordinates: [27.398808, 73.532659], description: "Shri Balaji village.", image: "images/Shribalaji/1.jpg", report: "shribalaji.html" }
+            ]
+        },
+        {
+            id: "ajmer",
+            name: "Ajmer",
+            coordinates: [
+                (26.390705 + 26.517267) / 2,
+                (74.729613 + 74.552184) / 2
+            ],
+            villages: [
+                { id: "beer", name: "Beer", coordinates: [26.390705, 74.729613], description: "Beer village.", image: "images/Beer/1.jpg", report: "beer.html" },
+                { id: "banseli", name: "Banseli", coordinates: [26.517267, 74.552184], description: "Banseli village.", image: "images/Banseli/1.jpg", report: "banseli.html" }
+            ]
+        },
+        {
+            id: "bhilwara",
+            name: "Bhilwara",
+            coordinates: [
+                (25.285289 + 25.348898 + 25.441607 + 25.421150 + 25.393323) / 5,
+                (74.609922 + 74.574213 + 74.571011 + 74.566471 + 74.540524) / 5
+            ],
+            villages: [
+                { id: "atoon", name: "Atoon", coordinates: [25.285289, 74.609922], description: "Atoon village.", image: "images/Atoon/1.jpg", report: "atoon.html" },
+                { id: "pansal", name: "Pansal", coordinates: [25.348898, 74.574213], description: "Pansal village.", image: "images/Pansal/1.jpg", report: "pansal.html" },
+                { id: "mandal", name: "Mandal", coordinates: [25.441607, 74.571011], description: "Mandal village.", image: "images/Mandal/1.jpg", report: "mandal.html" },
+                { id: "keerkhera", name: "Keerkhera", coordinates: [25.421150, 74.566471], description: "Keerkhera village.", image: "images/Keerkhera/1.jpg", report: "keerkhera.html" },
+                { id: "meja", name: "Meja Dam", coordinates: [25.393323, 74.540524], description: "Meja Dam.", image: "images/Meja/1.jpg", report: "meja.html" }
+            ]
+        },
+        {
+            id: "jalore",
+            name: "Jalore",
+            coordinates: [
+                (25.002867 + 24.774509 + 25.190709) / 3,
+                (72.267944 + 73.747508 + 72.993743) / 3
+            ],
+            villages: [
+                { id: "bhinmal", name: "Bhinmal", coordinates: [25.002867, 72.267944], description: "Bhinmal village.", image: "images/Bhinmal/1.jpg", report: "bhinmal.html" },
+                { id: "delwara", name: "Delwara", coordinates: [24.774509, 73.747508], description: "Delwara village.", image: "images/Delwara/1.jpg", report: "delwara.html" },
+                { id: "bharoori", name: "Bharoori", coordinates: [25.190709, 72.993743], description: "Bharoori village.", image: "images/Bharundi/1.jpg", report: "bharoori.html" }
+            ]
         }
     ]
 };
