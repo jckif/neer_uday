@@ -292,20 +292,17 @@ class InteractiveMap {
                     <h3>${village.name}</h3>
                     <span class="village-district">${this.currentDistrict ? this.currentDistrict.name : ''} District</span>
                 </div>
+                <div class="mathania-main-tabs" style="display:flex;gap:12px;margin-bottom:18px;flex-wrap:wrap;">
+                    <button class="mathania-main-tab active" data-main-tab="joon">Joon ki Bawadi</button>
+                    <button class="mathania-main-tab" data-main-tab="thulai">Thulai Nadi</button>
+                    <button class="mathania-main-tab" data-main-tab="ghadai">Ghadai Nadi</button>
+                </div>
                 <div class="ratangarh-image-row-wrapper" style="position:relative;width:100%;height:340px;">
                     <button class="ratangarh-arrow ratangarh-arrow-left" style="position:absolute;left:8px;top:50%;transform:translateY(-50%);z-index:2;display:none;background:rgba(42,93,159,0.7);border:none;border-radius:50%;width:38px;height:38px;color:#fff;font-size:1.5em;cursor:pointer;align-items:center;justify-content:center;outline:none;transition:background 0.2s;">&#8592;</button>
                     <div class="ratangarh-image-row" style="height:100%;"></div>
                     <button class="ratangarh-arrow ratangarh-arrow-right" style="position:absolute;right:8px;top:50%;transform:translateY(-50%);z-index:2;display:none;background:rgba(42,93,159,0.7);border:none;border-radius:50%;width:38px;height:38px;color:#fff;font-size:1.5em;cursor:pointer;align-items:center;justify-content:center;outline:none;transition:background 0.2s;">&#8594;</button>
                 </div>
-                <div class="ratangarh-tabs">
-                    <button class="ratangarh-tab active" data-tab="overview">Overview</button>
-                    <button class="ratangarh-tab" data-tab="history">📜 History of Waterbody</button>
-                    <button class="ratangarh-tab" data-tab="uses">💧 Current Uses</button>
-                    <button class="ratangarh-tab" data-tab="religion">🕉 Religious Significance</button>
-                    <button class="ratangarh-tab" data-tab="tourism">🧭 Tourism Potential</button>
-                    <button class="ratangarh-tab" data-tab="science">🔬 Scientific Novelty</button>
-                    <button class="ratangarh-tab" data-tab="condition">📊 Current Condition</button>
-                </div>
+                <div class="ratangarh-tabs"></div>
                 <div class="ratangarh-tab-content" id="ratangarh-tab-content"></div>
                 <div class="village-actions">
                     <a href="${village.report}" class="view-report-btn">View Full Report</a>
@@ -313,33 +310,30 @@ class InteractiveMap {
                 </div>
             `;
             setTimeout(() => { // Wait for DOM
-                // Insert images into the image row
-                const images = [
+                // Prepare images for Salawas main tabs
+                const joonImages = [
                     {src: 'images/Salawas/1.jpg', caption: 'Joon ki Bawadi – Salawas, Jodhpur'},
                     {src: 'images/Salawas/2.jpg', caption: 'Traditional stepwell structure, partially submerged.'},
                     {src: 'images/Salawas/3.jpg', caption: 'Current state of the Bawadi.', viewAll: true}
                 ];
+                const thulaiImages = [
+                    {src: 'images/Salawas/4.jpg', caption: 'Thulai Nadi – Krishna Nagar, Salawas'},
+                    {src: 'images/Salawas/5.jpg', caption: 'Traditional nadi structure.'},
+                    {src: 'images/Salawas/6.jpg', caption: 'Current state of the Nadi.', viewAll: true}
+                ];
+                const ghadaiImages = [
+                    {src: 'images/Salawas/7.jpg', caption: 'Ghadai Nadi – Salawas'},
+                    {src: 'images/Salawas/8.jpg', caption: 'Traditional rainwater harvesting structure.'},
+                    {src: 'images/Salawas/9.jpg', caption: 'Current state of the Nadi.', viewAll: true}
+                ];
                 const imageRow = villageInfo.querySelector('.ratangarh-image-row');
-                images.forEach((img, i) => {
-                    const box = document.createElement('div');
-                    box.className = 'ratangarh-img-box';
-                    box.innerHTML = `<img src='${img.src}' alt='Salawas Image ${i+1}'><div class='ratangarh-img-caption'>${img.caption}</div>`;
-                    if (img.viewAll) {
-                        const btn = document.createElement('a');
-                        btn.href = 'salawas.html';
-                        btn.className = 'view-all-photos-btn';
-                        btn.textContent = 'View All Photos';
-                        box.appendChild(btn);
-                    }
-                    imageRow.appendChild(box);
-                });
                 // Arrow logic
                 let currentIndex = 0;
                 const leftArrow = villageInfo.querySelector('.ratangarh-arrow-left');
                 const rightArrow = villageInfo.querySelector('.ratangarh-arrow-right');
                 function updateArrows() {
                     leftArrow.style.display = currentIndex > 0 ? 'flex' : 'none';
-                    rightArrow.style.display = currentIndex < images.length-1 ? 'flex' : 'none';
+                    rightArrow.style.display = currentIndex < 2 ? 'flex' : 'none';
                 }
                 function scrollToIndex(idx) {
                     const box = imageRow.children[idx];
@@ -360,34 +354,142 @@ class InteractiveMap {
                     currentIndex = idx;
                     updateArrows();
                 });
-                // Initial state
-                scrollToIndex(0);
-                // Tabs logic
+                
+                // Main-tab aware rendering for Salawas (Joon ki Bawadi | Thulai Nadi | Ghadai Nadi)
+                const tabsContainer = villageInfo.querySelector('.ratangarh-tabs');
                 const tabContent = villageInfo.querySelector('#ratangarh-tab-content');
-                const tabData = {
-                    overview: `<b style='color:#2a5d9f;'>Overview</b><br/>
-                        <table class='ratangarh-info-table' style='width:100%;margin:18px 0 18px 0;border-collapse:collapse;'>
-                            <tr><th>Location</th><td>Joon ki Bawadi, Salawas</td></tr>
-                            <tr><th>District</th><td>Jodhpur</td></tr>
-                            <tr><th>Latitude</th><td>26.121780</td></tr>
-                            <tr><th>Longitude</th><td>72.998051</td></tr>
-                        </table>
-                        Joon ki Bawadi is a traditional stepwell located in Salawas village, part of Luni tehsil in Jodhpur district, Rajasthan.<br/><br/>`,
-                    history: `<b style='color:#2a5d9f;'>📜 History of Waterbody</b><br/>Joon ki Bawadi is a traditional stepwell located in Salawas village, part of Luni tehsil in Jodhpur district, Rajasthan. While formal documentation is limited, local oral traditions suggest that the bawadi was commissioned or maintained by the Joon family, a respected lineage in the village. It was constructed to serve the water needs of the local community in an otherwise arid zone.<br/><br/>`,
-                    uses: `<b style='color:#2a5d9f;'>💧 Current Uses</b><ul><li>Not in Active Use: The bawadi is no longer used as a functional water source by the community.</li><li>Partially Submerged: A portion of the bawadi has been submerged due to overflow from the nearby river, especially during the monsoon.</li><li>Partially Visible: Only some parts of the stepwell structure are still visible; the rest has been overtaken by silt and encroachment.</li><li>Neglected by Locals: With the arrival of modern water supply systems, locals no longer depend on this traditional water source.</li><li>No Livestock Access: The water is stagnant and inaccessible, even for animals.</li><li>No Community Engagement: Once a community space, it is now abandoned and disconnected from village activities.</li></ul>`,
-                    religion: `<b style='color:#2a5d9f;'>🕉 Religious Significance</b><br/>Though not attached to a temple, it is locally respected for its historic value. Villagers occasionally perform ritual cleansing or offerings near the bawadi during festivals like Gangaur or Teej.<br/><br/>`,
-                    tourism: `<b style='color:#2a5d9f;'>🧭 Tourism Potential</b><ul><li>Cultural Link: Located near Salawas, a village known for handwoven dhurries and artisan tours.</li><li>Potential Heritage Stop: Could be included in rural craft and water heritage trails if cleaned and promoted properly.</li><li>Photo-worthy site: Its rustic Rajasthani architecture and quiet surroundings attract heritage photographers.</li></ul>`,
-                    science: `<b style='color:#2a5d9f;'>🔬 Scientific Novelty</b><ul><li>Design: Follows the traditional multi-step baori architecture, with sandstone steps leading down to the water level.</li><li>Sustainable Engineering: Rainwater collection and natural filtration through sand layers help preserve water quality.</li><li>Cooling Feature: Its deep construction keeps the water cool year-round, reducing evaporation losses.</li></ul>`,
-                    condition: `<b style='color:#2a5d9f;'>📊 Current Condition</b><ul><li>Water Quantity: Holds water during and after the monsoon; remains useful for about 4–5 months annually.</li><li>Water Quality: worse quality—suitable for livestock and irrigation but needs testing for drinking.</li><li>Maintenance Status: Currently in a semi-neglected state; overgrown with weeds and partially silted. Desilting and fencing would restore its functionality.</li></ul>`
-                };
-                function setTab(tab) {
-                    tabContent.innerHTML = tabData[tab];
-                    villageInfo.querySelectorAll('.ratangarh-tab').forEach(btn => btn.classList.remove('active'));
-                    villageInfo.querySelector(`.ratangarh-tab[data-tab="${tab}"]`).classList.add('active');
+                
+                function renderSalawasMainTab(mainTab) {
+                    // Render images
+                    imageRow.innerHTML = '';
+                    let imgs;
+                    switch(mainTab) {
+                        case 'joon':
+                            imgs = joonImages;
+                            break;
+                        case 'thulai':
+                            imgs = thulaiImages;
+                            break;
+                        case 'ghadai':
+                            imgs = ghadaiImages;
+                            break;
+                        default:
+                            imgs = joonImages;
+                    }
+                    imgs.forEach((img, i) => {
+                        const box = document.createElement('div');
+                        box.className = 'ratangarh-img-box';
+                        box.innerHTML = `<img src='${img.src}' alt='Salawas Image ${i+1}'><div class='ratangarh-img-caption'>${img.caption || ''}</div>`;
+                        if (img.viewAll) {
+                            const btn = document.createElement('a');
+                            btn.href = 'salawas.html';
+                            btn.className = 'view-all-photos-btn';
+                            btn.textContent = 'View All Photos';
+                            box.appendChild(btn);
+                        }
+                        imageRow.appendChild(box);
+                    });
+                    scrollToIndex(0);
+                    updateArrows();
+                    
+                    // Render sub-tabs
+                    tabsContainer.innerHTML = `
+                        <button class="ratangarh-tab active" data-tab="overview">Overview</button>
+                        <button class="ratangarh-tab" data-tab="history">📜 History of Waterbody</button>
+                        <button class="ratangarh-tab" data-tab="uses">💧 Current Uses</button>
+                        <button class="ratangarh-tab" data-tab="religion">🕉 Religious Significance</button>
+                        <button class="ratangarh-tab" data-tab="tourism">🧭 Tourism Potential</button>
+                        <button class="ratangarh-tab" data-tab="science">🔬 Scientific Novelty</button>
+                        <button class="ratangarh-tab" data-tab="condition">📊 Current Condition</button>`;
+                    
+                    // Tab data for Joon ki Bawadi
+                    const joonTabData = {
+                        overview: `<b style='color:#2a5d9f;'>Overview</b><br/>
+                            <table class='ratangarh-info-table' style='width:100%;margin:18px 0 18px 0;border-collapse:collapse;'>
+                                <tr><th>Location</th><td>Joon ki Bawadi, Salawas</td></tr>
+                                <tr><th>District</th><td>Jodhpur</td></tr>
+                                <tr><th>Latitude</th><td>26.121780</td></tr>
+                                <tr><th>Longitude</th><td>72.998051</td></tr>
+                            </table>
+                            Joon ki Bawadi is a traditional stepwell located in Salawas village, part of Luni tehsil in Jodhpur district, Rajasthan.<br/><br/>`,
+                        history: `<b style='color:#2a5d9f;'>📜 History of Waterbody</b><br/>Joon ki Bawadi is a traditional stepwell located in Salawas village, part of Luni tehsil in Jodhpur district, Rajasthan. While formal documentation is limited, local oral traditions suggest that the bawadi was commissioned or maintained by the Joon family, a respected lineage in the village. It was constructed to serve the water needs of the local community in an otherwise arid zone.<br/><br/>`,
+                        uses: `<b style='color:#2a5d9f;'>💧 Current Uses</b><ul><li>Not in Active Use: The bawadi is no longer used as a functional water source by the community.</li><li>Partially Submerged: A portion of the bawadi has been submerged due to overflow from the nearby river, especially during the monsoon.</li><li>Partially Visible: Only some parts of the stepwell structure are still visible; the rest has been overtaken by silt and encroachment.</li><li>Neglected by Locals: With the arrival of modern water supply systems, locals no longer depend on this traditional water source.</li><li>No Livestock Access: The water is stagnant and inaccessible, even for animals.</li><li>No Community Engagement: Once a community space, it is now abandoned and disconnected from village activities.</li></ul>`,
+                        religion: `<b style='color:#2a5d9f;'>🕉 Religious Significance</b><br/>Though not attached to a temple, it is locally respected for its historic value. Villagers occasionally perform ritual cleansing or offerings near the bawadi during festivals like Gangaur or Teej.<br/><br/>`,
+                        tourism: `<b style='color:#2a5d9f;'>🧭 Tourism Potential</b><ul><li>Cultural Link: Located near Salawas, a village known for handwoven dhurries and artisan tours.</li><li>Potential Heritage Stop: Could be included in rural craft and water heritage trails if cleaned and promoted properly.</li><li>Photo-worthy site: Its rustic Rajasthani architecture and quiet surroundings attract heritage photographers.</li></ul>`,
+                        science: `<b style='color:#2a5d9f;'>🔬 Scientific Novelty</b><ul><li>Design: Follows the traditional multi-step baori architecture, with sandstone steps leading down to the water level.</li><li>Sustainable Engineering: Rainwater collection and natural filtration through sand layers help preserve water quality.</li><li>Cooling Feature: Its deep construction keeps the water cool year-round, reducing evaporation losses.</li></ul>`,
+                        condition: `<b style='color:#2a5d9f;'>📊 Current Condition</b><ul><li>Water Quantity: Holds water during and after the monsoon; remains useful for about 4–5 months annually.</li><li>Water Quality: worse quality—suitable for livestock and irrigation but needs testing for drinking.</li><li>Maintenance Status: Currently in a semi-neglected state; overgrown with weeds and partially silted. Desilting and fencing would restore its functionality.</li></ul>`
+                    };
+                    
+                    // Tab data for Thulai Nadi
+                    const thulaiTabData = {
+                        overview: `<b style='color:#2a5d9f;'>Overview</b><br/>
+                            <table class='ratangarh-info-table' style='width:100%;margin:18px 0 18px 0;border-collapse:collapse;'>
+                                <tr><th>Location</th><td>Thulai Nadi (Krishna Nagar), Salawas</td></tr>
+                                <tr><th>District</th><td>Jodhpur</td></tr>
+                                <tr><th>Latitude</th><td>26.121780</td></tr>
+                                <tr><th>Longitude</th><td>72.998051</td></tr>
+                            </table>
+                            Thulai Nadi is a traditional water body serving the local community in Krishna Nagar, Salawas.<br/><br/>`,
+                        history: `<b style='color:#2a5d9f;'>📜 History of Waterbody</b><br/>Thulai Nadi is over a century old and was constructed to cover an extensive area of 15–20 bighas. It was historically an essential source for drinking water, irrigation, and cattle.<br/><br/>`,
+                        uses: `<b style='color:#2a5d9f;'>💧 Current Uses</b><ul><li>Although saline water has reduced its usability, it is still partially used by the community.</li></ul>`,
+                        religion: `<b style='color:#2a5d9f;'>🕉 Religious Significance</b><ul><li>This water body was once considered a lifeline for the local community and continues to hold cultural value.</li></ul>`,
+                        tourism: `<b style='color:#2a5d9f;'>🧭 Tourism Potential</b><ul><li>It has limited tourism appeal, serving more as a functional water body than a heritage site.</li></ul>`,
+                        science: `<b style='color:#2a5d9f;'>🔬 Scientific Novelty</b><ul><li>The nadi features a central submerged well, estimated to be 120–150 feet deep, that recharges during rainfall.</li><li>This is a remarkable example of traditional engineering.</li></ul>`,
+                        condition: `<b style='color:#2a5d9f;'>📊 Current Condition</b><ul><li>Water quality is saline, but it remains partially functional and in use.</li></ul>`
+                    };
+                    
+                    // Tab data for Ghadai Nadi
+                    const ghadaiTabData = {
+                        overview: `<b style='color:#2a5d9f;'>Overview</b><br/>
+                            <table class='ratangarh-info-table' style='width:100%;margin:18px 0 18px 0;border-collapse:collapse;'>
+                                <tr><th>Location</th><td>Ghadai/Gudhai Nadi, Salawas</td></tr>
+                                <tr><th>District</th><td>Jodhpur</td></tr>
+                                <tr><th>Latitude</th><td>26.121780</td></tr>
+                                <tr><th>Longitude</th><td>72.998051</td></tr>
+                            </table>
+                            Ghadai Nadi is one of the oldest rainwater harvesting structures in the region, showcasing how ancient communities managed seasonal water supply.<br/><br/>`,
+                        history: `<b style='color:#2a5d9f;'>📜 History of Waterbody</b><br/>One of the oldest rainwater harvesting structures in the region, this nadi showcases how ancient communities managed seasonal water supply.<br/><br/>`,
+                        uses: `<b style='color:#2a5d9f;'>💧 Current Uses</b><ul><li>Today, it is used mainly for cattle, but its design and location demonstrate the community's water management skills.</li></ul>`,
+                        religion: `<b style='color:#2a5d9f;'>🕉 Religious Significance</b><ul><li>It holds local heritage value as part of traditional rural life.</li></ul>`,
+                        tourism: `<b style='color:#2a5d9f;'>🧭 Tourism Potential</b><ul><li>Moderate tourism opportunities exist if it is promoted as a cultural heritage site.</li></ul>`,
+                        science: `<b style='color:#2a5d9f;'>🔬 Scientific Novelty</b><ul><li>Its traditional design captures and stores seasonal rainfall, reflecting sustainable resource management.</li></ul>`,
+                        condition: `<b style='color:#2a5d9f;'>📊 Current Condition</b><ul><li>The nadi is still managed seasonally by locals, showing community involvement.</li></ul>`
+                    };
+                    
+                    let data;
+                    switch(mainTab) {
+                        case 'joon':
+                            data = joonTabData;
+                            break;
+                        case 'thulai':
+                            data = thulaiTabData;
+                            break;
+                        case 'ghadai':
+                            data = ghadaiTabData;
+                            break;
+                        default:
+                            data = joonTabData;
+                    }
+                    
+                    function setTab(tab) {
+                        tabContent.innerHTML = data[tab];
+                        villageInfo.querySelectorAll('.ratangarh-tab').forEach(btn => btn.classList.remove('active'));
+                        villageInfo.querySelector(`.ratangarh-tab[data-tab="${tab}"]`).classList.add('active');
+                    }
+                    setTab('overview');
+                    villageInfo.querySelectorAll('.ratangarh-tab').forEach(btn => {
+                        btn.onclick = () => setTab(btn.getAttribute('data-tab'));
+                    });
                 }
-                setTab('overview');
-                villageInfo.querySelectorAll('.ratangarh-tab').forEach(btn => {
-                    btn.onclick = () => setTab(btn.getAttribute('data-tab'));
+                
+                // Initialize and bind main tabs
+                renderSalawasMainTab('joon');
+                villageInfo.querySelectorAll('.mathania-main-tab').forEach(btn => {
+                    btn.onclick = () => {
+                        villageInfo.querySelectorAll('.mathania-main-tab').forEach(b => b.classList.remove('active'));
+                        btn.classList.add('active');
+                        renderSalawasMainTab(btn.getAttribute('data-main-tab'));
+                    };
                 });
             }, 0);
         }
@@ -557,6 +659,8 @@ class InteractiveMap {
                     <button class="mathania-main-tab" data-main-tab="chhoti-bawadi">Chhoti Bawadi</button>
                     <button class="mathania-main-tab" data-main-tab="ayurvedic">Purana Ayurvedic Bawadi</button>
                     <button class="mathania-main-tab" data-main-tab="houses">Houses Built Over Bawadis</button>
+                    <button class="mathania-main-tab" data-main-tab="karni">Karni Mata Mandir</button>
+                    
                 </div>
                 <div class="mathania-bawadi-content"></div>
                 <div class="village-actions">
@@ -591,7 +695,11 @@ class InteractiveMap {
                     {src: 'images/Mathania/14.jpg', caption: 'Urban encroachment on heritage structures.'},
                     {src: 'images/Mathania/15.jpg', caption: 'Lost heritage sites.', viewAll: true}
                 ];
-                
+                const karniImages = [
+                    {src: 'images/Mathania/16.jpg', caption: 'Karni Mata – Mathania'},
+                    {src: 'images/Mathania/17.jpg', caption: 'Temple-associated stepwell.'},
+                    {src: 'images/Mathania/18.jpg', caption: 'Present condition of the Bawadi.', viewAll: true}
+                ];
                 // Tab content for Chhoti Nadi
                 const chhotiTabData = {
                     overview: `<b style='color:#2a5d9f;'>Overview</b><br/>
@@ -638,12 +746,12 @@ class InteractiveMap {
                             <tr><th>Longitude</th><td>72.980735</td></tr>
                         </table>
                         Chhoti Bawadi is a historical bawadi that was used before piped water systems were introduced. Previously a central water source for all community rituals.<br/><br/>`,
-                    history: `<b style='color:#2a5d9f;'>📜 History of Waterbody</b><br/>Historical bawadi used before piped water systems were introduced.<br/><br/>`,
-                    uses: `<b style='color:#2a5d9f;'>💧 Current Uses</b><ul><li>No current use.</li><li>Used as a dumping site.</li></ul>`,
-                    religion: `<b style='color:#2a5d9f;'>🕉 Religious Significance</b><ul><li>Previously a central water source for all community rituals.</li><li>Historical religious importance.</li></ul>`,
-                    tourism: `<b style='color:#2a5d9f;'>🧭 Tourism Potential</b><ul><li>Potential restoration site.</li><li>Heritage conservation opportunity.</li></ul>`,
-                    science: `<b style='color:#2a5d9f;'>🔬 Scientific Novelty</b><ul><li>Stone stepwell construction.</li><li>Traditional architectural design.</li></ul>`,
-                    condition: `<b style='color:#2a5d9f;'>📊 Current Condition</b><ul><li>Heavily polluted.</li><li>Water level too low.</li><li>Requires urgent restoration.</li></ul>`
+                    history: `<b style='color:#2a5d9f;'>📜 History of Waterbody</b><br/>Chhoti Bawadi in Mathania is considered one of the oldest stepwells in the region, constructed during a time when piped water supply systems did not exist. It served as a crucial water source for the local population, particularly during dry summers, and symbolized the ingenuity of traditional water-harvesting architecture. Stepwells like this were not merely utilitarian but also spaces of social and cultural gatherings, emphasizing their importance in community life.<br/><br/>`,
+                    uses: `<b style='color:#2a5d9f;'>💧 Current Uses</b><ul><li>Completely unused today; original function lost.</li><li>Has become a dumping ground for household and commercial waste.</li><li>Physical structure and surroundings severely degraded.</li></ul>`,
+                    religion: `<b style='color:#2a5d9f;'>🕉 Religious Significance</b><ul><li>Historically held spiritual value as a sacred communal hub.</li><li>Often associated with nearby temples.</li><li>Used for ritual purification before religious activities.</li></ul>`,
+                    tourism: `<b style='color:#2a5d9f;'>🧭 Tourism Potential</b><ul><li>High potential as a heritage landmark if restored.</li><li>Can attract domestic and international visitors interested in ancient water architecture.</li><li>Opportunity for interpretive signage and cultural trails.</li></ul>`,
+                    science: `<b style='color:#2a5d9f;'>🔬 Scientific Novelty</b><ul><li>Demonstrates early understanding of percolation and groundwater recharge.</li><li>Exhibits traditional water engineering suited for arid regions.</li></ul>`,
+                    condition: `<b style='color:#2a5d9f;'>📊 Current Condition</b><ul><li>Heavily polluted and filled with garbage.</li><li>Completely abandoned and non-functional.</li><li>Urgent restoration and protection measures required.</li></ul>`
                 };
                 
                 // Tab content for Purana Ayurvedic Bawadi
@@ -656,12 +764,12 @@ class InteractiveMap {
                             <tr><th>Longitude</th><td>72.980735</td></tr>
                         </table>
                         Both historically important stepwells associated with temple premises. Require thorough documentation and cleaning.<br/><br/>`,
-                    history: `<b style='color:#2a5d9f;'>📜 History of Waterbody</b><br/>Both historically important stepwells associated with temple premises.<br/><br/>`,
-                    uses: `<b style='color:#2a5d9f;'>💧 Current Uses</b><ul><li>Limited current use due to poor condition.</li><li>Historical religious significance.</li></ul>`,
-                    religion: `<b style='color:#2a5d9f;'>🕉 Religious Significance</b><ul><li>Associated with temple premises.</li><li>Historical religious importance.</li></ul>`,
-                    tourism: `<b style='color:#2a5d9f;'>🧭 Tourism Potential</b><ul><li>Potential heritage tourism site.</li><li>Requires restoration for tourism development.</li></ul>`,
-                    science: `<b style='color:#2a5d9f;'>🔬 Scientific Novelty</b><ul><li>Traditional stepwell architecture.</li><li>Temple-associated water systems.</li></ul>`,
-                    condition: `<b style='color:#2a5d9f;'>📊 Current Condition</b><ul><li>Require thorough documentation and cleaning.</li><li>Poor maintenance status.</li><li>Need restoration work.</li></ul>`
+                    history: `<b style='color:#2a5d9f;'>📜 History of Waterbody</b><br/>This historic bawadi is closely associated with Ayurvedic practices, indicating that it was once valued not only as a water source but also for its supposed therapeutic properties. It is an important reminder of how water management and health traditions were interlinked in ancient India.<br/><br/>`,
+                    uses: `<b style='color:#2a5d9f;'>💧 Current Uses</b><ul><li>Currently neglected; serves no functional purpose.</li><li>Encroachment and lack of maintenance have damaged the structure and aesthetics.</li></ul>`,
+                    religion: `<b style='color:#2a5d9f;'>🕉 Religious Significance</b><ul><li>Historically connected to the Karni Mata Temple area.</li><li>Used by pilgrims and temple visitors in earlier times.</li><li>Holds cultural and spiritual value.</li></ul>`,
+                    tourism: `<b style='color:#2a5d9f;'>🧭 Tourism Potential</b><ul><li>High potential with cleaning, structural restoration, and proper promotion.</li><li>Ayurvedic link can attract wellness and heritage tourism.</li></ul>`,
+                    science: `<b style='color:#2a5d9f;'>🔬 Scientific Novelty</b><ul><li>Traditional water-storage system reflecting holistic health practices.</li><li>Demonstrates natural and sustainable water management suited to the region.</li></ul>`,
+                    condition: `<b style='color:#2a5d9f;'>📊 Current Condition</b><ul><li>Heavily encroached and abandoned.</li><li>In urgent need of conservation and restoration.</li></ul>`
                 };
                 
                 // Tab content for Houses Built Over Bawadis
@@ -674,12 +782,28 @@ class InteractiveMap {
                             <tr><th>Longitude</th><td>72.980735</td></tr>
                         </table>
                         Represents urban encroachment on heritage structures. Stepwells dried up and converted into residential/commercial space.<br/><br/>`,
-                    history: `<b style='color:#2a5d9f;'>📜 History of Waterbody</b><br/>Represents urban encroachment on heritage structures. Stepwells dried up and converted into residential/commercial space.<br/><br/>`,
-                    uses: `<b style='color:#2a5d9f;'>💧 Current Uses</b><ul><li>Converted into residential/commercial space.</li><li>No longer functional as water bodies.</li></ul>`,
-                    religion: `<b style='color:#2a5d9f;'>🕉 Religious Significance</b><ul><li>Historical religious significance lost.</li><li>Heritage value compromised.</li></ul>`,
-                    tourism: `<b style='color:#2a5d9f;'>🧭 Tourism Potential</b><ul><li>Limited tourism potential due to encroachment.</li><li>Heritage loss documented.</li></ul>`,
-                    science: `<b style='color:#2a5d9f;'>🔬 Scientific Novelty</b><ul><li>Historical stepwell construction lost.</li><li>Urban development impact on heritage.</li></ul>`,
-                    condition: `<b style='color:#2a5d9f;'>📊 Current Condition</b><ul><li>Loss of heritage value.</li><li>Structural risk due to encroachment.</li><li>Complete loss of water body functionality.</li></ul>`
+                    history: `<b style='color:#2a5d9f;'>📜 History of Waterbody</b><br/>Several ancient bawadis in Mathania have been lost over time due to rapid urbanization and modernization. These stepwells, once critical for community survival, now lie beneath houses and commercial complexes, completely erasing their existence from the public eye.<br/><br/>`,
+                    uses: `<b style='color:#2a5d9f;'>💧 Current Uses</b><ul><li>Land above the stepwells has been repurposed for residential and commercial construction.</li><li>The bawadis are inaccessible and non-functional.</li></ul>`,
+                    religion: `<b style='color:#2a5d9f;'>🕉 Religious Significance</b><ul><li>Represents cultural loss; religious and communal roles have vanished.</li><li>Historical connections to community rituals are effectively erased.</li></ul>`,
+                    tourism: `<b style='color:#2a5d9f;'>🧭 Tourism Potential</b><ul><li>Minimal tourism potential as they are buried and inaccessible.</li><li>Potential only if archaeological surveys/excavations are initiated.</li></ul>`,
+                    science: `<b style='color:#2a5d9f;'>🔬 Scientific Novelty</b><ul><li>Highlights how modern development overlooked sustainable traditional water systems.</li><li>Underscores the need to integrate heritage-sensitive planning.</li></ul>`,
+                    condition: `<b style='color:#2a5d9f;'>📊 Current Condition</b><ul><li>Mostly encroached upon and structurally damaged or destroyed.</li><li>Invisible reminders of neglected heritage with no public access.</li></ul>`
+                };
+                const karniTabData = {
+                    overview: `<b style='color:#2a5d9f;'>Overview</b><br/>
+                        <table class='ratangarh-info-table' style='width:100%;margin:18px 0 18px 0;border-collapse:collapse;'>
+                            <tr><th>Location</th><td>Karni Mata Mandir, Mathania</td></tr>
+                            <tr><th>District</th><td>Jodhpur</td></tr>
+                            <tr><th>Latitude</th><td>26.526706</td></tr>
+                            <tr><th>Longitude</th><td>72.980735</td></tr>
+                        </table>
+                        The Karni Mata Mandir at Mathania has long been a traditional site for worship and community gatherings, serving as a center of local faith and heritage.<br/><br/>`,
+                    history: `<b style='color:#2a5d9f;'>📜 History of Waterbody</b><br/>The Karni Mata Mandir at Mathania has long been a traditional site for worship and community gatherings, serving as a center of local faith and heritage.<br/><br/>`,
+                    uses: `<b style='color:#2a5d9f;'>💧 Current Uses</b><ul><li>The temple premises continue to be used for religious rituals and traditional community activities.</li><li>Unfortunately, in recent years, it has also become a dumping ground for garbage, diminishing its sanctity.</li></ul>`,
+                    religion: `<b style='color:#2a5d9f;'>🕉 Religious Significance</b><ul><li>The site is considered sacred, dedicated to Karni Mata, and holds spiritual value for local devotees who perform rituals and religious ceremonies there.</li><li>Used for religious rituals and traditional community activities.</li></ul>`,
+                    tourism: `<b style='color:#2a5d9f;'>🧭 Tourism Potential</b><ul><li>With proper restoration and maintenance, the Karni Mata Mandir could emerge as a cultural and heritage tourism destination, attracting pilgrims and visitors interested in regional traditions and history.</li><li>Could be part of rural tourism programs.</li></ul>`,
+                    science: `<b style='color:#2a5d9f;'>🔬 Scientific Novelty</b><ul><li>The site reflects the traditional religious architecture and cultural practices of the region, offering insights into local heritage preservation.</li><li>Demonstrates traditional religious architecture and cultural practices.</li></ul>`,
+                    condition: `<b style='color:#2a5d9f;'>📊 Current Condition</b><ul><li>At present, the temple area is degraded due to improper waste disposal and lack of management. This has reduced its spiritual atmosphere and threatens its potential as a cultural and tourism hub.</li><li>Degraded due to improper waste disposal and lack of management.</li></ul>`
                 };
                 
                 // Render main tab content
@@ -708,7 +832,11 @@ class InteractiveMap {
                             imgs = housesImages;
                             tabData = housesTabData;
                             break;
-                        default:
+                        case 'karni':
+                            imgs = karniImages;
+                            tabData = karniTabData;
+                            break;
+                         default:
                             imgs = chhotiImages;
                             tabData = chhotiTabData;
                     }

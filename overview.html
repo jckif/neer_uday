@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
-    <title>JCKIF - Overview Gallery</title>
+    <title>JCKIF - Overview</title>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="gallery.css">
 </head>
@@ -33,7 +33,6 @@
                         <a href="#" class="dropdown-toggle magnetic">About Us</a>
                         <div class="dropdown-menu">
                             <a href="overview.html" class="magnetic">Overview</a>
-                            <a href="company.html" class="magnetic">Company</a>
                             <a href="team.html" class="magnetic">Team</a>
                         </div>
                     </li>
@@ -43,28 +42,35 @@
         </div>
     </header>
 
-    <!-- Location Gallery Section -->
-    <section class="location-gallery">
-        <a href="gallery.html" class="back-to-gallery">← Back to Gallery</a>
-        <h1 class="section-title">Overview Gallery</h1>
-        <div class="location-gallery-grid" id="gallery-grid">
-            <!-- Images and videos will be loaded dynamically -->
-        </div>
-    </section>
+    <main>
+        <h1 class="fade-in">Overview</h1>
 
-    <!-- Lightbox -->
-    <div class="lightbox" id="lightbox">
-        <div class="lightbox-content">
-            <img src="" alt="" id="lightbox-image">
-            <video src="" controls id="lightbox-video" style="display: none;"></video>
-            <div class="lightbox-caption" id="lightbox-caption"></div>
-        </div>
-        <div class="lightbox-nav">
-            <button id="prev-button">Previous</button>
-            <button id="next-button">Next</button>
-        </div>
-        <div class="lightbox-close" id="lightbox-close">×</div>
-    </div>
+        <section class="welcome-section fade-in">
+            <div class="welcome-text">
+                <div class="text-content">
+                    <p>We are Team RetroFlow, a group of passionate engineering students from HBTU Kanpur, selected for the Student Explorer Internship Program at IIT Jodhpur under the Jodhpur City Knowledge and Innovation Cluster (JCKIC).</p>
+                    <p>Our project focuses on surveying and documenting Rajasthan’s oldest water bodies, analyzing their history, design, current condition, and water quality, and suggesting revival solutions for sustainable water management.</p>
+                    <p>Through extensive field visits, data collection, and community interaction, we’ve built this platform as a digital map and archive of Rajasthan’s traditional water heritage, bringing centuries-old wisdom into the modern era.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="fade-in">
+            <h2 class="map-heading">👥 Our Team</h2>
+            <ul class="team-list">
+                <li>Nishant Poddar</li>
+                <li>Aditya Gautam</li>
+                <li>Adarsh Singh</li>
+                <li>Badal Khevadiya</li>
+                <li>Rehan</li>
+                <li>Shubh Srivastava</li>
+            </ul>
+        </section>
+
+        <section class="fade-in">
+            <p>We aim to blend engineering expertise, cultural heritage, and technology to create awareness and inspire water conservation efforts for future generations.</p>
+        </section>
+    </main>
 
     <!-- Footer -->
     <footer>
@@ -72,7 +78,6 @@
     </footer>
 
     <script src="script.js"></script>
-    <script src="gallery.js"></script>
 </body>
-</html> 
+</html>
 
