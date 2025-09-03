@@ -691,12 +691,12 @@ class InteractiveMap {
                     {src: 'images/Mathania/12.jpg', caption: 'Present condition of the Bawadi.', viewAll: true}
                 ];
                 const housesImages = [
-                    {src: 'images/Mathania/13.jpg', caption: 'Houses Built Over Bawadis – Mathania'},
+                    {src: 'images/Mathania/16.jpg', caption: 'Houses Built Over Bawadis – Mathania'},
                     {src: 'images/Mathania/14.jpg', caption: 'Urban encroachment on heritage structures.'},
                     {src: 'images/Mathania/15.jpg', caption: 'Lost heritage sites.', viewAll: true}
                 ];
                 const karniImages = [
-                    {src: 'images/Mathania/16.jpg', caption: 'Karni Mata – Mathania'},
+                    {src: 'images/Mathania/13.jpg', caption: 'Karni Mata – Mathania'},
                     {src: 'images/Mathania/17.jpg', caption: 'Temple-associated stepwell.'},
                     {src: 'images/Mathania/18.jpg', caption: 'Present condition of the Bawadi.', viewAll: true}
                 ];
@@ -5002,7 +5002,7 @@ else if (village.id === 'pokhran') {
             overview: `
                 <b style='color:#2a5d9f;'>Overview</b><br/>
                 <table class='ratangarh-info-table' style='width:100%;margin:18px 0 18px 0;border-collapse:collapse;'>
-                    <tr><th>Location</th><td>Pokhran, Jaisalmer District</td></tr>
+                    <tr><th>Location</th><td>Ramdevra(Pokhran Tehsil), Jaisalmer District</td></tr>
                     <tr><th>Latitude</th><td>27.1000</td></tr>
                     <tr><th>Longitude</th><td>71.5000</td></tr>
                 </table>
@@ -5011,7 +5011,7 @@ else if (village.id === 'pokhran') {
             history: `
                 <b style='color:#2a5d9f;'>📜 History of Waterbody</b><br/>
                 <ul>
-                    <li>Pokhran, a historically significant town in the Thar Desert, has long relied on traditional water harvesting systems such as Tankas (underground water tanks), Kunds (domed reservoirs), and Johads (small earthen check dams).</li>
+                    <li>Ramdevra, a historically significant village in the Thar Desert, has long relied on traditional water harvesting systems such as Tankas (underground water tanks), Kunds (domed reservoirs), and Johads (small earthen check dams).</li>
                     <li>These systems once formed the lifeline of desert survival, storing rainwater for domestic and religious use.</li>
                     <li>The Ramdevra-Kund, near the revered Ramdev Pir Temple, is a historically sacred water body where pilgrims performed ritualistic dips for centuries.</li>
                     <li>Over time, neglect, low rainfall, and urbanization have led to drying up or underuse of these systems.</li>
@@ -5020,7 +5020,7 @@ else if (village.id === 'pokhran') {
             uses: `
                 <b style='color:#2a5d9f;'>💧 Current Uses</b>
                 <ul>
-                    <li>Today, many tankas, kunds, and johads in Pokhran are dried up or in disrepair, with residents primarily depending on piped water supply and occasional restored water bodies.</li>
+                    <li>Today, many tankas, kunds, and johads in Ramdevra are dried up or in disrepair, with residents primarily depending on piped water supply and occasional restored water bodies.</li>
                     <li>The Ramdevra-Kund continues to be used for ritualistic bathing by pilgrims during specific religious events.</li>
                     <li>Some revived structures under MNREGA (rural employment scheme) are beginning to restore traditional functionality.</li>
                 </ul>
@@ -5044,7 +5044,7 @@ else if (village.id === 'pokhran') {
             science: `
                 <b style='color:#2a5d9f;'>🔬 Scientific Novelty</b>
                 <ul>
-                    <li>The Pokhran water systems showcase centuries-old engineering optimized for desert ecology: Tankas and Kunds efficiently collect and store rainwater, while Johads facilitate groundwater recharge.</li>
+                    <li>The Ramdevra water systems showcase centuries-old engineering optimized for desert ecology: Tankas and Kunds efficiently collect and store rainwater, while Johads facilitate groundwater recharge.</li>
                     <li>These are now being reintegrated through MNREGA, indicating a blending of traditional wisdom with modern development.</li>
                     <li>Their revival presents a replicable model for other drought-prone regions in India and beyond.</li>
                 </ul>
@@ -5052,7 +5052,7 @@ else if (village.id === 'pokhran') {
             condition: `
                 <b style='color:#2a5d9f;'>📊 Current Condition</b>
                 <ul>
-                    <li>Most traditional water bodies in Pokhran are dried up or underutilized, primarily due to low rainfall, shift to piped water supply, and lack of consistent maintenance.</li>
+                    <li>Most traditional water bodies in Ramdevra are dried up or underutilized, primarily due to low rainfall, shift to piped water supply, and lack of consistent maintenance.</li>
                     <li>Revival work is ongoing through MNREGA, but progress varies.</li>
                     <li>Ramdevra-Kund, although affected by water shortage, is still cared for by the temple and remains a functioning spiritual water source.</li>
                     <li>The area urgently needs regular desilting, structural repairs, and community involvement and monitoring.</li>

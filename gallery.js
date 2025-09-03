@@ -648,7 +648,7 @@ async function loadGalleryItems() {
                     { type: 'image', src: 'images/Bhinmal/1.jpg', size: 'big', caption: 'Bhinmal (Jalore)' },
                     { type: 'image', src: 'images/Bhinmal/2.jpg', size: 'big', caption: 'Traditional water heritage of Bhinmal' },
                     { type: 'image', src: 'images/Bhinmal/3.jpg', size: 'big', caption: 'Local water conservation practices' },
-                    { type: 'image', src: 'images/Bhinmal/4.jpg', size: 'normal' }
+                
                 ];
                 break;
             case 'bharoori':

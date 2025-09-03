@@ -33,7 +33,7 @@ const mapData = {
                 (71.920681 + 70.887797 + 70.682734 + 70.494761) / 4
             ],
             villages: [
-                { id: "pokhran", name: "Pokhran", coordinates: [26.919431, 71.920681], description: "Pokhran village.", image: "images/Pokhran/1.jpg", report: "pokhran.html" },
+                { id: "pokhran", name: "Ramdevra (Pokhran Tehsil)", coordinates: [26.919431, 71.920681], description: "Ramdevra (Pokhran Tehsil) village.", image: "images/Pokhran/1.jpg", report: "pokhran.html" },
                 { id: "badabagh", name: "Badabagh", coordinates: [26.954915, 70.887797], description: "Badabagh village.", image: "images/badabagh/1.jpg", report: "badabagh.html" },
                 { id: "mokla", name: "Mokla", coordinates: [27.125381, 70.682734], description: "Mokla village.", image: "images/mokla/1.jpg", report: "mokla.html" },
                 { id: "ramgarh", name: "Ramgarh", coordinates: [27.374339, 70.494761], description: "Ramgarh village.", image: "images/Ramgarh/1.jpg", report: "ramgarh.html" }
